@@ -18,7 +18,7 @@ class LoginController extends Controller
 
             $param = $request->except('_token');
 
-            $validator = Validator::make($request->all(),
+            $validator = Validator::make($param,
                 [
                     'username' => 'required',
                     'password' => 'required',
