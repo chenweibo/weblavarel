@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Model;
 class LoginController extends Controller
 {
 
@@ -17,6 +19,7 @@ class LoginController extends Controller
         if ($request->ajax()) {
 
             $param = $request->except('_token');
+            $user = DB::table('admin_user')->where('username',$param['username'])->get();
 
             $validator = Validator::make($param,
                 [
@@ -33,9 +36,21 @@ class LoginController extends Controller
                 $errors = $validator->errors()->all();
                 return ['code' => -1, 'msg' => $errors];
             }
+
+            if($user->isEmpty()){
+
+              return ['code' => -1, 'msg' => '用户不存在'];
+            }
+
+
+
             return ['code' => 1, 'msg' => '验证通过'];
 
             }
+        $route = Route::current();
+        $name = Route::currentRouteName();
+        $action = Route::currentRouteAction();
+
         return view('admin/login');
 
     }

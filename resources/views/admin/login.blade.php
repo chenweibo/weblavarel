@@ -88,8 +88,9 @@
                 },
               success: function(data){
                 if(data.code!=1){
-                         $('#err_msg').show().html("<span style='color:red'>"+data.msg[0]+"</span>");
+                         $('#err_msg').show().html("<span style='color:red'>"+data.msg+"</span>");
                          $('#imgcode').attr('src', '{{captcha_src("default")}}?default='+Math.random());
+
                      }else{
                           $('#err_msg').show().html("<span style='color:red'>"+data.msg+"</span>");
                         // window.location.href=data.data;
