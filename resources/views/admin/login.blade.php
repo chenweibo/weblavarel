@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>网站后台登录</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/font-awesome.min.css?v=4.4.0') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/style.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/login.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/font-awesome.min.css?v=4.4.0') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/login.min.css') }}" rel="stylesheet">
 
     <script>
         if(window.top!==window.self){window.top.location=window.location};
@@ -55,8 +55,8 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('admin/js/jquery.min.js?v=2.1.4') }}"></script>
-<script src="{{ asset('admin/js/bootstrap.min.js?v=3.3.6') }}"></script>
+<script src="{{ asset('static/admin/js/jquery.min.js?v=2.1.4') }}"></script>
+<script src="{{ asset('static/admin/js/bootstrap.min.js?v=3.3.6') }}"></script>
 <script type="text/javascript">
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
@@ -92,8 +92,8 @@
                          $('#imgcode').attr('src', '{{captcha_src("default")}}?default='+Math.random());
 
                      }else{
-                          $('#err_msg').show().html("<span style='color:red'>"+data.msg+"</span>");
-                        // window.location.href=data.data;
+                          //$('#err_msg').show().html("<span style='color:red'>"+data.msg+"</span>");
+                         window.location.href=data.data;
                      }
               },
               error: function(msg) {
@@ -102,18 +102,7 @@
               },
 
               })
-          //   $.post("{{ url('jksm') }}",{'username':username, 'password':password, 'captcha':code,'_token':token},function(data){
-          //       lock = false;
-          //       $('#login_btn').val('登录').removeClass('btn-danger').addClass('btn-success');
-          //       if(data.code!=1){
-          //           $('#err_msg').show().html("<span style='color:red'>"+data.msg+"</span>");
-          //           return;
-          //       }else{
-          //           window.location.href=data.data;
-          //       }
-          //   }
-          //
-          // );
+
         });
     });
 </script>

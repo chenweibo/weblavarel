@@ -19,7 +19,7 @@ class LoginController extends Controller
         if ($request->ajax()) {
 
             $param = $request->except('_token');
-            $user = DB::table('admin_user')->where('username',$param['username'])->get();
+            $user = DB::table('admin_user')->where('username',$param['username'])->get()->first();
 
             $validator = Validator::make($param,
                 [
@@ -34,30 +34,36 @@ class LoginController extends Controller
                 ]);
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-                return ['code' => -1, 'msg' => $errors];
+                return ['code' => -1, 'msg' => $errors ];
             }
 
-            if($user->isEmpty()){
+            if(empty($user)){
 
               return ['code' => -1, 'msg' => '用户不存在'];
             }
+            if($param['password'] != $user->password ){
+            return ['code' => -1, 'data' => '', 'msg' => '密码错误'];
+           }
 
+             if(1 != $user->status){
+                 return ['code' => -6, 'data' => '', 'msg' => '该账号被禁用'];
+             }
 
+            session(['adminuser'=>$request['username'],'id'=>$request['id']]);
 
-            return ['code' => 1, 'msg' => '验证通过'];
+            return ['code' => 1,'data'=>route('AdminIndex'),'msg' => '验证通过'];
 
             }
-        $route = Route::current();
-        $name = Route::currentRouteName();
-        $action = Route::currentRouteAction();
 
-        return view('admin/login');
+
+         return view('admin/login');
 
     }
 
-    public function loginout()
+    public function loginout(Request $request)
     {
 
+         $request->session()->forget(['adminuser','id']);
 
     }
 

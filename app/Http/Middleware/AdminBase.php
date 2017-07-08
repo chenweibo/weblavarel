@@ -16,6 +16,7 @@ class AdminBase
     public function handle($request, Closure $next)
     {
       if (!$request->session()->has('adminuser')) {
+
            return redirect('jksm');
 }
         return $next($request);

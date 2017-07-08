@@ -24,18 +24,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 | chenweibo 2017-7-6 admin router create
 |--------------------------------------------------------------------------
 */
-Route::get('show/{id}.php', [function ($id) {
-    return 2;
-}]);
-Route::get('show/{id}', [function ($id) {
-    return 1;
-}]);
+
 
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
+Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
 
-    Route::get('/admin', function () {
-         return 11;
-    });
+     Route::get('/admin', function () {
+          return view('welcome');
+     })->name('AdminIndex');
 
-});
+ });
