@@ -28,10 +28,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
+
+
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
 
-     Route::get('/admin', function () {
-          return view('welcome');
-     })->name('AdminIndex');
+Route::get('/admin', 'AdminController@index')->name('AdminIndex');
+Route::get('/adminmain', 'AdminController@indexPage')->name('adminmain');
 
  });

@@ -50,13 +50,19 @@ class LoginController extends Controller
              }
 
             session(['adminuser'=>$request['username'],'id'=>$request['id']]);
+            $param1 = [
+                'loginnum' => $user->loginnum + 1,
+                'last_login_ip' => $request->ip(),
+                'last_login_time' => time()
+            ];
 
+            DB::table('admin_user')->where('id', $user->id)->update($param1);
             return ['code' => 1,'data'=>route('AdminIndex'),'msg' => '验证通过'];
 
             }
 
 
-         return view('admin/login');
+            return view('admin/login');
 
     }
 
