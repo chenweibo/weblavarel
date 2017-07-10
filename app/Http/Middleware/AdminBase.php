@@ -19,6 +19,7 @@ class AdminBase
 
            return redirect('jksm');
 }
+
         return $next($request);
     }
 }

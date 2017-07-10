@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
+use App\UserType;
 class LoginController extends Controller
 {
 
@@ -48,13 +49,16 @@ class LoginController extends Controller
              if(1 != $user->status){
                  return ['code' => -6, 'data' => '', 'msg' => '该账号被禁用'];
              }
+            $usertype= new UserType();
+            $info=$usertype->getRoleInfo($user->typeid);
 
-            session(['adminuser'=>$request['username'],'id'=>$request['id']]);
+            session(['adminuser'=>$request['username'],'id'=>$request['id'],'role'=>$info['rolename'],'rule'=>$info['rule'],'action'=>$info['action']]);
             $param1 = [
                 'loginnum' => $user->loginnum + 1,
                 'last_login_ip' => $request->ip(),
                 'last_login_time' => time()
             ];
+
 
             DB::table('admin_user')->where('id', $user->id)->update($param1);
             return ['code' => 1,'data'=>route('AdminIndex'),'msg' => '验证通过'];
@@ -70,6 +74,7 @@ class LoginController extends Controller
     {
 
          $request->session()->forget(['adminuser','id']);
+         return redirect()->route('jksm');
 
     }
 

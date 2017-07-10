@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="row">
+
     <div class="col-sm-3">
         <div class="widget lazur-bg">
             <div class="row">

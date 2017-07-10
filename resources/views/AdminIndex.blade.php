@@ -33,8 +33,8 @@
                         <span><img alt="image" class="img-circle" src="{{ asset('static/admin/images/profile_small.jpg')}}"/></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
-                                <span class="block m-t-xs"><strong class="font-bold">jksm</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                <span class="block m-t-xs"><strong class="font-bold">{{$username}}</strong></span>
+                                <span class="text-muted text-xs block">{{ $rolename }}<b class="caret"></b></span>
                             </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -42,7 +42,7 @@
                                 <a href="">修改头像</a>
                             </li>
                             <li>
-                                <a href="1">安全退出</a>
+                                <a href="{{ route('adminout') }}">安全退出</a>
                             </li>
                         </ul>
                     </div>
