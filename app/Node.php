@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
 class Node extends Model
 {
     protected $table = 'node';
@@ -16,12 +16,16 @@ class Node extends Model
         //超级管理员没有节点数组
 
         $where = empty($nodeStr) ? 'is_menu = 2' : 'is_menu = 2 and id in('.$nodeStr.')';
+        if(empty($nodeStr))
+        {
+            $result=  $this->where('is_menu', 2)->get()->toArray();
+        }
+        else{
+
+            $result=  $this->where('is_menu', 2)->whereIn('id',explode(',',session('rule')))->get()->toArray();
+        }
 
 
-
-        $result = db('node')->field('id,node_name,typeid,control_name,action_name,style,sort')
-
-            ->where($where)->order('sort asc')->select();
 
         $menu = prepareMenu($result);
 

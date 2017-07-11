@@ -51,7 +51,10 @@ class LoginController extends Controller
              }
             $usertype= new UserType();
             $info=$usertype->getRoleInfo($user->typeid);
-
+            if(!isset($info['action']))
+            {
+                $info['action']='';
+            }
             session(['adminuser'=>$request['username'],'id'=>$request['id'],'role'=>$info['rolename'],'rule'=>$info['rule'],'action'=>$info['action']]);
             $param1 = [
                 'loginnum' => $user->loginnum + 1,

@@ -1,10 +1,7 @@
 <?php
 
-function ceshi(){
 
-
-   return 1;
-}
+//整理菜单
 
 function prepareMenu($param)
 
