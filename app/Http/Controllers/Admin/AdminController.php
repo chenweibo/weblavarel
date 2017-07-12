@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\UserType;
+use Illuminate\Support\Facades\File;
 
 
 class AdminController extends Controller
@@ -15,12 +16,10 @@ class AdminController extends Controller
 
   public function index()
   {
-
      $node= new Node();
-
-
-
-       return view('AdminIndex',['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
+     $path=config_path().'\text.php';
+     
+      return view('AdminIndex',['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
   }
 
   public function indexPage(){

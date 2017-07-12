@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 总访问量 </span>
-                    <h2 class="font-bold">{$liulan}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 今日访问量 </span>
-                    <h2 class="font-bold">{$ip}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 产品数量 </span>
-                    <h2 class="font-bold">{$pronum}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>  </a>
             </div>
 
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 文章数量 </span>
-                    <h2 class="font-bold">{$articlenum}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 单篇 </span>
-                    <h2 class="font-bold">{$pagenum}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 下载数量 </span>
-                    <h2 class="font-bold">{$downnum}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 图片数量 </span>
-                    <h2 class="font-bold">{$imgnum}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-xs-8 text-right">
                     <span> 留言数量 </span>
-                    <h2 class="font-bold">{$gbooknum}</h2>
+                    <h2 class="font-bold">-</h2>
                 </div>
             </div>
         </div>
@@ -149,13 +149,62 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {volist name="info" id="v"}
-                    <tr>
-                        <td>{$key}</td>
-                        <td>{$v}</td>
 
+                    <tr>
+                        <td>ip</td>
+                        <td>@php
+                          echo ' [ '.gethostbyname($_SERVER['SERVER_NAME']).' ]';
+                        @endphp</td>
                     </tr>
-                    {/volist}
+                    <tr>
+                        <td>域名</td>
+                        <td>@php
+                          echo $_SERVER['SERVER_NAME'];
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>操作系统</td>
+                        <td>@php
+                          echo PHP_OS;
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>运行环境</td>
+                        <td>@php
+                          echo $_SERVER["SERVER_SOFTWARE"];
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>上传附件限制</td>
+                        <td>@php
+                          echo ini_get('upload_max_filesize');
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>执行时间限制</td>
+                        <td>@php
+                          echo ini_get('max_execution_time').'秒';
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>服务器时间</td>
+                        <td>@php
+                          echo date("Y年n月j日 H:i:s");
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>北京时间</td>
+                        <td>@php
+                          echo gmdate("Y年n月j日 H:i:s",time()+8*3600);
+                        @endphp</td>
+                    </tr>
+                    <tr>
+                        <td>剩余空间</td>
+                        <td>@php
+                          echo round((disk_free_space(".")/(1024*1024)),2).'M';
+                        @endphp</td>
+                    </tr>
+
 
 
                     </tbody>

@@ -25,7 +25,7 @@ function prepareMenu($param)
 
         }else{
 
-            $vo['href'] = url($vo['control_name'] .'/'. $vo['action_name']); //跳转地址
+            $vo['href'] = route('AdminIndex'); //跳转地址
 
             $child[] = $vo;
 
@@ -58,4 +58,3 @@ function prepareMenu($param)
     return $parent;
 
 }
-

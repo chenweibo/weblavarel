@@ -49,47 +49,25 @@
                     <div class="logo-element">BBX
                     </div>
                 </li>
-
-
                 @if (!empty($menu))
-
-
-                    @foreach ($menu as $v)
+                  @foreach ($menu as $v)
                   <li class="menu">
-
                     <a href="{$vo.href}">
-
                         <i class="{{$v['style']}}" aria-hidden="true"></i>
-
                         <span class="nav-label">{{$v['node_name']}} </span>
-
                         <span class="fa arrow"></span>
-
                     </a>
-
                     <ul class="nav nav-second-level">
                         @if (!empty($v['child']))
                          @foreach($v['child'] as $vo)
-
-
-
                         <li>
-
                             <a class="J_menuItem" href="{$v.href}">{{$vo['node_name']}}</a>
-
                         </li>
-
-                        @endforeach
-
-                        @endif
-
+                         @endforeach
+                      @endif
                     </ul>
-
                 </li>
-
-
                  @endforeach
-
                 @endif
 
             </ul>
