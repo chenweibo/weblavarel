@@ -18,11 +18,11 @@ class Node extends Model
         $where = empty($nodeStr) ? 'is_menu = 2' : 'is_menu = 2 and id in('.$nodeStr.')';
         if(empty($nodeStr))
         {
-            $result=  $this->where('is_menu', 2)->get()->toArray();
+            $result=  $this->where('is_menu', 2)->orderBy('sort', 'asc')->get()->toArray();
         }
         else{
 
-            $result=  $this->where('is_menu', 2)->whereIn('id',explode(',',session('rule')))->get()->toArray();
+            $result=  $this->where('is_menu', 2)->whereIn('id',explode(',',session('rule')))->orderBy('sort', 'asc')->get()->toArray();
         }
 
 

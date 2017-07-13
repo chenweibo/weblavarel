@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\UserType;
-
+use Route;
 
 
 class AdminController extends Controller
@@ -19,8 +19,13 @@ class AdminController extends Controller
   {
      $node= new Node();
      $path=config_path().'\site.php';
+     $route = Route::current();
 
-      return view('AdminIndex',['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
+     $name = Route::currentRouteName();
+
+     $action = Route::currentRouteAction();
+     
+     return view('AdminIndex',['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
   }
 
   public function indexPage(){

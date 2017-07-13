@@ -52,7 +52,7 @@
                 @if (!empty($menu))
                   @foreach ($menu as $v)
                   <li class="menu">
-                    <a href="{$vo.href}">
+                    <a href="{{$v['href']}}">
                         <i class="{{$v['style']}}" aria-hidden="true"></i>
                         <span class="nav-label">{{$v['node_name']}} </span>
                         <span class="fa arrow"></span>
