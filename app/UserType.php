@@ -20,7 +20,7 @@ class UserType extends Model
 //      $res = get_object_vars($res);
       foreach($res as $key){
           if('#' != $key->action_name){
-              $result['action'][] = $key->control_name . '/' . $key->action_name;
+              $result['route'][] = $key->route;
           }
       }
 

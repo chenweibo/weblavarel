@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 use App\UserType;
 use Route;
 
-
 class AdminController extends Controller
 {
+
 
 
   public function index()
@@ -22,7 +22,8 @@ class AdminController extends Controller
      $route = Route::current();
 
      $name = Route::currentRouteName();
-
+     $usertype= new UserType();
+     $info=$usertype->getRoleInfo(2);
      $action = Route::currentRouteAction();
      
      return view('AdminIndex',['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
@@ -33,4 +34,10 @@ class AdminController extends Controller
 
        return view('admin/index');
   }
+  public function error(){
+
+
+       return view('error');
+  }
+
 }

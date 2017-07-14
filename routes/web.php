@@ -19,15 +19,17 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 /*
 |--------------------------------------------------------------------------
 | chenweibo 2017-7-6 admin router create
 |--------------------------------------------------------------------------
 */
 
-
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
+Route::get('/error', 'Admin\AdminController@error')->name('error');
 
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
