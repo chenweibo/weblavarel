@@ -3,6 +3,7 @@
 return [
 
 'title'=>'',
+'en_title'=>'sd',
 'keywords'=>'321312',
 'description'=>'321312',
 'tel'=>'321312',

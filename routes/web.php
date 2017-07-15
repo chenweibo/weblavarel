@@ -33,8 +33,9 @@ Route::get('/error', 'Admin\AdminController@error')->name('error');
 
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
-
+  
 Route::get('/admin', 'AdminController@index')->name('AdminIndex');
 Route::get('/adminmain', 'AdminController@indexPage')->name('adminmain');
+Route::any('/site', 'AdminController@site')->name('site');
 
  });
