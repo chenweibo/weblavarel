@@ -61,7 +61,7 @@
                         @if (!empty($v['child']))
                          @foreach($v['child'] as $vo)
                         <li>
-                            <a class="J_menuItem" href="{$v.href}">{{$vo['node_name']}}</a>
+                            <a class="J_menuItem" href="{{$vo['href']}}">{{$vo['node_name']}}</a>
                         </li>
                          @endforeach
                       @endif

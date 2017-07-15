@@ -19,11 +19,10 @@ class UserType extends Model
       $res = DB::table('node')->whereIn('id',explode(',',$where))->get();
 //      $res = get_object_vars($res);
       foreach($res as $key){
-          if('#' != $key->action_name){
+          if('#' != $key->mark){
               $result['route'][] = $key->route;
           }
       }
-
       return $result;
   }
 }

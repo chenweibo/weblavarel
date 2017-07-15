@@ -17,7 +17,7 @@ function prepareMenu($param)
 
         }else{
 
-            $vo['href'] = route('AdminIndex'); // 
+            $vo['href'] = empty($vo['route']) ? '#' : route($vo['route']); //
             $child[] = $vo;
 
         }
@@ -30,11 +30,8 @@ function prepareMenu($param)
 
             if($v['typeid'] == $vo['id']){
                 $parent[$key]['child'][] = $v;
-
             }
-
         }
-
     }
     unset($child);
     return $parent;

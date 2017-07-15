@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-07 17:21:25
+Date: 2017-07-15 09:54:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,12 +31,13 @@ CREATE TABLE `admin_user` (
   `typeid` int(11) DEFAULT '1' COMMENT '用户角色id',
   `img` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '0', '', '0', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '34', '127.0.0.1', '1500083280', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('7', 'bo', '123', '18', '127.0.0.1', '1500083549', '', '1', '2', null);
 
 -- ----------------------------
 -- Table structure for cate
@@ -190,118 +191,117 @@ DROP TABLE IF EXISTS `node`;
 CREATE TABLE `node` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `node_name` varchar(155) NOT NULL DEFAULT '' COMMENT '节点名称',
-  `module_name` varchar(155) NOT NULL DEFAULT '' COMMENT '模块名',
-  `control_name` varchar(155) NOT NULL DEFAULT '' COMMENT '控制器名',
-  `action_name` varchar(155) NOT NULL COMMENT '方法名',
+  `mark` varchar(155) NOT NULL COMMENT '方法名',
   `is_menu` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否是菜单项 1不是 2是',
   `typeid` int(11) NOT NULL COMMENT '父级节点id',
   `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
   `sort` int(50) DEFAULT '99',
+  `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
 -- ----------------------------
-INSERT INTO `node` VALUES ('1', '用户管理', '#', '#', '#', '2', '0', 'fa fa-user', '2');
-INSERT INTO `node` VALUES ('2', '用户列表', 'admin', 'user', 'index', '2', '1', '', '99');
-INSERT INTO `node` VALUES ('3', '添加用户', 'admin', 'user', 'useradd', '1', '2', '', '99');
-INSERT INTO `node` VALUES ('4', '编辑用户', 'admin', 'user', 'useredit', '1', '2', '', '99');
-INSERT INTO `node` VALUES ('5', '删除用户', 'admin', 'user', 'userdel', '1', '2', '', '99');
-INSERT INTO `node` VALUES ('6', '角色列表', 'admin', 'role', 'index', '2', '1', '', '99');
-INSERT INTO `node` VALUES ('7', '添加角色', 'admin', 'role', 'roleadd', '1', '6', '', '99');
-INSERT INTO `node` VALUES ('8', '编辑角色', 'admin', 'role', 'roleedit', '1', '6', '', '99');
-INSERT INTO `node` VALUES ('9', '删除角色', 'admin', 'role', 'roledel', '1', '6', '', '99');
-INSERT INTO `node` VALUES ('10', '分配权限', 'admin', 'role', 'giveaccess', '1', '6', '', '99');
-INSERT INTO `node` VALUES ('11', '系统管理', '#', '#', '#', '2', '0', 'fa fa-desktop', '99');
-INSERT INTO `node` VALUES ('12', '数据备份/还原', 'admin', 'data', 'index', '2', '11', '', '99');
-INSERT INTO `node` VALUES ('13', '备份数据', 'admin', 'data', 'importdata', '1', '12', '', '99');
-INSERT INTO `node` VALUES ('14', '还原数据', 'admin', 'data', 'backdata', '1', '12', '', '99');
-INSERT INTO `node` VALUES ('15', '基本管理', '#', '#', '#', '2', '0', 'fa fa-cog', '1');
-INSERT INTO `node` VALUES ('16', '产品管理', '#', '#', '#', '2', '0', 'fa fa-th-large', '6');
-INSERT INTO `node` VALUES ('17', '文章管理', '#', '#', '#', '2', '0', 'fa fa-book', '7');
-INSERT INTO `node` VALUES ('18', '图片管理', '#', '#', '#', '2', '0', 'fa fa-file-image-o', '8');
-INSERT INTO `node` VALUES ('19', '下载管理', '#', '#', '#', '2', '0', 'fa fa-cloud-download', '9');
-INSERT INTO `node` VALUES ('20', '微信管理', '#', '#', '#', '2', '0', 'fa fa-weixin', '97');
-INSERT INTO `node` VALUES ('21', '插件管理', '#', '#', '#', '2', '0', 'fa fa-plug', '98');
-INSERT INTO `node` VALUES ('23', '基本设置', 'admin', 'siteset', 'index', '2', '15', '', '99');
-INSERT INTO `node` VALUES ('24', '幻灯片管理', 'admin', 'siteset', 'slide', '2', '15', '', '99');
-INSERT INTO `node` VALUES ('25', '添加幻灯片', 'admin', 'siteset', 'slideadd', '1', '24', '', '99');
-INSERT INTO `node` VALUES ('26', '编辑幻灯片', 'admin', 'siteset', 'slideedit', '1', '24', '', '99');
-INSERT INTO `node` VALUES ('27', '删除幻灯片', 'admin', 'siteset', 'slidedel', '1', '24', '', '99');
-INSERT INTO `node` VALUES ('28', '保存设置', 'admin', 'siteset', 'save', '1', '23', '', '99');
-INSERT INTO `node` VALUES ('29', '产品分类', 'admin', 'product', 'cate', '2', '16', '', '99');
-INSERT INTO `node` VALUES ('30', '产品列表', 'admin', 'product', 'contentlist', '2', '16', '', '99');
-INSERT INTO `node` VALUES ('31', '添加分类', 'admin', 'product', 'cateadd', '1', '29', '', '99');
-INSERT INTO `node` VALUES ('32', '编辑分类', 'admin', 'product', 'cateedit', '1', '29', '', '99');
-INSERT INTO `node` VALUES ('33', '删除分类', 'admin', 'product', 'catedel', '1', '29', '', '99');
-INSERT INTO `node` VALUES ('34', '添加产品', 'admin', 'product', 'contentadd', '1', '30', '', '99');
-INSERT INTO `node` VALUES ('35', '编辑产品', 'admin', 'product', 'contentedit', '1', '30', '', '99');
-INSERT INTO `node` VALUES ('36', '删除产品', 'admin', 'product', 'contentdel', '1', '30', '', '99');
-INSERT INTO `node` VALUES ('37', '字段管理', 'admin', 'product', 'type', '2', '16', '', '99');
-INSERT INTO `node` VALUES ('38', '批量删除', 'admin', 'product', 'delajax', '1', '30', '', '99');
-INSERT INTO `node` VALUES ('39', '添加字段', 'admin', 'product', 'typeadd', '1', '37', '', '99');
-INSERT INTO `node` VALUES ('40', '编辑字段', 'admin', 'product', 'typeedit', '1', '37', '', '99');
-INSERT INTO `node` VALUES ('41', '删除字段', 'admin', 'product', 'typedel', '1', '37', '', '99');
-INSERT INTO `node` VALUES ('42', '文章分类', 'admin', 'article', 'cate', '2', '17', '', '99');
-INSERT INTO `node` VALUES ('43', '文章列表', 'admin', 'article', 'contentlist', '2', '17', '', '99');
-INSERT INTO `node` VALUES ('44', '字段管理', 'admin', 'article', 'type', '2', '17', '', '99');
-INSERT INTO `node` VALUES ('45', '添加分类', 'admin', 'article', 'cateadd', '1', '42', '', '99');
-INSERT INTO `node` VALUES ('46', '编辑分类', 'admin', 'article', 'cateedit', '1', '42', '', '99');
-INSERT INTO `node` VALUES ('47', '删除分类', 'admin', 'article', 'catedel', '1', '42', '', '99');
-INSERT INTO `node` VALUES ('48', '添加文章', 'admin', 'article', 'contentadd', '1', '43', '', '99');
-INSERT INTO `node` VALUES ('49', '编辑文章', 'admin', 'article', 'contentedit', '1', '43', '', '99');
-INSERT INTO `node` VALUES ('50', '删除文章', 'admin', 'article', 'contentdel', '1', '43', '', '99');
-INSERT INTO `node` VALUES ('51', '批量删除', 'admin', 'article', 'delajax', '1', '43', '', '99');
-INSERT INTO `node` VALUES ('52', '添加字段', 'admin', 'article', 'typeadd', '1', '44', '', '99');
-INSERT INTO `node` VALUES ('53', '编辑字段', 'admin', 'article', 'typeedit', '1', '44', '', '99');
-INSERT INTO `node` VALUES ('54', '删除字段', 'admin', 'article', 'typedel', '1', '44', '', '99');
-INSERT INTO `node` VALUES ('55', '图片分类', 'admin', 'images', 'cate', '2', '18', '', '99');
-INSERT INTO `node` VALUES ('56', '图片列表', 'admin', 'images', 'contentlist', '2', '18', '', '99');
-INSERT INTO `node` VALUES ('57', '字段管理', 'admin', 'images', 'type', '2', '18', '', '99');
-INSERT INTO `node` VALUES ('58', '添加分类', 'admin', 'images', 'cateadd', '1', '55', '', '99');
-INSERT INTO `node` VALUES ('59', '编辑分类', 'admin', 'images', 'cateedit', '1', '55', '', '99');
-INSERT INTO `node` VALUES ('60', '删除分类', 'admin', 'images', 'catedel', '1', '55', '', '99');
-INSERT INTO `node` VALUES ('61', '添加文章', 'admin', 'images', 'contentadd', '1', '56', '', '99');
-INSERT INTO `node` VALUES ('62', '编辑文章', 'admin', 'images', 'contentedit', '1', '56', '', '99');
-INSERT INTO `node` VALUES ('63', '删除文章', 'admin', 'images', 'contentdel', '1', '56', '', '99');
-INSERT INTO `node` VALUES ('64', '批量删除', 'admin', 'images', 'delajax', '1', '56', '', '99');
-INSERT INTO `node` VALUES ('65', '添加字段', 'admin', 'images', 'typeadd', '1', '57', '', '99');
-INSERT INTO `node` VALUES ('66', '编辑字段', 'admin', 'images', 'typeedit', '1', '57', '', '99');
-INSERT INTO `node` VALUES ('67', '删除字段', 'admin', 'images', 'typedel', '1', '57', '', '99');
-INSERT INTO `node` VALUES ('68', '下载分类', 'admin', 'down', 'cate', '2', '19', '', '99');
-INSERT INTO `node` VALUES ('69', '下载列表', 'admin', 'down', 'contentlist', '2', '19', '', '99');
-INSERT INTO `node` VALUES ('70', '字段管理', 'admin', 'down', 'type', '2', '19', '', '99');
-INSERT INTO `node` VALUES ('71', '添加分类', 'admin', 'down', 'cateadd', '1', '68', '', '99');
-INSERT INTO `node` VALUES ('72', '编辑分类', 'admin', 'down', 'cateedit', '1', '68', '', '99');
-INSERT INTO `node` VALUES ('73', '删除分类', 'admin', 'down', 'catedel', '1', '68', '', '99');
-INSERT INTO `node` VALUES ('74', '添加文章', 'admin', 'down', 'contentadd', '1', '69', '', '99');
-INSERT INTO `node` VALUES ('75', '编辑文章', 'admin', 'down', 'contentedit', '1', '69', '', '99');
-INSERT INTO `node` VALUES ('76', '删除文章', 'admin', 'down', 'contentdel', '1', '69', '', '99');
-INSERT INTO `node` VALUES ('77', '批量删除', 'admin', 'down', 'delajax', '1', '69', '', '99');
-INSERT INTO `node` VALUES ('78', '添加字段', 'admin', 'down', 'typeadd', '1', '70', '', '99');
-INSERT INTO `node` VALUES ('79', '编辑字段', 'admin', 'down', 'typeedit', '1', '70', '', '99');
-INSERT INTO `node` VALUES ('80', '删除字段', 'admin', 'down', 'typedel', '1', '70', '', '99');
-INSERT INTO `node` VALUES ('81', '留言管理', '#', '#', '#', '2', '0', 'fa fa-commenting-o', '4');
-INSERT INTO `node` VALUES ('82', '单篇管理', '#', '#', '#', '2', '0', 'fa fa-pencil-square-o', '5');
-INSERT INTO `node` VALUES ('83', '留言列表', 'admin', 'gbook', 'index', '2', '81', '', '99');
-INSERT INTO `node` VALUES ('84', '查看留言', 'admin', 'gbook', 'gbookread', '1', '83', '', '99');
-INSERT INTO `node` VALUES ('85', '删除留言', 'admin', 'gbook', 'gbookdel', '1', '83', '', '99');
-INSERT INTO `node` VALUES ('86', '字段管理', 'admin', 'gbook', 'type', '2', '81', '', '99');
-INSERT INTO `node` VALUES ('87', '添加字段', 'admin', 'gbook', 'typeadd', '1', '86', '', '99');
-INSERT INTO `node` VALUES ('88', '编辑字段', 'admin', 'gbook', 'typeedit', '1', '86', '', '99');
-INSERT INTO `node` VALUES ('89', '删除字段', 'admin', 'gbook', 'typedel', '1', '86', '', '99');
-INSERT INTO `node` VALUES ('90', '单篇列表', 'admin', 'page', 'index', '2', '82', '', '99');
-INSERT INTO `node` VALUES ('91', '字段管理', 'admin', 'page', 'type', '2', '82', '', '99');
-INSERT INTO `node` VALUES ('92', '添加字段', 'admin', 'page', 'typeadd', '1', '91', '', '99');
-INSERT INTO `node` VALUES ('93', '编辑字段', 'admin', 'page', 'typeedit', '1', '91', '', '99');
-INSERT INTO `node` VALUES ('94', '删除字段', 'admin', 'page', 'typedel', '1', '91', '', '99');
-INSERT INTO `node` VALUES ('95', '会员管理', '#', '#', '#', '2', '0', 'fa fa-user-circle', '3');
-INSERT INTO `node` VALUES ('96', '会员列表', 'admin', 'member', 'index', '2', '95', '', '99');
-INSERT INTO `node` VALUES ('97', '单篇添加', 'admin', 'page', 'pageadd', '1', '90', '', '99');
-INSERT INTO `node` VALUES ('98', '单篇编辑', 'admin', 'page', 'pageedit', '1', '90', '', '99');
-INSERT INTO `node` VALUES ('99', '单篇删除', 'admin', 'page', 'pagedel', '1', '90', '', '99');
-INSERT INTO `node` VALUES ('100', '公众号设置', 'admin', 'wechat', 'wechatconfig', '2', '20', '', '99');
+INSERT INTO `node` VALUES ('1', '用户管理', '#', '2', '0', 'fa fa-user', '2', null);
+INSERT INTO `node` VALUES ('2', '用户列表', '', '2', '1', '', '99', null);
+INSERT INTO `node` VALUES ('3', '添加用户', '', '1', '2', '', '99', null);
+INSERT INTO `node` VALUES ('4', '编辑用户', '', '1', '2', '', '99', null);
+INSERT INTO `node` VALUES ('5', '删除用户', '', '1', '2', '', '99', null);
+INSERT INTO `node` VALUES ('6', '角色列表', '', '2', '1', '', '99', null);
+INSERT INTO `node` VALUES ('7', '添加角色', '', '1', '6', '', '99', null);
+INSERT INTO `node` VALUES ('8', '编辑角色', '', '1', '6', '', '99', null);
+INSERT INTO `node` VALUES ('9', '删除角色', '', '1', '6', '', '99', null);
+INSERT INTO `node` VALUES ('10', '分配权限', '', '1', '6', '', '99', null);
+INSERT INTO `node` VALUES ('11', '系统管理', '#', '2', '0', 'fa fa-desktop', '99', null);
+INSERT INTO `node` VALUES ('12', '数据备份/还原', '', '2', '11', '', '99', null);
+INSERT INTO `node` VALUES ('13', '备份数据', '', '1', '12', '', '99', null);
+INSERT INTO `node` VALUES ('14', '还原数据', '', '1', '12', '', '99', null);
+INSERT INTO `node` VALUES ('15', '基本管理', '#', '2', '0', 'fa fa-cog', '1', '');
+INSERT INTO `node` VALUES ('16', '产品管理', '#', '2', '0', 'fa fa-th-large', '6', null);
+INSERT INTO `node` VALUES ('17', '文章管理', '#', '2', '0', 'fa fa-book', '7', null);
+INSERT INTO `node` VALUES ('18', '图片管理', '#', '2', '0', 'fa fa-file-image-o', '8', null);
+INSERT INTO `node` VALUES ('19', '下载管理', '#', '2', '0', 'fa fa-cloud-download', '9', null);
+INSERT INTO `node` VALUES ('20', '微信管理', '#', '2', '0', 'fa fa-weixin', '97', null);
+INSERT INTO `node` VALUES ('21', '插件管理', '#', '2', '0', 'fa fa-plug', '98', null);
+INSERT INTO `node` VALUES ('23', '基本设置', '', '2', '15', '', '99', 'c');
+INSERT INTO `node` VALUES ('24', '幻灯片管理', '', '2', '15', '', '99', null);
+INSERT INTO `node` VALUES ('25', '添加幻灯片', '', '1', '24', '', '99', null);
+INSERT INTO `node` VALUES ('26', '编辑幻灯片', '', '1', '24', '', '99', null);
+INSERT INTO `node` VALUES ('27', '删除幻灯片', '', '1', '24', '', '99', null);
+INSERT INTO `node` VALUES ('28', '保存设置', '', '1', '23', '', '99', null);
+INSERT INTO `node` VALUES ('29', '产品分类', '', '2', '16', '', '99', null);
+INSERT INTO `node` VALUES ('30', '产品列表', '', '2', '16', '', '99', null);
+INSERT INTO `node` VALUES ('31', '添加分类', '', '1', '29', '', '99', null);
+INSERT INTO `node` VALUES ('32', '编辑分类', '', '1', '29', '', '99', null);
+INSERT INTO `node` VALUES ('33', '删除分类', '', '1', '29', '', '99', null);
+INSERT INTO `node` VALUES ('34', '添加产品', '', '1', '30', '', '99', null);
+INSERT INTO `node` VALUES ('35', '编辑产品', '', '1', '30', '', '99', null);
+INSERT INTO `node` VALUES ('36', '删除产品', '', '1', '30', '', '99', null);
+INSERT INTO `node` VALUES ('37', '字段管理', '', '2', '16', '', '99', null);
+INSERT INTO `node` VALUES ('38', '批量删除', '', '1', '30', '', '99', null);
+INSERT INTO `node` VALUES ('39', '添加字段', '', '1', '37', '', '99', null);
+INSERT INTO `node` VALUES ('40', '编辑字段', '', '1', '37', '', '99', null);
+INSERT INTO `node` VALUES ('41', '删除字段', '', '1', '37', '', '99', null);
+INSERT INTO `node` VALUES ('42', '文章分类', '', '2', '17', '', '99', null);
+INSERT INTO `node` VALUES ('43', '文章列表', '', '2', '17', '', '99', null);
+INSERT INTO `node` VALUES ('44', '字段管理', '', '2', '17', '', '99', null);
+INSERT INTO `node` VALUES ('45', '添加分类', '', '1', '42', '', '99', null);
+INSERT INTO `node` VALUES ('46', '编辑分类', '', '1', '42', '', '99', null);
+INSERT INTO `node` VALUES ('47', '删除分类', '', '1', '42', '', '99', null);
+INSERT INTO `node` VALUES ('48', '添加文章', '', '1', '43', '', '99', null);
+INSERT INTO `node` VALUES ('49', '编辑文章', '', '1', '43', '', '99', null);
+INSERT INTO `node` VALUES ('50', '删除文章', '', '1', '43', '', '99', null);
+INSERT INTO `node` VALUES ('51', '批量删除', '', '1', '43', '', '99', null);
+INSERT INTO `node` VALUES ('52', '添加字段', '', '1', '44', '', '99', null);
+INSERT INTO `node` VALUES ('53', '编辑字段', '', '1', '44', '', '99', null);
+INSERT INTO `node` VALUES ('54', '删除字段', '', '1', '44', '', '99', null);
+INSERT INTO `node` VALUES ('55', '图片分类', '', '2', '18', '', '99', null);
+INSERT INTO `node` VALUES ('56', '图片列表', '', '2', '18', '', '99', null);
+INSERT INTO `node` VALUES ('57', '字段管理', '', '2', '18', '', '99', null);
+INSERT INTO `node` VALUES ('58', '添加分类', '', '1', '55', '', '99', null);
+INSERT INTO `node` VALUES ('59', '编辑分类', '', '1', '55', '', '99', null);
+INSERT INTO `node` VALUES ('60', '删除分类', '', '1', '55', '', '99', null);
+INSERT INTO `node` VALUES ('61', '添加文章', '', '1', '56', '', '99', null);
+INSERT INTO `node` VALUES ('62', '编辑文章', '', '1', '56', '', '99', null);
+INSERT INTO `node` VALUES ('63', '删除文章', '', '1', '56', '', '99', null);
+INSERT INTO `node` VALUES ('64', '批量删除', '', '1', '56', '', '99', null);
+INSERT INTO `node` VALUES ('65', '添加字段', '', '1', '57', '', '99', null);
+INSERT INTO `node` VALUES ('66', '编辑字段', '', '1', '57', '', '99', null);
+INSERT INTO `node` VALUES ('67', '删除字段', '', '1', '57', '', '99', null);
+INSERT INTO `node` VALUES ('68', '下载分类', '', '2', '19', '', '99', null);
+INSERT INTO `node` VALUES ('69', '下载列表', '', '2', '19', '', '99', null);
+INSERT INTO `node` VALUES ('70', '字段管理', '', '2', '19', '', '99', null);
+INSERT INTO `node` VALUES ('71', '添加分类', '', '1', '68', '', '99', null);
+INSERT INTO `node` VALUES ('72', '编辑分类', '', '1', '68', '', '99', null);
+INSERT INTO `node` VALUES ('73', '删除分类', '', '1', '68', '', '99', null);
+INSERT INTO `node` VALUES ('74', '添加文章', '', '1', '69', '', '99', null);
+INSERT INTO `node` VALUES ('75', '编辑文章', '', '1', '69', '', '99', null);
+INSERT INTO `node` VALUES ('76', '删除文章', '', '1', '69', '', '99', null);
+INSERT INTO `node` VALUES ('77', '批量删除', '', '1', '69', '', '99', null);
+INSERT INTO `node` VALUES ('78', '添加字段', '', '1', '70', '', '99', null);
+INSERT INTO `node` VALUES ('79', '编辑字段', '', '1', '70', '', '99', null);
+INSERT INTO `node` VALUES ('80', '删除字段', '', '1', '70', '', '99', null);
+INSERT INTO `node` VALUES ('81', '留言管理', '#', '2', '0', 'fa fa-commenting-o', '4', null);
+INSERT INTO `node` VALUES ('82', '单篇管理', '#', '2', '0', 'fa fa-pencil-square-o', '5', null);
+INSERT INTO `node` VALUES ('83', '留言列表', '', '2', '81', '', '99', null);
+INSERT INTO `node` VALUES ('84', '查看留言', '', '1', '83', '', '99', null);
+INSERT INTO `node` VALUES ('85', '删除留言', '', '1', '83', '', '99', null);
+INSERT INTO `node` VALUES ('86', '字段管理', '', '2', '81', '', '99', null);
+INSERT INTO `node` VALUES ('87', '添加字段', '', '1', '86', '', '99', null);
+INSERT INTO `node` VALUES ('88', '编辑字段', '', '1', '86', '', '99', null);
+INSERT INTO `node` VALUES ('89', '删除字段', '', '1', '86', '', '99', null);
+INSERT INTO `node` VALUES ('90', '单篇列表', '', '2', '82', '', '99', null);
+INSERT INTO `node` VALUES ('91', '字段管理', '', '2', '82', '', '99', null);
+INSERT INTO `node` VALUES ('92', '添加字段', '', '1', '91', '', '99', null);
+INSERT INTO `node` VALUES ('93', '编辑字段', '', '1', '91', '', '99', null);
+INSERT INTO `node` VALUES ('94', '删除字段', '', '1', '91', '', '99', null);
+INSERT INTO `node` VALUES ('95', '会员管理', '#', '2', '0', 'fa fa-user-circle', '3', null);
+INSERT INTO `node` VALUES ('96', '会员列表', '', '2', '95', '', '99', null);
+INSERT INTO `node` VALUES ('97', '单篇添加', '', '1', '90', '', '99', null);
+INSERT INTO `node` VALUES ('98', '单篇编辑', '', '1', '90', '', '99', null);
+INSERT INTO `node` VALUES ('99', '单篇删除', '', '1', '90', '', '99', null);
+INSERT INTO `node` VALUES ('100', '公众号设置', '', '2', '20', '', '99', null);
 
 -- ----------------------------
 -- Table structure for page

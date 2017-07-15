@@ -23,9 +23,13 @@ class AdminBase
 
          if(!in_array($route, ['jksm', 'AdminIndex','adminmain']))
          {
-          if(!in_array($route, session('route'))){
-            return redirect()->route('error');
-     }
+           if(is_array(session('route')))
+           {
+             if(!in_array($route, session('route'))){
+               return redirect()->route('error');
+        }
+           }
+
 }
 
 

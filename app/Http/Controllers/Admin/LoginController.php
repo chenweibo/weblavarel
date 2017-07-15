@@ -53,7 +53,7 @@ class LoginController extends Controller
             $info=$usertype->getRoleInfo($user->typeid);
             if(!isset($info['route']))
             {
-                $info['route']=[];
+                $info['route']='';
             }
             session(['adminuser'=>$request['username'],'id'=>$request['id'],'role'=>$info['rolename'],'rule'=>$info['rule'],'route'=>$info['route']]);
             $param1 = [
