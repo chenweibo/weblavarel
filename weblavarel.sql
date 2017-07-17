@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-15 09:54:24
+Date: 2017-07-17 17:16:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '34', '127.0.0.1', '1500083280', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '38', '127.0.0.1', '1500276769', 'jksm', '1', '1', null);
 INSERT INTO `admin_user` VALUES ('7', 'bo', '123', '18', '127.0.0.1', '1500083549', '', '1', '2', null);
 
 -- ----------------------------
@@ -224,11 +224,11 @@ INSERT INTO `node` VALUES ('18', '图片管理', '#', '2', '0', 'fa fa-file-imag
 INSERT INTO `node` VALUES ('19', '下载管理', '#', '2', '0', 'fa fa-cloud-download', '9', null);
 INSERT INTO `node` VALUES ('20', '微信管理', '#', '2', '0', 'fa fa-weixin', '97', null);
 INSERT INTO `node` VALUES ('21', '插件管理', '#', '2', '0', 'fa fa-plug', '98', null);
-INSERT INTO `node` VALUES ('23', '基本设置', '', '2', '15', '', '99', 'c');
-INSERT INTO `node` VALUES ('24', '幻灯片管理', '', '2', '15', '', '99', null);
-INSERT INTO `node` VALUES ('25', '添加幻灯片', '', '1', '24', '', '99', null);
-INSERT INTO `node` VALUES ('26', '编辑幻灯片', '', '1', '24', '', '99', null);
-INSERT INTO `node` VALUES ('27', '删除幻灯片', '', '1', '24', '', '99', null);
+INSERT INTO `node` VALUES ('23', '基本设置', '', '2', '15', '', '99', 'site');
+INSERT INTO `node` VALUES ('24', '幻灯片管理', '', '2', '15', '', '99', 'SlideIndex');
+INSERT INTO `node` VALUES ('25', '添加幻灯片', '', '1', '24', '', '99', 'SlideCreate');
+INSERT INTO `node` VALUES ('26', '编辑幻灯片', '', '1', '24', '', '99', 'SlideEdit');
+INSERT INTO `node` VALUES ('27', '删除幻灯片', '', '1', '24', '', '99', 'SlideDelete');
 INSERT INTO `node` VALUES ('28', '保存设置', '', '1', '23', '', '99', null);
 INSERT INTO `node` VALUES ('29', '产品分类', '', '2', '16', '', '99', null);
 INSERT INTO `node` VALUES ('30', '产品列表', '', '2', '16', '', '99', null);
@@ -361,21 +361,11 @@ INSERT INTO `role` VALUES ('1', '超级管理员', '');
 INSERT INTO `role` VALUES ('2', '普通管理员', '1,2,3,4,5,15,23,28,24,25,26,27,16,29,31,32,33,30,34,35,36,38,17,42,45,46,47,43,48,49,50,51,18,55,58,59,60,56,61,62,63,64,19,68,71,72,73,69,74,75,76,77,81,83,84,85,82,90');
 
 -- ----------------------------
--- Table structure for site
+-- Table structure for slide
 -- ----------------------------
-DROP TABLE IF EXISTS `site`;
-CREATE TABLE `site` (
+DROP TABLE IF EXISTS `slide`;
+CREATE TABLE `slide` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `site_title` varchar(255) DEFAULT NULL,
-  `site_keywords` varchar(255) DEFAULT NULL,
-  `site_description` varchar(255) DEFAULT NULL,
-  `site_tel` varchar(255) DEFAULT NULL,
-  `site_phone` varchar(255) DEFAULT NULL,
-  `site_code` varchar(255) DEFAULT NULL,
-  `site_mail` varchar(255) DEFAULT NULL,
-  `site_fax` varchar(255) DEFAULT NULL,
-  `site_address` varchar(255) DEFAULT NULL,
-  `icp` varchar(255) DEFAULT NULL,
   `slide_name` varchar(255) DEFAULT NULL,
   `slide_sort` int(255) DEFAULT '99',
   `slide_img` varchar(255) DEFAULT NULL,
@@ -385,12 +375,12 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of site
+-- Records of slide
 -- ----------------------------
-INSERT INTO `site` VALUES ('1', '', null, null, null, null, null, null, null, null, null, null, '99', null, null, null);
-INSERT INTO `site` VALUES ('2', null, null, null, null, null, null, null, null, null, null, '1', '99', '/uploads/593b4c2264f2f.jpg', '1', '');
-INSERT INTO `site` VALUES ('3', null, null, null, null, null, null, null, null, null, null, '2', '99', '/uploads/593b4c858146a.jpg', '1', '');
-INSERT INTO `site` VALUES ('4', null, null, null, null, null, null, null, null, null, null, '3', '99', '/uploads/593b4c4fa6464.jpg', '1', '');
+INSERT INTO `slide` VALUES ('1', null, '99', null, null, null);
+INSERT INTO `slide` VALUES ('2', '1', '99', '/uploads/593b4c2264f2f.jpg', '1', '');
+INSERT INTO `slide` VALUES ('3', '2', '99', '/uploads/593b4c858146a.jpg', '2', '');
+INSERT INTO `slide` VALUES ('4', '3', '99', '/uploads/593b4c4fa6464.jpg', '1', '');
 
 -- ----------------------------
 -- Table structure for users

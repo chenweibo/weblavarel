@@ -2,16 +2,16 @@
 
 return [
 
-'title'=>'123123',
-'en_title'=>'sdf',
-'keywords'=>'321312',
-'description'=>'j',
-'tel'=>'hf',
-'phone'=>'hh',
-'code'=>'321312',
-'mail'=>'dhn',
-'fax'=>'dfg',
-'address'=>'321312',
-'icp'=>'dfgh',
+'title'=>'123',
+'en_title'=>'22',
+'keywords'=>'3',
+'description'=>'123',
+'tel'=>'123',
+'phone'=>'23',
+'code'=>'12',
+'mail'=>'3',
+'fax'=>'123',
+'address'=>'123',
+'icp'=>'34',
 
 ];

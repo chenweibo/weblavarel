@@ -29,7 +29,6 @@ class AdminController extends Controller
         return view('admin/index');
     }
 
-
     public function site(Request $request)
     {
         if ($request->ajax()) {
@@ -46,7 +45,23 @@ class AdminController extends Controller
 
     public function SlideIndex($value='')
     {
-        return view('admin/site/slide', ['data'=>$data]);
+        $str=DB::table('slide')->get();
+        return view('admin/site/slide', ['str'=>$str]);
+    }
+
+    public function SlideCreate()
+    {
+        return view('admin/site/SlideCreate');
+    }
+
+    public function SlideEdit()
+    {
+        return view('admin/site/SlideEdit');
+    }
+
+    public function SlideDelete()
+    {
+        return ['code'=>0];
     }
 
 

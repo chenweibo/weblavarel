@@ -10,6 +10,7 @@
     <link href="{{ asset('static/admin/css/font-awesome.min.css?v=4.7.0') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/style.min.css?v=4.1.0') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/other.css') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/layui/css/layui.css') }}" rel="stylesheet">
     <script src="{{ asset('static/admin/js/jquery.min.js?v=2.1.4') }}"></script>
@@ -27,7 +28,7 @@
 
 
 
-    
+
 
 </body>
 </html>

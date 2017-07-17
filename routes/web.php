@@ -33,15 +33,13 @@ Route::get('/error', 'Admin\AdminController@error')->name('error');
 
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
-
-Route::get('/admin', 'AdminController@index')->name('AdminIndex');
-Route::get('/adminmain', 'AdminController@indexPage')->name('adminmain');
-Route::any('/site', 'AdminController@site')->name('site');
+    Route::get('/admin', 'AdminController@index')->name('AdminIndex');
+    Route::get('/adminmain', 'AdminController@indexPage')->name('adminmain');
+    Route::any('/site', 'AdminController@site')->name('site');
 
 // 2017-7-16 by chenweibo slide routes
 Route::any('slide', 'AdminController@SlideIndex')->name('SlideIndex');
-Route::any('slide/create', 'AdminController@SlideIndex')->name('SlideCreate');
-Route::any('slide/edit', 'AdminController@site')->name('SlideEdit');
-Route::any('slide/delete', 'AdminController@site')->name('SlideDelete');
-
- });
+    Route::any('slide/create', 'AdminController@SlideIndex')->name('SlideCreate');
+    Route::any('slide/edit', 'AdminController@SlideEdit')->name('SlideEdit');
+    Route::any('slide/delete', 'AdminController@SlideDelete')->name('SlideDelete');
+});
