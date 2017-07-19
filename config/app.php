@@ -181,6 +181,7 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
 
+
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+      
 
     ],
 

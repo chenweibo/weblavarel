@@ -39,7 +39,7 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 
 // 2017-7-16 by chenweibo slide routes
 Route::any('slide', 'AdminController@SlideIndex')->name('SlideIndex');
-    Route::any('slide/create', 'AdminController@SlideIndex')->name('SlideCreate');
+    Route::any('slide/create', 'AdminController@SlideCreate')->name('SlideCreate');
     Route::any('slide/edit', 'AdminController@SlideEdit')->name('SlideEdit');
     Route::any('slide/delete', 'AdminController@SlideDelete')->name('SlideDelete');
 });

@@ -24,7 +24,7 @@ class AdminController extends Controller
         return view('AdminIndex', ['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
     }
 
-    public function indexPage()
+    public function indexPage(Request $request)
     {
         return view('admin/index');
     }
