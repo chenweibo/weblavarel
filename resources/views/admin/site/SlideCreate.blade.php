@@ -6,22 +6,22 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>添加幻灯片</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
+      <div class="ibox-title">
+          <h5>添加幻灯片</h5>
+          <div class="ibox-tools">
+              <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+              </a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                  <i class="fa fa-wrench"></i>
+              </a>
+              <a class="close-link">
+                  <i class="fa fa-times"></i>
+              </a>
+          </div>
+      </div>
       <div class="ibox-content">
-      <form class="form-horizontal m-t" id="commentForm" method="post">
+      <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
   			<div class="form-group">
   				<label class="col-sm-3 control-label">名称：</label>
   				<div class="input-group col-sm-4">
@@ -37,7 +37,7 @@
   			<div class="form-group">
   				<label class="col-sm-3 control-label">链接：</label>
   				<div class="input-group col-sm-4">
-  					<input id="site_title" type="text" class="form-control" name="slide_a" aria-required="true">
+  					<input id="slide_a" type="text" class="form-control" name="slide_a" aria-required="true">
   				</div>
   			</div>
   			<div class="form-group">
@@ -49,7 +49,7 @@
   					<span class="input-group-addon ut2" onclick="uploads()" style="width:80px;cursor: pointer;pointer-events: auto;"><i class="fa fa-folder-open"></i>点击上传</span>
   				</div>
   			</div>
-  			<input type="hidden" name="slide_type" value="{$type}">
+  			<input type="hidden" name="slide_type" value="{{$slide_type}}">
   			<div class="form-group">
   				<div class="col-sm-4 col-sm-offset-3">
   					<!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
@@ -74,18 +74,10 @@
 <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
 <script src="{{asset('static/admin/js/other.js')}}"></script>
 <script type="text/javascript">
-layui.use('form', function(){
-  var form = layui.form();
 
-  //监听提交
-  form.on('submit(formDemo)', function(data){
-    layer.msg(JSON.stringify(data.field));
-    return false;
-  });
-});
 function toVaild(){
     var jz;
-    var url = "{{ route('site')}}";
+    var url = "{{ route('SlideCreate')}}";
     $.ajax({
         type:"POST",
         url:url,
@@ -100,13 +92,12 @@ function toVaild(){
         error: function(request) {
             layer.close(jz);
              swal("网络错误!", "", "error");
-
         },
         success: function(data) {
             //关闭加载层
             layer.close(jz);
             if(data.code == 1){
-                swal(data.msg, "", "success");
+              window.location.href = data.data;
             }else{
                 swal(data.msg, "", "error");
             }

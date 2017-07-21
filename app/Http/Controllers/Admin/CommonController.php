@@ -10,7 +10,17 @@ class CommonController extends Controller
 {
     public function uploads(Request $request)
     {
-        $path = $request->file('image')->store('public');
-        return $path;
+        if ($request->isMethod('post')) {
+            $file = $request->file('image');
+            if ($file->isValid()) {
+                $originalName = $file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                $realPath = $file->getRealPath();//临时文件的绝对路径
+                $type = $file->getClientMimeType();
+                $filename = uniqid() . '.' . $ext;
+                $bool = Storage::disk('uploads')->put('', $file);
+                return $bool;
+            }
+        }
     }
 }

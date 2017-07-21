@@ -32,6 +32,9 @@
 
           <a class="layui-btn w" href="{{route('SlideCreate',['slide_type'=>1])}}">添加幻灯片</a>
 						<div class="layui-form">
+							<div class="table-min" >
+
+
 							<table class="layui-table">
 								<colgroup>
 									<col width="2%">
@@ -52,7 +55,7 @@
 								<tbody>
                   @foreach ($str as $v)
                    @if ($v->slide_type==1)
-									<tr>
+									<tr data-id="{{$v->id}}">
 										<td><input name="" lay-skin="primary" type="checkbox"></td>
 										<td>{{ $v->id }}</td>
 										<td>{{ $v->slide_name }}</td>
@@ -78,13 +81,216 @@
 								</tbody>
 							</table>
 						</div>
+						</div>
 					</div>
 					<div class="layui-tab-item">
+          <a class="layui-btn w" href="{{route('SlideCreate',['slide_type'=>2])}}">添加幻灯片</a>
+						<div class="layui-form">
+							<div class="table-min" >
+							<table class="layui-table">
+								<colgroup>
+									<col width="2%">
+									<col width="25%">
+									<col width="25%">
+									<col width="25%">
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+										<th>id</th>
+										<th>名称</th>
+										<th>排序</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+                  @foreach ($str as $v)
+                   @if ($v->slide_type==2)
+									<tr data-id="{{$v->id}}">
+										<td><input name="" lay-skin="primary" type="checkbox"></td>
+										<td>{{ $v->id }}</td>
+										<td>{{ $v->slide_name }}</td>
+										<td>{{ $v->slide_sort }}</td>
+										<td>
+											<div class="btn-group">
+												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
+												<ul class="dropdown-menu">
+													<li>
+														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
+													</li>
+													<li>
+														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
+													</li>
+												</ul>
+											</div>
 
+										</td>
+									</tr>
+                   @endif
+                 @endforeach
+
+								</tbody>
+							</table>
+						  </div>
+						</div>
 					</div>
-					<div class="layui-tab-item">内容3</div>
-					<div class="layui-tab-item">内容4</div>
-					<div class="layui-tab-item">内容5</div>
+					<div class="layui-tab-item">
+          <a class="layui-btn w" href="{{route('SlideCreate',['slide_type'=>3])}}">添加幻灯片</a>
+						<div class="layui-form">
+						<div class="table-min" >
+							<table class="layui-table">
+								<colgroup>
+									<col width="2%">
+									<col width="25%">
+									<col width="25%">
+									<col width="25%">
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+										<th>id</th>
+										<th>名称</th>
+										<th>排序</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+                  @foreach ($str as $v)
+                   @if ($v->slide_type==3)
+									<tr data-id="{{$v->id}}">
+										<td><input name="" lay-skin="primary" type="checkbox"></td>
+										<td>{{ $v->id }}</td>
+										<td>{{ $v->slide_name }}</td>
+										<td>{{ $v->slide_sort }}</td>
+										<td>
+											<div class="btn-group">
+												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
+												<ul class="dropdown-menu">
+													<li>
+														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
+													</li>
+													<li>
+														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
+													</li>
+												</ul>
+											</div>
+
+										</td>
+									</tr>
+                   @endif
+                 @endforeach
+
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
+					<div class="layui-tab-item">
+          <a class="layui-btn w" href="{{route('SlideCreate',['slide_type'=>4])}}">添加幻灯片</a>
+						<div class="layui-form">
+							<div class="table-min" >
+							<table class="layui-table">
+								<colgroup>
+									<col width="2%">
+									<col width="25%">
+									<col width="25%">
+									<col width="25%">
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+										<th>id</th>
+										<th>名称</th>
+										<th>排序</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+                  @foreach ($str as $v)
+                   @if ($v->slide_type==4)
+									<tr data-id="{{$v->id}}">
+										<td><input name="" lay-skin="primary" type="checkbox"></td>
+										<td>{{ $v->id }}</td>
+										<td>{{ $v->slide_name }}</td>
+										<td>{{ $v->slide_sort }}</td>
+										<td>
+											<div class="btn-group">
+												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
+												<ul class="dropdown-menu">
+													<li>
+														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
+													</li>
+													<li>
+														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
+													</li>
+												</ul>
+											</div>
+
+										</td>
+									</tr>
+                   @endif
+                 @endforeach
+
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
+					<div class="layui-tab-item">
+          <a class="layui-btn w" href="{{route('SlideCreate',['slide_type'=>5])}}">添加幻灯片</a>
+						<div class="layui-form">
+							<div class="table-min" >
+							<table class="layui-table">
+								<colgroup>
+									<col width="2%">
+									<col width="25%">
+									<col width="25%">
+									<col width="25%">
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+										<th>id</th>
+										<th>名称</th>
+										<th>排序</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+                  @foreach ($str as $v)
+                   @if ($v->slide_type==5)
+									<tr data-id="{{$v->id}}">
+										<td><input name="" lay-skin="primary" type="checkbox"></td>
+										<td>{{ $v->id }}</td>
+										<td>{{ $v->slide_name }}</td>
+										<td>{{ $v->slide_sort }}</td>
+										<td>
+											<div class="btn-group">
+												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
+												<ul class="dropdown-menu">
+													<li>
+														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
+													</li>
+													<li>
+														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
+													</li>
+												</ul>
+											</div>
+
+										</td>
+									</tr>
+                   @endif
+                 @endforeach
+
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -145,7 +351,8 @@ function slideDel(id) {
       },
       success: function(res) {
         if(res.code == 1) {
-          layer.alert('删除成功');
+
+           location.reload() ;
         } else {
           layer.alert('删除失败');
         }
