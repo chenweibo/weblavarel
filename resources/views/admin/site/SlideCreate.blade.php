@@ -20,7 +20,7 @@
                         </a>
                     </div>
                 </div>
-
+      <div class="ibox-content">
       <form class="form-horizontal m-t" id="commentForm" method="post">
   			<div class="form-group">
   				<label class="col-sm-3 control-label">名称：</label>
@@ -43,12 +43,11 @@
   			<div class="form-group">
   				<label class="col-sm-3 control-label">图片：</label>
   				<div class="col-md-4 input-group">
-  					<input id="lefile" type="file" name="image" style="display:none">
+  					<input id="lefile" type="file" name="image"  style="display:none">
   					<span class="input-group-addon" onclick="$('input[id=lefile]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
   					<input id="photoCover" name="slide_img" class="form-control" type="text" value="" name="icon">
-  					<span class="input-group-addon ut2" style="width:80px;cursor: pointer;pointer-events: auto;"><i class="fa fa-folder-open"></i>点击上传</span>
+  					<span class="input-group-addon ut2" onclick="uploads()" style="width:80px;cursor: pointer;pointer-events: auto;"><i class="fa fa-folder-open"></i>点击上传</span>
   				</div>
-  				<label id="targetwz" for="inputPassword" style="color:#f00" class="sr-only">*请选择文件</label>
   			</div>
   			<input type="hidden" name="slide_type" value="{$type}">
   			<div class="form-group">
@@ -58,7 +57,7 @@
   				</div>
   			</div>
   		</form>
-
+    </div>
                 </div>
             </div>
 
@@ -73,7 +72,7 @@
 <script src="{{asset('static/admin/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
-
+<script src="{{asset('static/admin/js/other.js')}}"></script>
 <script type="text/javascript">
 layui.use('form', function(){
   var form = layui.form();

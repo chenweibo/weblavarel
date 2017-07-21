@@ -30,7 +30,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
 Route::get('/error', 'Admin\AdminController@error')->name('error');
-
+Route::any('/uploads', 'Admin\CommonController@uploads')->name('uploads');
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
     Route::get('/admin', 'AdminController@index')->name('AdminIndex');
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('/site', 'AdminController@site')->name('site');
 
 // 2017-7-16 by chenweibo slide routes
-Route::any('slide', 'AdminController@SlideIndex')->name('SlideIndex');
+    Route::any('slide', 'AdminController@SlideIndex')->name('SlideIndex');
     Route::any('slide/create', 'AdminController@SlideCreate')->name('SlideCreate');
     Route::any('slide/edit', 'AdminController@SlideEdit')->name('SlideEdit');
     Route::any('slide/delete', 'AdminController@SlideDelete')->name('SlideDelete');
