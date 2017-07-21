@@ -40,13 +40,13 @@ class AdminController extends Controller
             }
         }
         $data=File::getRequire(config_path().'/site.php');
-        return view('admin/site/site', ['data'=>$data]);
+        return view('admin/site/Site', ['data'=>$data]);
     }
 
     public function SlideIndex($value='')
     {
         $str=DB::table('slide')->get();
-        return view('admin/site/slide', ['str'=>$str]);
+        return view('admin/site/Slide', ['str'=>$str]);
     }
 
     public function SlideCreate(Request $request)
