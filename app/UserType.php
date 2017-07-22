@@ -26,4 +26,9 @@ class UserType extends Model
         }
         return $result;
     }
+
+    public function getRole()
+    {
+        return $this->get();
+    }
 }

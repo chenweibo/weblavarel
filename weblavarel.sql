@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-17 17:16:17
+Date: 2017-07-22 17:06:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '38', '127.0.0.1', '1500276769', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '45', '127.0.0.1', '1500703690', 'jksm', '1', '1', null);
 INSERT INTO `admin_user` VALUES ('7', 'bo', '123', '18', '127.0.0.1', '1500083549', '', '1', '2', null);
 
 -- ----------------------------
@@ -204,10 +204,10 @@ CREATE TABLE `node` (
 -- Records of node
 -- ----------------------------
 INSERT INTO `node` VALUES ('1', '用户管理', '#', '2', '0', 'fa fa-user', '2', null);
-INSERT INTO `node` VALUES ('2', '用户列表', '', '2', '1', '', '99', null);
-INSERT INTO `node` VALUES ('3', '添加用户', '', '1', '2', '', '99', null);
-INSERT INTO `node` VALUES ('4', '编辑用户', '', '1', '2', '', '99', null);
-INSERT INTO `node` VALUES ('5', '删除用户', '', '1', '2', '', '99', null);
+INSERT INTO `node` VALUES ('2', '用户列表', '', '2', '1', '', '99', 'UserIndex');
+INSERT INTO `node` VALUES ('3', '添加用户', '', '1', '2', '', '99', 'UserCreate');
+INSERT INTO `node` VALUES ('4', '编辑用户', '', '1', '2', '', '99', 'UserEdit');
+INSERT INTO `node` VALUES ('5', '删除用户', '', '1', '2', '', '99', 'UserDelete');
 INSERT INTO `node` VALUES ('6', '角色列表', '', '2', '1', '', '99', null);
 INSERT INTO `node` VALUES ('7', '添加角色', '', '1', '6', '', '99', null);
 INSERT INTO `node` VALUES ('8', '编辑角色', '', '1', '6', '', '99', null);

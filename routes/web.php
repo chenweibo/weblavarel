@@ -38,8 +38,16 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('/site', 'AdminController@site')->name('site');
 
 // 2017-7-16 by chenweibo slide routes
+
     Route::any('slide', 'AdminController@SlideIndex')->name('SlideIndex');
     Route::any('slide/create', 'AdminController@SlideCreate')->name('SlideCreate');
     Route::any('slide/edit', 'AdminController@SlideEdit')->name('SlideEdit');
     Route::any('slide/delete', 'AdminController@SlideDelete')->name('SlideDelete');
+
+// 2017-7-16 by chenweibo user routes
+
+    Route::any('admin/user', 'UserController@UserIndex')->name('UserIndex');
+    Route::any('admin/user/create', 'UserController@UserCreate')->name('UserCreate');
+    Route::any('admin/user/edit', 'UserController@UserEdit')->name('UserEdit');
+    Route::any('admin/user/delete', 'UserController@UserDelete')->name('UserDelete');
 });
