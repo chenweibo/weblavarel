@@ -56,7 +56,15 @@
                           </div>
                           <div class="form-group">
                               <label class="col-sm-3 control-label">是否启用：</label>
-                            
+                              <div class="input-group col-sm-4">
+
+                                  @foreach ($status as $key => $value)
+                                    <div class="radio i-checks col-sm-4">
+                                        <label>
+                                            <input type="radio" value="{{$key}}" @if ($key == 1) checked @endif  name="status"> <i></i>{{$value}}</label>
+                                    </div>
+                                  @endforeach
+                              </div>
                           </div>
                           <div class="form-group">
                               <div class="col-sm-4 col-sm-offset-3">
@@ -77,15 +85,16 @@
 <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>
 <script src="{{asset('static/admin/js/plugins/validate/jquery.validate.min.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/validate/messages_zh.min.js')}}"></script>
+<script src="{{asset('static/admin/js/plugins/iCheck/icheck.min.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
 <script src="{{asset('static/admin/js/other.js')}}"></script>
 <script type="text/javascript">
-
+$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
 function toVaild(){
     var jz;
-    var url = "{{ route('SlideCreate')}}";
+    var url = "{{ route('UserCreate')}}";
     $.ajax({
         type:"POST",
         url:url,
@@ -114,6 +123,9 @@ function toVaild(){
 
     return false;
 }
+
+
+
 </script>
 
 

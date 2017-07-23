@@ -9,6 +9,7 @@
   	<link href="{{ asset('static/admin/css/bootstrap.min.css?v=3.3.6') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/font-awesome.min.css?v=4.7.0') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/style.min.css?v=4.1.0') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/other.css') }}" rel="stylesheet">
     <link href="{{ asset('static/admin/css/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 use App\UserType;
+use App\AdminUser;
 
 class UserController extends Controller
 {
@@ -17,11 +19,17 @@ class UserController extends Controller
             ->get();
         return view('admin.user.User', ['str'=>$str]);
     }
-    public function UserCreate()
+    public function UserCreate(Request $request)
     {
+        if ($request->ajax()) {
+            $param = $request->all();
+            $param['password']=Crypt::encryptString($param['password']);
+            $flag=AdminUser::InsertUser($param);
+            return ['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']];
+        }
         $role = UserType::all();
-
-        return view('admin.user.UserCreate', ['role'=>$role]);
+        $status = config('admin.user_status');
+        return view('admin.user.UserCreate', ['role'=>$role,'status'=>$status]);
     }
 
 
