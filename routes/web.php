@@ -48,6 +48,6 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 
     Route::any('admin/user', 'UserController@UserIndex')->name('UserIndex');
     Route::any('admin/user/create', 'UserController@UserCreate')->name('UserCreate');
-    Route::any('admin/user/edit', 'UserController@UserEdit')->name('UserEdit');
+    Route::any('admin/user/edit/{id?}', 'UserController@UserEdit')->name('UserEdit');
     Route::any('admin/user/delete', 'UserController@UserDelete')->name('UserDelete');
 });

@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : fuck.io
-Source Server Version : 50505
+Source Server         : my
+Source Server Version : 100125
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-07-22 17:06:19
+Date: 2017-07-24 22:02:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,13 +31,13 @@ CREATE TABLE `admin_user` (
   `typeid` int(11) DEFAULT '1' COMMENT '用户角色id',
   `img` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'jksm951', '45', '127.0.0.1', '1500703690', 'jksm', '1', '1', null);
-INSERT INTO `admin_user` VALUES ('7', 'bo', '123', '18', '127.0.0.1', '1500083549', '', '1', '2', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '50', '127.0.0.1', '1500904874', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('9', 'bo', 'eyJpdiI6Im5MU3MxTVp5ekNkaHJSUEEzbHZ1R3c9PSIsInZhbHVlIjoiOTV4QVh6aFJBYjNxNDNoWGhpQWF1Zz09IiwibWFjIjoiMmQ0ZWYzNjI4Yzc1NTYyYmNjNjQzOGJkN2MxYjRmZTk3YTE4NzdlNDBlZGRmMThiMThlYTI5ODU1MzdlNDJiMCJ9', '0', '', '0', 'bo', '1', '2', null);
 
 -- ----------------------------
 -- Table structure for cate

@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 use App\UserType;
 
@@ -40,7 +41,7 @@ class LoginController extends Controller
             if (empty($user)) {
                 return ['code' => -1, 'msg' => '用户不存在'];
             }
-            if ($param['password'] != $user->password) {
+            if ($param['password'] != Crypt::decryptString($user->password)) {
                 return ['code' => -1, 'data' => '', 'msg' => '密码错误'];
             }
 

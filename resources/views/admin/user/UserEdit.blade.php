@@ -7,7 +7,7 @@
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
       <div class="ibox-title">
-          <h5>编辑幻灯片</h5>
+          <h5>编辑管理员</h5>
           <div class="ibox-tools">
               <a class="collapse-link">
                   <i class="fa fa-chevron-up"></i>
@@ -21,43 +21,60 @@
           </div>
       </div>
       <div class="ibox-content">
-      <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
-  			<div class="form-group">
-  				<label class="col-sm-3 control-label">名称：</label>
-  				<div class="input-group col-sm-4">
-  					<input id="slide_name" type="text" class="form-control" name="slide_name" value="{{$data->slide_name}}" required aria-required="true">
-  				</div>
-  			</div>
-  			<div class="form-group">
-  				<label class="col-sm-3 control-label">排序：</label>
-  				<div class="input-group col-sm-4">
-  					<input id="slide_sort" type="text" class="form-control" name="slide_sort"  value="{{$data->slide_sort}}" aria-required="true">
-  				</div>
-  			</div>
-  			<div class="form-group">
-  				<label class="col-sm-3 control-label">链接：</label>
-  				<div class="input-group col-sm-4">
-  					<input id="site_a" type="text" class="form-control" value="{{$data->slide_sort}}" name="slide_a" aria-required="true">
-  				</div>
-  			</div>
-  			<div class="form-group">
-  				<label class="col-sm-3 control-label">图片：</label>
-  				<div class="col-md-4 input-group">
-  					<input id="lefile" type="file" name="image"  style="display:none">
-  					<span class="input-group-addon" onclick="$('input[id=lefile]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
-  					<input id="photoCover" name="slide_img" class="form-control" type="text" value="{{$data->slide_img}}" name="icon">
-  					<span class="input-group-addon ut2" onclick="uploads()" style="width:80px;cursor: pointer;pointer-events: auto;"><i class="fa fa-folder-open"></i>点击上传</span>
-  				</div>
-  			</div>
-  			<input type="hidden" name="slide_type" value="{{$data->slide_type}}">
-        <input type="hidden" name="id" value="{{$data->id}}">
-  			<div class="form-group">
-  				<div class="col-sm-4 col-sm-offset-3">
-  					<!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
-  					<button class="btn btn-primary" type="submit">提交</button>
-  				</div>
-  			</div>
-  		</form>
+        <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
+            <input type="hidden" name="id" value="{{$data->id}}">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">管理员名称：</label>
+                              <div class="input-group col-sm-4">
+                                  <input id="username" type="text" class="form-control" value="{{$data->username}}" name="username" required="" aria-required="true">
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">管理员角色：</label>
+                              <div class="input-group col-sm-4">
+                                  <select class="form-control" name="typeid" required="" aria-required="true">
+                                      <option value="0">请选择</option>
+                                      @if (!empty($role))
+                                        @foreach ($role as $key )
+                                         <option value="{{$key->id}}" @if ($key->id == $data->typeid) selected @endif>{{$key->rolename}}</option>
+                                        @endforeach
+                                      @endif
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">登录密码：</label>
+                              <div class="input-group col-sm-4">
+                                  <input id="password" type="text" class="form-control" placeholder="再次输入修改密码" name="password" required="" aria-required="true">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">真是姓名：</label>
+                              <div class="input-group col-sm-4">
+                                  <input id="real_name" type="text" class="form-control" name="real_name" value="{{$data->real_name}}" required="" aria-required="true">
+
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">是否启用：</label>
+                              <div class="input-group col-sm-4">
+
+                                  @foreach ($status as $key => $value)
+                                    <div class="radio i-checks col-sm-4">
+                                        <label>
+                                            <input type="radio" value="{{$key}}" @if ($key == $data->status) checked @endif  name="status"> <i></i>{{$value}}</label>
+                                    </div>
+                                  @endforeach
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-4 col-sm-offset-3">
+                                  <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
+                                  <button class="btn btn-primary" type="submit">提交</button>
+                              </div>
+                          </div>
+                      </form>
     </div>
                 </div>
             </div>
@@ -71,14 +88,15 @@
 <script src="{{asset('static/admin/js/plugins/validate/jquery.validate.min.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/validate/messages_zh.min.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('static/admin/js/plugins/iCheck/icheck.min.js')}}"></script>
 <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
 <script src="{{asset('static/admin/js/other.js')}}"></script>
 <script type="text/javascript">
-
+$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
 function toVaild(){
     var jz;
-    var url = "{{ route('SlideEdit')}}";
+    var url = "{{ route('UserEdit')}}";
     $.ajax({
         type:"POST",
         url:url,

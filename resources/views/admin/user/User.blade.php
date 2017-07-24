@@ -56,7 +56,7 @@
 									<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="{{route('UserCreate',['id'=>$v->id])}}">编辑</a>
+											<a href="{{route('UserEdit',$v->id)}}">编辑</a>
 										</li>
 										<li>
 											<a href="javascript:UserDel('{{$v->id}}')">删除</a>

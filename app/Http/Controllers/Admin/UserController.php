@@ -24,8 +24,9 @@ class UserController extends Controller
         if ($request->ajax()) {
             $param = $request->all();
             $param['password']=Crypt::encryptString($param['password']);
-            $flag=AdminUser::InsertUser($param);
-            return ['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']];
+            $user = new AdminUser();
+            $flag=$user->InsertUser($param);
+            return ['code' => $flag['code'], 'data' => route('UserIndex'), 'msg' => $flag['msg']];
         }
         $role = UserType::all();
         $status = config('admin.user_status');
@@ -33,9 +34,20 @@ class UserController extends Controller
     }
 
 
-    public function UserEdit()
+    public function UserEdit(Request $request)
     {
-        return view('admin.user.UserEdit');
+        if ($request->ajax()) {
+            $param = $request->all();
+            $param['password']=Crypt::encryptString($param['password']);
+            $user = new AdminUser();
+            $flag=$user->EditUser($param);
+            return ['code' => $flag['code'], 'data' => route('UserIndex'), 'msg' => $flag['msg']];
+        }
+
+        $role = UserType::all();
+        $status = config('admin.user_status');
+        $data = DB::table('admin_user')->where('id', $request->id)->get()->first();
+        return view('admin.user.UserEdit', ['role'=>$role,'status'=>$status,'data'=>$data]);
     }
     public function UserDelete()
     {

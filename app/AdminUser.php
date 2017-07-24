@@ -8,8 +8,8 @@ use Validator;
 class AdminUser extends Model
 {
     protected $table = 'admin_user';
-
-    public static function InsertUser($param)
+    public $timestamps = false;
+    public function InsertUser($param)
     {
         try {
             $validator = Validator::make($param,
@@ -31,23 +31,11 @@ class AdminUser extends Model
         }
     }
 
-    public static function EditUser($param)
+    public function EditUser($param)
     {
         try {
-            $validator = Validator::make($param,
-            [
-                'username' => 'unique:admin_user',
-            ], [
-                'username.unique' => '用户名已经存在',
-            ]);
-            if ($validator->fails()) {
-                $errors = $validator->errors()->all();
-
-                return ['code' => -1,'data' => '', 'msg' => $errors[0]];
-            } else {
-                $this->where('id', $param['id'])->update($param);
-                return ['code' => 1, 'data' => '', 'msg' => '更新用户成功'];
-            }
+            $this->where('id', $param['id'])->update($param);
+            return ['code' => 1, 'data' => '', 'msg' => '更新用户成功'];
         } catch (PDOException $e) {
             return ['code' => -2, 'data' => '', 'msg' => $e->getMessage()];
         }

@@ -7,7 +7,7 @@
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
       <div class="ibox-title">
-          <h5>添加幻灯片</h5>
+          <h5>添加管理员</h5>
           <div class="ibox-tools">
               <a class="collapse-link">
                   <i class="fa fa-chevron-up"></i>
