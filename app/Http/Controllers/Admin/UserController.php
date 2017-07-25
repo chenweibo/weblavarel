@@ -49,7 +49,11 @@ class UserController extends Controller
         $data = DB::table('admin_user')->where('id', $request->id)->get()->first();
         return view('admin.user.UserEdit', ['role'=>$role,'status'=>$status,'data'=>$data]);
     }
-    public function UserDelete()
+    public function UserDelete(Request $request)
     {
+        if ($request->ajax()) {
+            DB::table('admin_user')->where('id', $request->id)->delete();
+            return ['code' => 1];
+        }
     }
 }

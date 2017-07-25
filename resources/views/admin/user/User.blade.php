@@ -66,7 +66,6 @@
 							</td>
 						</tr>
 					 @endforeach
-
 					</tbody>
 				</table>
 			</div>
@@ -120,15 +119,14 @@ function UserDel(id) {
 
     $.ajax({
       url: "{{ route('UserDelete') }}",
-      type: "post", //请求类型
-      data: { 'id': id}, //请求的数据
+      type: "post",
+      data: { 'id': id},
       dataType: "json",
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       success: function(res) {
         if(res.code == 1) {
-
            location.reload() ;
         } else {
           layer.alert('删除失败');
