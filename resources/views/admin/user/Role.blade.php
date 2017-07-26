@@ -1,4 +1,5 @@
-@extends('layouts.admin') @section('content')
+@extends('layouts.admin')
+ @section('content')
 
 <div class="wrapper wrapper-content animated fadeInRight">
 
@@ -70,28 +71,10 @@
 		</div>
 
 	</div>
-
 </div>
 <!-- 角色分配 -->
 
-<div class="zTreeDemoBackground left" style="display: none" id="role">
-    <input type="hidden" id="nodeid">
-    <div class="form-group">
-        <div class="col-sm-5 col-sm-offset-2">
-            <ul id="treeType" class="ztree"></ul>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-4 col-sm-offset-4" style="margin-bottom: 15px">
-            <input type="button" value="确认分配" class="btn btn-primary" id="postform"/>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
 
-    zNodes = '';
-
-</script>
 <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>
 <script src="{{asset('static/admin/js/plugins/validate/jquery.validate.min.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/validate/messages_zh.min.js')}}"></script>
@@ -167,7 +150,6 @@ var index = '';
 var index2 = '';
 
 //分配权限
-
 function giveQx(id) {
 
 	$("#nodeid").val(id);
@@ -198,7 +180,7 @@ function giveQx(id) {
 
 				skin: 'layui-layer-demo', //加上边框
 
-				content: $('#role')
+				content: $('#role'),
 
 			});
 
@@ -300,3 +282,23 @@ $("#postform").click(function() {
 </script>
 
 @endsection
+
+
+<div class="zTreeDemoBackground left" style="display: none" id="role">
+    <input type="hidden" id="nodeid">
+    <div class="form-group">
+        <div class="col-sm-5 col-sm-offset-2">
+            <ul id="treeType" class="ztree"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-4" style="margin-bottom: 15px">
+            <input type="button" value="确认分配" class="btn btn-primary" id="postform"/>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    zNodes = '';
+
+</script>
