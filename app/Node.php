@@ -3,6 +3,7 @@
 namespace app;
 
 use Illuminate\Database\Eloquent\Model;
+use App\UserType;
 
 class Node extends Model
 {
@@ -18,5 +19,29 @@ class Node extends Model
         }
         $menu = prepareMenu($result);
         return $menu;
+    }
+
+    public function getNodeInfo($id)
+    {
+        $result = $this->select('id', 'node_name', 'typeid')->get()->toArray();
+        $str = "";
+
+        $role = new UserType();
+        $rule = $role->getRuleById($id);
+
+        if (!empty($rule)) {
+            $rule = explode(',', $rule);
+        }
+        foreach ($result as $key=>$vo) {
+            $str .= '{ "id": "' . $vo['id'] . '", "pId":"' . $vo['typeid'] . '", "name":"' . $vo['node_name'].'"';
+
+            if (!empty($rule) && in_array($vo['id'], $rule)) {
+                $str .= ' ,"checked":1';
+            }
+
+            $str.= '},';
+        }
+
+        return "[" . substr($str, 0, -1) . "]";
     }
 }

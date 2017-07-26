@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
 use App\UserType;
 use App\AdminUser;
+use App\Node;
 
 class UserController extends Controller
 {
@@ -54,6 +55,32 @@ class UserController extends Controller
         if ($request->ajax()) {
             DB::table('admin_user')->where('id', $request->id)->delete();
             return ['code' => 1];
+        }
+    }
+    public function Role()
+    {
+        $user = new UserType();
+        $str = $user->getRole();
+        return view('admin.user.Role', ['str'=>$str]);
+    }
+    public function giveAccess(Request $request)
+    {
+        $param = $request->all();
+        $node = new Node();
+        //获取现在的权限
+        if ('get' == $param['type']) {
+            $nodeStr = $node->getNodeInfo($param['id']);
+            return ['code' => 1, 'data' => $nodeStr, 'msg' => 'success'];
+        }
+        //分配新权限
+        if ('give' == $param['type']) {
+            $doparam = [
+              'id' => $param['id'],
+              'rule' => $param['rule']
+          ];
+            $user = new UserType();
+            $flag = $user->editAccess($doparam);
+            return ['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']];
         }
     }
 }

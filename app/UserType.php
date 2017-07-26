@@ -26,9 +26,16 @@ class UserType extends Model
         }
         return $result;
     }
-
     public function getRole()
     {
-        return $this->get();
+        $result = $this->get();
+        return $result;
+    }
+
+    public function getRuleById($id)
+    {
+        $res = $this->where('id', $id)->select('rule')->get()->first()->toArray();
+
+        return $res['rule'];
     }
 }

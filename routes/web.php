@@ -50,4 +50,11 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/user/create', 'UserController@UserCreate')->name('UserCreate');
     Route::any('admin/user/edit/{id?}', 'UserController@UserEdit')->name('UserEdit');
     Route::any('admin/user/delete', 'UserController@UserDelete')->name('UserDelete');
+
+// 2017-7-26 by chenweibo role routes
+    Route::any('admin/role', 'UserController@Role')->name('Role');
+    Route::any('admin/role/create', 'UserController@RoleCreate')->name('RoleCreate');
+    Route::any('admin/role/edit', 'UserController@RoleEdit')->name('RoleEdit');
+    Route::any('admin/role/delete', 'UserController@RoleDelete')->name('RoleDelete');
+    Route::any('admin/role/giveAccess', 'UserController@giveAccess')->name('giveAccess');
 });
