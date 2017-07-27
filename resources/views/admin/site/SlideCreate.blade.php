@@ -49,6 +49,8 @@
   					<span class="input-group-addon ut2" onclick="uploads()" style="width:80px;cursor: pointer;pointer-events: auto;"><i class="fa fa-folder-open"></i>点击上传</span>
   				</div>
   			</div>
+
+    
   			<input type="hidden" name="slide_type" value="{{$slide_type}}">
   			<div class="form-group">
   				<div class="col-sm-4 col-sm-offset-3">
@@ -73,6 +75,7 @@
 <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
 <script src="{{asset('static/admin/js/other.js')}}"></script>
+
 <script type="text/javascript">
 
 function toVaild(){

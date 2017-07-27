@@ -16,7 +16,7 @@
     <link href="{{ asset('static/admin/css/layui/css/layui.css') }}" rel="stylesheet">
     <script src="{{ asset('static/admin/js/jquery.min.js?v=2.1.4') }}"></script>
     <script src="{{ asset('static/admin/js/bootstrap.min.js?v=3.3.6') }}"></script>
-
+    
 
 </head>
 
