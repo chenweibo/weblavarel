@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class UserType extends Model
 {
     protected $table = 'role';
-
+    public $timestamps = false;
     public function getRoleInfo($id)
     {
         $result = $this->where('id', $id)->get()->first()->toArray();
@@ -37,5 +37,25 @@ class UserType extends Model
         $res = $this->where('id', $id)->select('rule')->get()->first()->toArray();
 
         return $res['rule'];
+    }
+
+    public function editAccess($param)
+    {
+        try {
+            $this->where('id', $param['id'])->update($param);
+            return ['code' => 1, 'data' => '', 'msg' => '分配权限成功'];
+        } catch (PDOException $e) {
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
+
+    public function delRole($id)
+    {
+        try {
+            $this->where('id', $id)->delete();
+            return ['code' => 1, 'data' => '', 'msg' => '删除角色成功'];
+        } catch (PDOException $e) {
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
     }
 }

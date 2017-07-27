@@ -18,6 +18,12 @@
 			</div>
 		</div>
 		<div class="ibox-content">
+			@if(!empty(session('error')))
+					 <div class="alert alert-danger">
+			  {{session('error')}}
+			 </div>
+			@endif
+
     <a class="layui-btn w" href="{{route('UserCreate')}}">添加管理员</a>
 			<div class="layui-form">
 				<div class="table-min" >
@@ -52,17 +58,10 @@
 							<td>{{ $v->real_name }}</td>
 							<td>{{ $v->status ? '正常' : '禁用' }}</td>
 							<td>
-								<div class="btn-group">
-									<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="{{route('UserEdit',$v->id)}}">编辑</a>
-										</li>
-										<li>
-											<a href="javascript:UserDel('{{$v->id}}')">删除</a>
-										</li>
-									</ul>
-								</div>
+
+								<a href="{{route('UserEdit',$v->id)}}" class="layui-btn  layui-btn-small">编辑</a>
+                <a  href="javascript:UserDel({{$v->id}})" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
+
 							</td>
 						</tr>
 					 @endforeach
@@ -115,7 +114,7 @@
 //delete slide
 function UserDel(id) {
 
-  layer.confirm('确认删除?', { icon: 3, title: '提示' }, function(index) {
+	layer.confirm('确认删除?', { icon: 3, title: '提示' }, function(index) {
 
     $.ajax({
       url: "{{ route('UserDelete') }}",
@@ -133,8 +132,8 @@ function UserDel(id) {
         }
       },
       error: function(msg) {
-        var json = JSON.parse(msg.responseText);
-        console.log(json);
+
+      layer.alert('权限不足联系管理员');
       },
     })
     layer.close(index);

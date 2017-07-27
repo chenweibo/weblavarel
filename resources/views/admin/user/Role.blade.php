@@ -60,6 +60,7 @@
 											@endif
 									</ul>
 								</div>
+
 							</td>
 
 						</tr>
@@ -256,25 +257,60 @@ $("#postform").click(function() {
 
 	//写入库
 
-	$.post('./giveAccess', { 'type': 'give', 'id': id, 'rule': NodeString }, function(res) {
+	// $.post('{{ route('giveAccess') }}', { 'type': 'give', 'id': id, 'rule': NodeString }, function(res) {
+  //
+	// 	layer.close(index);
+  //
+	// 	if(res.code == 1) {
+  //
+	// 		layer.alert(res.msg, function() {
+  //
+	// 			 location.reload() ;
+  //
+	// 		});
+  //
+	// 	} else {
+  //
+	// 		layer.alert(res.msg);
+  //
+	// 	}
+  //
+	// }, 'json')
 
-		layer.close(index);
+  $.ajax({
+      type:"POST",
+      url:'{{ route('giveAccess') }}',
+      data: { 'type': 'give', 'id': id, 'rule': NodeString },// 你的formid
+      async: false,
+      headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+      beforeSend:function(){
+          jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+      },
+      error: function(request) {
+          layer.close(jz);
+           swal("网络错误!", "", "error");
+      },
+      success: function(res) {
+          //关闭加载层
+          layer.close(index);
 
-		if(res.code == 1) {
+      		if(res.code == 1) {
 
-			layer.alert(res.msg, function() {
+      			layer.alert(res.msg, function() {
 
-				initTable();
+      				 location.reload() ;
 
-			});
+      			});
 
-		} else {
+      		} else {
 
-			layer.alert(res.msg);
+      			layer.alert(res.msg);
 
-		}
-
-	}, 'json')
+      		}
+      }
+  });
 
 })
 
