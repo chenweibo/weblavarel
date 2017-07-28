@@ -61,7 +61,10 @@
 										<td>{{ $v->slide_name }}</td>
 										<td>{{ $v->slide_sort }}</td>
 										<td>
-											<div class="btn-group">
+
+											<a href="{{route('SlideEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+											<a  href="javascript:slideDel('{{$v->id}}')" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
+											{{-- <div class="btn-group">
 												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
 												<ul class="dropdown-menu">
 													<li>
@@ -71,7 +74,7 @@
 														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
 													</li>
 												</ul>
-											</div>
+											</div> --}}
 
 										</td>
 									</tr>
@@ -113,18 +116,8 @@
 										<td>{{ $v->slide_name }}</td>
 										<td>{{ $v->slide_sort }}</td>
 										<td>
-											<div class="btn-group">
-												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
-													</li>
-													<li>
-														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
-													</li>
-												</ul>
-											</div>
-
+											<a href="{{route('SlideEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+											<a  href="javascript:slideDel('{{$v->id}}')" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
 										</td>
 									</tr>
                    @endif
@@ -165,18 +158,8 @@
 										<td>{{ $v->slide_name }}</td>
 										<td>{{ $v->slide_sort }}</td>
 										<td>
-											<div class="btn-group">
-												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
-													</li>
-													<li>
-														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
-													</li>
-												</ul>
-											</div>
-
+											<a href="{{route('SlideEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+											<a  href="javascript:slideDel('{{$v->id}}')" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
 										</td>
 									</tr>
                    @endif
@@ -217,18 +200,8 @@
 										<td>{{ $v->slide_name }}</td>
 										<td>{{ $v->slide_sort }}</td>
 										<td>
-											<div class="btn-group">
-												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
-													</li>
-													<li>
-														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
-													</li>
-												</ul>
-											</div>
-
+											<a href="{{route('SlideEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+											<a  href="javascript:slideDel('{{$v->id}}')" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
 										</td>
 									</tr>
                    @endif
@@ -269,18 +242,8 @@
 										<td>{{ $v->slide_name }}</td>
 										<td>{{ $v->slide_sort }}</td>
 										<td>
-											<div class="btn-group">
-												<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="{{route('SlideEdit',['id'=>$v->id])}}">编辑</a>
-													</li>
-													<li>
-														<a href="javascript:slideDel('{{$v->id}}')">删除</a>
-													</li>
-												</ul>
-											</div>
-
+											<a href="{{route('SlideEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+											<a  href="javascript:slideDel('{{$v->id}}')" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
 										</td>
 									</tr>
                    @endif
@@ -358,8 +321,7 @@ function slideDel(id) {
         }
       },
       error: function(msg) {
-        var json = JSON.parse(msg.responseText);
-        console.log(json);
+        layer.alert('权限不足联系管理员');
       },
     })
     layer.close(index);

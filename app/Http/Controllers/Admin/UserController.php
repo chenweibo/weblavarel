@@ -53,9 +53,9 @@ class UserController extends Controller
     public function UserDelete(Request $request)
     {
         if ($request->ajax()) {
-            $role = new UserType();
-            $flag = $role->delRole($request->id);
-            return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+            $user = new AdminUser();
+            $flag = $user->DelUser($request->id);
+            return ['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg'],'url'=>$request->getRequestUri()];
         }
     }
     public function Role()
