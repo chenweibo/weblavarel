@@ -79,7 +79,7 @@
 
         </div>
     </div>
-</div>
+
 
 
 <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>

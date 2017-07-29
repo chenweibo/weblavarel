@@ -18,7 +18,11 @@
 			</div>
 		</div>
 		<div class="ibox-content">
-
+			@if(!empty(session('error')))
+					 <div class="alert alert-danger">
+			  {{session('error')}}
+			 </div>
+			@endif
 			<div class="layui-tab" lay-filter="test">
 				<ul class="layui-tab-title">
 					<li class="layui-this" lay-id="1">幻灯片组1</li>

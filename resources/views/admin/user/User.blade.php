@@ -69,7 +69,7 @@
 				</table>
 			</div>
 
-		</div>
+	
 
 	</div>
 
@@ -126,7 +126,7 @@ function UserDel(id) {
       },
       success: function(res) {
         if(res.code == 1) {
-					window.location.href=res.url; 
+					window.location.href=res.url;
            location.reload() ;
         } else {
           layer.alert('删除失败');

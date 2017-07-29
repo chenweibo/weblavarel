@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Route;
 
 class UserType extends Model
 {
@@ -56,6 +57,26 @@ class UserType extends Model
             return ['code' => 1, 'data' => '', 'msg' => '删除角色成功'];
         } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
+
+    public function insertRole($param)
+    {
+        try {
+            $this->insert($param);
+            return ['code' => 1, 'data' => route('Role'), 'msg' => '添加成功'];
+        } catch (PDOException $e) {
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
+
+    public function editRole($param)
+    {
+        try {
+            $this->where('id', $param['id'])->update($param);
+            return ['code' => 1, 'data' => route('Role'), 'msg' => '编辑成功'];
+        } catch (PDOException $e) {
+            return ['code' => 0, 'data' => route('Role'), 'msg' => $e->getMessage()];
         }
     }
 }

@@ -73,6 +73,7 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
         'O' => 
         array (
             'Overtrue\\Socialite\\' => 19,
+            'Overtrue\\Pinyin\\' => 16,
             'Overtrue\\LaravelWechat\\' => 23,
         ),
         'M' => 
@@ -229,6 +230,10 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
         array (
             0 => __DIR__ . '/..' . '/overtrue/socialite/src',
         ),
+        'Overtrue\\Pinyin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/pinyin/src',
+        ),
         'Overtrue\\LaravelWechat\\' => 
         array (
             0 => __DIR__ . '/..' . '/overtrue/laravel-wechat/src',
@@ -351,15 +356,18 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
     );
 
     public static $classMap = array (
+        'App\\AdminUser' => __DIR__ . '/../..' . '/app/AdminUser.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\CommonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommonController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminBase' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminBase.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -2171,6 +2179,11 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
         'Overtrue\\LaravelWechat\\Routing\\Adapters\\Lumen' => __DIR__ . '/..' . '/overtrue/laravel-wechat/src/Routing/Adapters/Lumen.php',
         'Overtrue\\LaravelWechat\\Routing\\Router' => __DIR__ . '/..' . '/overtrue/laravel-wechat/src/Routing/Router.php',
         'Overtrue\\LaravelWechat\\ServiceProvider' => __DIR__ . '/..' . '/overtrue/laravel-wechat/src/ServiceProvider.php',
+        'Overtrue\\Pinyin\\DictLoaderInterface' => __DIR__ . '/..' . '/overtrue/pinyin/src/DictLoaderInterface.php',
+        'Overtrue\\Pinyin\\FileDictLoader' => __DIR__ . '/..' . '/overtrue/pinyin/src/FileDictLoader.php',
+        'Overtrue\\Pinyin\\GeneratorFileDictLoader' => __DIR__ . '/..' . '/overtrue/pinyin/src/GeneratorFileDictLoader.php',
+        'Overtrue\\Pinyin\\MemoryFileDictLoader' => __DIR__ . '/..' . '/overtrue/pinyin/src/MemoryFileDictLoader.php',
+        'Overtrue\\Pinyin\\Pinyin' => __DIR__ . '/..' . '/overtrue/pinyin/src/Pinyin.php',
         'Overtrue\\Socialite\\AccessToken' => __DIR__ . '/..' . '/overtrue/socialite/src/AccessToken.php',
         'Overtrue\\Socialite\\AccessTokenInterface' => __DIR__ . '/..' . '/overtrue/socialite/src/AccessTokenInterface.php',
         'Overtrue\\Socialite\\AuthorizeFailedException' => __DIR__ . '/..' . '/overtrue/socialite/src/AuthorizeFailedException.php',

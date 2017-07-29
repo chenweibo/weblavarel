@@ -22,7 +22,7 @@
       </div>
       <div class="ibox-content">
         <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
-            <input type="hidden" name="id" value="{{$data->id}}">
+               <input type="hidden" name="id" value="{{$data->id}}">
                           <div class="form-group">
                               <label class="col-sm-3 control-label">管理员名称：</label>
                               <div class="input-group col-sm-4">
@@ -81,7 +81,7 @@
 
         </div>
     </div>
-</div>
+
 
 
 <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>

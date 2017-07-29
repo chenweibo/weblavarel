@@ -64,6 +64,34 @@ class UserController extends Controller
         $str = $user->getRole();
         return view('admin.user.Role', ['str'=>$str]);
     }
+    public function RoleCreate(Request $request)
+    {
+        if ($request->ajax()) {
+            $role = new UserType();
+            $flag = $role->insertRole($request->all());
+            return ['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']];
+        }
+
+        return view('admin.user.RoleCreate');
+    }
+    public function RoleEdit(Request $request)
+    {
+        if ($request->ajax()) {
+            $role = new UserType();
+            $flag = $role->editRole($request->all());
+            return ['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']];
+        }
+        $str=DB::table('role')->where('id', $request->id)->get()->first();
+        return view('admin.user.RoleEdit', ['str'=>$str]);
+    }
+    public function RoleDelete(Request $request)
+    {
+        if ($request->ajax()) {
+            $role = new UserType();
+            $flag = $role->delRole($request->id);
+            return ['code' => $flag['code'], 'data' => route('Role'), 'msg' => $flag['msg']];
+        }
+    }
     public function giveAccess(Request $request)
     {
         $param = $request->all();

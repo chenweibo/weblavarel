@@ -21,7 +21,6 @@ class AdminController extends Controller
         $name = Route::currentRouteName();
         $usertype= new UserType();
         $info=$usertype->getRoleInfo(2);
-        $action = Route::currentRouteAction();
         return view('AdminIndex', ['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
     }
 

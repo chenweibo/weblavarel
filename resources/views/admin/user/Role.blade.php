@@ -19,7 +19,12 @@
 			</div>
 		</div>
 		<div class="ibox-content">
-    <a class="layui-btn w" href="">添加角色</a>
+      @if(!empty(session('error')))
+           <div class="alert alert-danger">
+        {{session('error')}}
+       </div>
+      @endif
+    <a class="layui-btn w" href="{{route('RoleCreate')}}">添加角色</a>
 			<div class="layui-form">
 				<div class="table-min" >
 				<table class="layui-table">
@@ -42,25 +47,12 @@
 						<tr data-id="{{$v->id}}">
 							<td>{{ $v->id }}</td>
 							<td>{{ $v->rolename }}</td>
-
 							<td >
-								<div class="btn-group">
-									<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 操作 <span class="caret"></span></button>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="{{route('UserEdit',$v->id)}}">编辑</a>
-										</li>
-										<li>
-											<a href="javascript:RoleDel('{{$v->id}}')">删除</a>
-										</li>
-										@if ($v->id != 1)
-										<li>
-											<a href="javascript:giveQx('{{$v->id}}')">权限分配</a>
-										</li>
-											@endif
-									</ul>
-								</div>
-
+                @if ($v->id != 1)
+                <a href="{{route('RoleEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+                <a  href="javascript:RoleDel('{{$v->id}}')" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
+                <a  href="javascript:giveQx('{{$v->id}}')" class="layui-btn layui-btn-warm layui-btn-small dc">权限</a>
+                @endif
 							</td>
 
 						</tr>

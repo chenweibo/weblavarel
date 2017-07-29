@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 100125
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 100125
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-24 22:02:23
+Date: 2017-07-29 17:11:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,13 +31,12 @@ CREATE TABLE `admin_user` (
   `typeid` int(11) DEFAULT '1' COMMENT '用户角色id',
   `img` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '50', '127.0.0.1', '1500904874', 'jksm', '1', '1', null);
-INSERT INTO `admin_user` VALUES ('9', 'bo', 'eyJpdiI6Im5MU3MxTVp5ekNkaHJSUEEzbHZ1R3c9PSIsInZhbHVlIjoiOTV4QVh6aFJBYjNxNDNoWGhpQWF1Zz09IiwibWFjIjoiMmQ0ZWYzNjI4Yzc1NTYyYmNjNjQzOGJkN2MxYjRmZTk3YTE4NzdlNDBlZGRmMThiMThlYTI5ODU1MzdlNDJiMCJ9', '0', '', '0', 'bo', '1', '2', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '59', '127.0.0.1', '1501314707', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for cate
@@ -208,11 +207,11 @@ INSERT INTO `node` VALUES ('2', '用户列表', '', '2', '1', '', '99', 'UserInd
 INSERT INTO `node` VALUES ('3', '添加用户', '', '1', '2', '', '99', 'UserCreate');
 INSERT INTO `node` VALUES ('4', '编辑用户', '', '1', '2', '', '99', 'UserEdit');
 INSERT INTO `node` VALUES ('5', '删除用户', '', '1', '2', '', '99', 'UserDelete');
-INSERT INTO `node` VALUES ('6', '角色列表', '', '2', '1', '', '99', null);
-INSERT INTO `node` VALUES ('7', '添加角色', '', '1', '6', '', '99', null);
-INSERT INTO `node` VALUES ('8', '编辑角色', '', '1', '6', '', '99', null);
-INSERT INTO `node` VALUES ('9', '删除角色', '', '1', '6', '', '99', null);
-INSERT INTO `node` VALUES ('10', '分配权限', '', '1', '6', '', '99', null);
+INSERT INTO `node` VALUES ('6', '角色列表', '', '2', '1', '', '99', 'Role');
+INSERT INTO `node` VALUES ('7', '添加角色', '', '1', '6', '', '99', 'RoleCreate');
+INSERT INTO `node` VALUES ('8', '编辑角色', '', '1', '6', '', '99', 'RoleEdit');
+INSERT INTO `node` VALUES ('9', '删除角色', '', '1', '6', '', '99', 'RoleDelete');
+INSERT INTO `node` VALUES ('10', '分配权限', '', '1', '6', '', '99', 'giveAccess');
 INSERT INTO `node` VALUES ('11', '系统管理', '#', '2', '0', 'fa fa-desktop', '99', null);
 INSERT INTO `node` VALUES ('12', '数据备份/还原', '', '2', '11', '', '99', null);
 INSERT INTO `node` VALUES ('13', '备份数据', '', '1', '12', '', '99', null);
@@ -352,13 +351,13 @@ CREATE TABLE `role` (
   `rolename` varchar(155) NOT NULL COMMENT '角色名称',
   `rule` varchar(255) DEFAULT '' COMMENT '权限节点数据',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', '超级管理员', '');
-INSERT INTO `role` VALUES ('2', '普通管理员', '1,2,3,4,5,15,23,28,24,25,26,27,16,29,31,32,33,30,34,35,36,38,17,42,45,46,47,43,48,49,50,51,18,55,58,59,60,56,61,62,63,64,19,68,71,72,73,69,74,75,76,77,81,83,84,85,82,90');
+INSERT INTO `role` VALUES ('2', '普通管理员', '1,2,3,4,5');
 
 -- ----------------------------
 -- Table structure for slide
@@ -372,7 +371,7 @@ CREATE TABLE `slide` (
   `slide_type` varchar(255) DEFAULT NULL,
   `slide_a` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of slide
@@ -380,7 +379,6 @@ CREATE TABLE `slide` (
 INSERT INTO `slide` VALUES ('1', null, '99', null, null, null);
 INSERT INTO `slide` VALUES ('2', '1', '99', '/uploads/593b4c2264f2f.jpg', '1', '');
 INSERT INTO `slide` VALUES ('3', '2', '99', '/uploads/593b4c858146a.jpg', '2', '');
-INSERT INTO `slide` VALUES ('4', '3', '99', '/uploads/593b4c4fa6464.jpg', '1', '');
 
 -- ----------------------------
 -- Table structure for users
