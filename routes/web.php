@@ -64,5 +64,5 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/Comlums/index', 'ColumnController@Column')->name('Column');
     Route::any('admin/Comlums/create', 'ColumnController@ColumnCreate')->name('ColumnCreate');
     Route::any('admin/Comlums/edit', 'ColumnController@ColumnEdit')->name('ColumnEdit');
-    Route::any('admin/Comlums/edit', 'ColumnController@ColumnDelete')->name('ColumnDelete');
+    Route::any('admin/Comlums/delete', 'ColumnController@ColumnDelete')->name('ColumnDelete');
 });

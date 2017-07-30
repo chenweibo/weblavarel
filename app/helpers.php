@@ -77,3 +77,11 @@ function columnMenu($result, $parentid=0, $format="|--")
      }
      return $arr;
  }
+
+ function explodepath($param)
+ {
+     $str=explode('-', $param);
+     $result=$str[count($str)-1];
+
+     return $result;
+ }

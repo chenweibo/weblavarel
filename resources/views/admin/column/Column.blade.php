@@ -47,21 +47,20 @@
 					</thead>
 					<tbody>
            @foreach ($list as $key)
-
 						<tr data-id="">
 							<td><input name="ck" lay-skin="primary" type="checkbox"></td>
-							<td>{{$key['id']}}</td>
+							<td >{{$key['id']}}</td>
 							<td>{{$key['html']}}{{$key['name']}}</td>
-							<td>{{$key['sort']}}</td>
+							<td width="80">{{$key['sort']}}</td>
 							<td><img src="" alt=""></td>
 							<td width="100">
-							<input type="checkbox"   @if ($key['state'] == 1)	checked="" @endif  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-						</td>
+							<input type="checkbox" @if ($key['state'] == 1)	checked="" @endif  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+					   	</td>
 							<td>
-							<a href="" class="layui-btn  layui-btn-small">编辑</a>
-              <a  href="" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
+							<a href="{{route('ColumnEdit',['id'=>$key['id']])}}" class="layui-btn  layui-btn-small">编辑</a>
+              <a href="" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
 							</td>
-						</tr>
+						  </tr>
           @endforeach
 
 
