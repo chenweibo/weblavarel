@@ -31,6 +31,8 @@ Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
 Route::get('/error', 'Admin\AdminController@error')->name('error');
 Route::any('/uploads', 'Admin\CommonController@uploads')->name('uploads');
+// 2017-7-30 by chenweibo rewrite routes
+Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewrite');
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
     Route::get('/admin', 'AdminController@index')->name('AdminIndex');
@@ -57,4 +59,10 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/role/edit', 'UserController@RoleEdit')->name('RoleEdit');
     Route::any('admin/role/delete', 'UserController@RoleDelete')->name('RoleDelete');
     Route::any('admin/role/giveAccess', 'UserController@giveAccess')->name('giveAccess');
+
+//   2017-7-26 by chenweibo comlum routes
+    Route::any('admin/Comlums/index', 'ColumnController@Column')->name('Column');
+    Route::any('admin/Comlums/create', 'ColumnController@ColumnCreate')->name('ColumnCreate');
+    Route::any('admin/Comlums/edit', 'ColumnController@ColumnEdit')->name('ColumnEdit');
+    Route::any('admin/Comlums/edit', 'ColumnController@ColumnDelete')->name('ColumnDelete');
 });

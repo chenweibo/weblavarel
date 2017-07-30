@@ -46,3 +46,34 @@ return [
 
     return $a;
 }
+
+function columnMenu($result, $parentid=0, $format="|--")
+{
+    /*记录排序后的类别数组*/
+    static $list=array();
+    foreach ($result as $k => $v) {
+        if ($v['pid']==$parentid) {
+            if ($parentid!=0) {
+                $v['name']=$format.$v['name'];
+            }
+            /*将该类别的数据放入list中*/
+            $list[]=$v;
+            columnMenu($result, $v['id'], "  ".$format);
+        }
+    }
+    return $list;
+}
+ function unlimitedForLever($cate, $html = '|-', $pid=0, $level = 0)
+ {
+     $arr=array();
+     foreach ($cate as $v) {
+         if ($v['pid'] == $pid) {
+             $v['level'] = $level + 1;
+             $v['html'] = str_repeat($html, $level);
+             $arr[] = $v ;
+             $arr = array_merge($arr, unlimitedForLever($cate, $html, $v['id'], $level+1));
+         }
+                  # code...
+     }
+     return $arr;
+ }

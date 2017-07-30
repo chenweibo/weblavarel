@@ -43,6 +43,39 @@ function uploads(){
           }
       });
 
+
   }
 
+}
+
+function rewrite(){
+
+  var name= $('#name').val();
+  if(name==false)
+  {
+      swal("名称为空无法生成", "", "error");
+      return false;
+  }
+  else {
+      $.ajax({
+          type:'POST',
+          url:'/admin/common/rewrite' ,
+          data: { "name" :name } ,
+          dataType:'json',
+          headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   },
+           beforeSend:function(){
+               jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+           },
+          success:function(data){
+              var info=data.res;
+               layer.close(jz);
+              $('#jt').attr('value',info);
+
+          },
+          error: function () { alert("出错,联系管理员") }
+      });
+      return ture;
+  }
 }
