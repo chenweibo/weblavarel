@@ -42,4 +42,13 @@ class ColumnController extends Controller
         $str=Column::find($request->id);
         return view('admin/column/ColumnEdit', ['data'=>$list,'str'=>$str]);
     }
+
+    public function ColumnDelete(Request $request)
+    {
+        $Column = new Column();
+        if ($request->ajax()) {
+            $flag=$Column->ComlunDelete($request->id);
+            return ['code' => $flag['code'], 'data' => route('Column'), 'msg' => $flag['msg']];
+        }
+    }
 }

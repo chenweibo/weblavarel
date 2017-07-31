@@ -235,7 +235,6 @@
 <script src="{{ asset('static/admin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 <script src="{{ asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
 <script src="{{ asset('static/admin/js/hplus.min.js?v=4.1.0')}}"></script>
-<!--<script type="text/javascript" src="__JS__/contabs.min.js"></script>-->
 <script type="text/javascript" src="{{ asset('static/admin/js/contabs.js')}}"></script>
 <script src="{{ asset('static/admin/js/plugins/pace/pace.min.js')}}"></script>
 

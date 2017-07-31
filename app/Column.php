@@ -28,10 +28,10 @@ class Column extends Model
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
-    public function ComlunDelete($param)
+    public function ComlunDelete($id)
     {
         try {
-            $this->where('id', $param['id'])->delete();
+            $this->where('id', $id)->delete();
             return ['code' => 1, 'data' => '', 'msg' => '删除成功'];
         } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];

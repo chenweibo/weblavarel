@@ -40,7 +40,7 @@
 							<th>id</th>
 							<th>名称</th>
 							<th>排序</th>
-              <th>缩略图</th>
+              <th width="80">缩略图</th>
 							<th>状态</th>
 							<th>操作</th>
 						</tr>
@@ -52,26 +52,24 @@
 							<td >{{$key['id']}}</td>
 							<td>{{$key['html']}}{{$key['name']}}</td>
 							<td width="80">{{$key['sort']}}</td>
-							<td><img src="" alt=""></td>
+							<td>@if ($key['img'] == null)
+              <img class="iconmig" onclick="imgicon('{{ asset('static/admin/images/img.png') }}')" src="{{ asset('static/admin/images/img.png') }}" alt="">
+              @else
+							<img class="iconmig" onclick="imgicon('{{ asset('static/uploads') }}/{{$key['img']}}')" src="{{ asset('static/uploads') }}/{{$key['img']}}" alt="">
+							@endif</td>
 							<td width="100">
-							<input type="checkbox" @if ($key['state'] == 1)	checked="" @endif  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+							<input type="checkbox" data-tid="{{$key['id']}}" @if ($key['state'] == 1)	checked="" @endif  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
 					   	</td>
 							<td>
 							<a href="{{route('ColumnEdit',['id'=>$key['id']])}}" class="layui-btn  layui-btn-small">编辑</a>
-              <a href="" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
+              <a href="javascript:ColumnDel({{$key['id']}})" class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
 							</td>
 						  </tr>
-          @endforeach
-
-
+              @endforeach
 					</tbody>
 				</table>
 			</div>
-
-
-
 	</div>
-
 </div>
 
 <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>
@@ -80,6 +78,7 @@
 <script src="{{asset('static/admin/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
 <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
+<script src="{{asset('static/admin/js/other.js')}}"></script>
 
 <script>
 
@@ -87,8 +86,11 @@
 		var $ = layui.jquery,
 			form = layui.form();
 			form.on('switch(switchTest)', function(data){
-          alert(this.checked ? '1' : '0');
-            console.log(this.checked ? '1' : '0');
+				var id=this.attributes['data-tid'].nodeValue;
+				var state=this.checked ? '1' : '0';
+        var url="";
+
+        console.log(this.attributes['data-tid'].nodeValue);
 			});
 		//全选
 		form.on('checkbox(allChoose)', function(data) {
@@ -98,18 +100,14 @@
 			});
 			form.render('checkbox');
 		});
-
-
-
 	});
 
-//delete slide
-function UserDel(id) {
+
+function ColumnDel(id) {
 
 	layer.confirm('确认删除?', { icon: 3, title: '提示' }, function(index) {
-
     $.ajax({
-      url: "{{ route('UserDelete') }}",
+      url: "{{ route('ColumnDelete') }}",
       type: "post",
       data: { 'id': id},
       dataType: "json",
@@ -125,7 +123,6 @@ function UserDel(id) {
         }
       },
       error: function(msg) {
-
       layer.alert('权限不足联系管理员');
       },
     })
@@ -133,8 +130,6 @@ function UserDel(id) {
   })
 
 }
-
-
 </script>
 
 @endsection

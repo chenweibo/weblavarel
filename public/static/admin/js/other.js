@@ -79,3 +79,42 @@ function rewrite(){
       return ture;
   }
 }
+
+
+function imgicon(str){
+
+
+  layer.open({
+    type: 1,
+    skin: 'layui-layer-demo', //样式类名
+    title: '缩略图',
+    anim: 2,
+    area: ['500px'],
+    shadeClose: true, //开启遮罩关闭
+    content: '<img  src="'+str+'" style="width:100%" alt="">'
+});
+}
+
+function state(id,num,url){
+
+  $.ajax({
+      type:'POST',
+      url: url ,
+      data: { "id" :id,'num':num } ,
+      dataType:'json',
+      headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+       beforeSend:function(){
+           jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+       },
+      success:function(data){
+          var info=data.res;
+           layer.close(jz);
+          $('#jt').attr('value',info);
+
+      },
+      error: function () { alert("出错,联系管理员") }
+  });
+
+}

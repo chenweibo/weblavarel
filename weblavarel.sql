@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 100125
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 100125
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-30 18:55:02
+Date: 2017-07-31 17:21:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '62', '127.0.0.1', '1501398592', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '64', '127.0.0.1', '1501485244', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -62,15 +62,14 @@ CREATE TABLE `columns` (
 -- ----------------------------
 -- Records of columns
 -- ----------------------------
-INSERT INTO `columns` VALUES ('11', '大类1', null, '88', '0', '0', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('12', '大类2', null, '88', '0', '0', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('13', '大类3', null, '88', '0', '0', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('14', '大类4', null, '88', '0', '0', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('15', '大类5', null, '88', '0', '0', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('16', '子类1', null, '88', '11', '0-11', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('17', '子类2', null, '88', '11', '0-11', null, null, null, null, null, '1', null);
-INSERT INTO `columns` VALUES ('18', '子类3', null, '88', '11', '0-11', null, null, null, null, null, '0', null);
-INSERT INTO `columns` VALUES ('19', '子子类1', null, '88', '16', '0-11-16', null, null, null, null, null, '0', null);
+INSERT INTO `columns` VALUES ('11', '大类1', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
+INSERT INTO `columns` VALUES ('12', '大类2', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
+INSERT INTO `columns` VALUES ('13', '大类3', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
+INSERT INTO `columns` VALUES ('14', '大类4', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
+INSERT INTO `columns` VALUES ('16', '子类1', null, '99', '11', '0-11', 'zilei1', '0', 'SfnyyrlPaapPCoLdblBYz1yXuisARLJuNnQ4LiId.jpeg', null, '112', '1', 'cn');
+INSERT INTO `columns` VALUES ('17', '子类2', null, '88', '11', '0-11', null, null, null, null, null, '1', 'cn');
+INSERT INTO `columns` VALUES ('18', '子类3', null, '88', '11', '0-11', null, null, null, null, null, '0', 'cn');
+INSERT INTO `columns` VALUES ('19', '子子类1', null, '88', '16', '0-11-16', null, null, null, null, null, '0', 'cn');
 
 -- ----------------------------
 -- Table structure for content
