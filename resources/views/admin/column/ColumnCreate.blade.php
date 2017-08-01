@@ -114,6 +114,7 @@
                               <div class="col-sm-4 col-sm-offset-3">
                                   <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
                                   <button class="btn btn-primary" type="submit">提交</button>
+                                  <a class="btn btn-primary" onclick="history.go(-1)"  href="#">返回</a>
                               </div>
                           </div>
                       </form>

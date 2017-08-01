@@ -5,6 +5,7 @@
 	<div class="ibox float-e-margins">
 		<div class="ibox-title">
 			<h5>栏目列表管理</h5>
+
 			<div class="ibox-tools">
 				<a class="collapse-link">
 					<i class="fa fa-chevron-up"></i>
@@ -37,12 +38,13 @@
 					<thead>
 						<tr>
 							<th width="50"><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
-							<th>id</th>
+							<th width="50">id</th>
 							<th>名称</th>
-							<th>排序</th>
+							<th >排序</th>
+							<th width="80" >类型</th>
               <th width="80">缩略图</th>
 							<th>状态</th>
-							<th>操作</th>
+							<th width="200">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -51,7 +53,8 @@
 							<td><input name="ck" lay-skin="primary" type="checkbox"></td>
 							<td >{{$key['id']}}</td>
 							<td>{{$key['html']}}{{$key['name']}}</td>
-							<td width="80">{{$key['sort']}}</td>
+							<td width="80" data-id="{{$key['id']}}" onclick="sortAjax(event,'{{route("ajaxSort")}}','column')" >{{$key['sort']}}</td>
+              <td >{{ config('admin.comlumtype.'.$key['type'])}}</td>
 							<td>@if ($key['img'] == null)
               <img class="iconmig" onclick="imgicon('{{ asset('static/admin/images/img.png') }}')" src="{{ asset('static/admin/images/img.png') }}" alt="">
               @else
@@ -88,9 +91,9 @@
 			form.on('switch(switchTest)', function(data){
 				var id=this.attributes['data-tid'].nodeValue;
 				var state=this.checked ? '1' : '0';
-        var url="";
-
-        console.log(this.attributes['data-tid'].nodeValue);
+        var url="{{route('ajaxState')}}";
+				var type="column";
+				stateAjax(id,state,url,type);
 			});
 		//全选
 		form.on('checkbox(allChoose)', function(data) {

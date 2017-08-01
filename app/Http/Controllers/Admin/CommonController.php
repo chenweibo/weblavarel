@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Overtrue\Pinyin\Pinyin;
+use App\Column;
 
 class CommonController extends Controller
 {
@@ -24,12 +25,35 @@ class CommonController extends Controller
             }
         }
     }
+
     public function rewrite(Request $request)
     {
         if ($request->isMethod('post')) {
             $pinyin = new Pinyin(); // 默认
             $res=$pinyin->permalink($request->name, '');
             return ['code'=>1,'res'=>$res];
+        }
+    }
+
+//common ajax state
+    public function ajaxState(Request $request)
+    {
+        $Column = new Column();
+        if ($request->ajax()) {
+            if ($request->type == 'column') {
+                $flag=$Column->updateState($request->id, ['state'=>$request->num]);
+                return ['code' => $flag['code'], 'msg' => $flag['msg']];
+            }
+        }
+    }
+    public function ajaxSort(Request $request)
+    {
+        $Column = new Column();
+        if ($request->ajax()) {
+            if ($request->type == 'column') {
+                $flag=$Column->updateState($request->id, ['sort'=>$request->sort]);
+                return ['code' => $flag['code'], 'msg' => $flag['msg']];
+            }
         }
     }
 }

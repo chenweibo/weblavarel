@@ -37,4 +37,13 @@ class Column extends Model
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
+    public function updateState($id, $param)
+    {
+        try {
+            $this->where('id', $id)->update($param);
+            return ['code' => 1, 'data' => '', 'msg' => '更新成功'];
+        } catch (PDOException $e) {
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
 }

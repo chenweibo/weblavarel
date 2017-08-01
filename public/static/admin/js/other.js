@@ -95,12 +95,12 @@ function imgicon(str){
 });
 }
 
-function state(id,num,url){
+function stateAjax(id,num,url,type){
 
   $.ajax({
       type:'POST',
       url: url ,
-      data: { "id" :id,'num':num } ,
+      data: { "id" :id,'num':num,'type':type } ,
       dataType:'json',
       headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -109,12 +109,48 @@ function state(id,num,url){
            jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
        },
       success:function(data){
-          var info=data.res;
-           layer.close(jz);
-          $('#jt').attr('value',info);
+          layer.close(jz);
 
       },
       error: function () { alert("出错,联系管理员") }
   });
 
 }
+
+function sortAjax(event,url,type)
+  {
+  //  var id=$(event.target).data('id');
+var td = $(event.target);
+var txt = td.text();
+var id = $(event.target).data('id');
+var input = $("<input  class='ssort'   type='text' value='" + txt + "'/>");
+td.html(input);
+input.click(function() { return false; });
+input.trigger("focus");
+input.blur(function() {
+  var newtxt = $(this).val();
+  if(newtxt == txt) {
+    td.html(newtxt);
+  } else {
+    //var id = td.data('id');
+    $.ajax({
+        type:'POST',
+        url: url ,
+        data: { "id": id, "sort": newtxt,'type':type } ,
+        dataType:'json',
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 },
+         beforeSend:function(){
+             jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+         },
+        success:function(data){
+            layer.close(jz);
+            td.html(newtxt);
+        },
+        error: function () { alert("出错,联系管理员") }
+    });
+  }
+});
+    //console.log(event.target.attributes['data-id'].value);
+  }

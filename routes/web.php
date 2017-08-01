@@ -31,6 +31,8 @@ Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
 Route::get('/error', 'Admin\AdminController@error')->name('error');
 Route::any('/uploads', 'Admin\CommonController@uploads')->name('uploads');
+Route::any('/ajaxState', 'Admin\CommonController@ajaxState')->name('ajaxState');
+Route::any('/ajaxSort', 'Admin\CommonController@ajaxSort')->name('ajaxSort');
 // 2017-7-30 by chenweibo rewrite routes
 Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewrite');
 
