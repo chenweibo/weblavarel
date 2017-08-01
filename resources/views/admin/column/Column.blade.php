@@ -29,22 +29,25 @@
 				<div class="table-min" >
 				<table class="layui-table">
 					<colgroup>
-						<col >
-						<col >
-						<col >
-						<col >
+						<col width="50" >
+						<col width="50" >
 						<col>
+						<col>
+						<col width="80">
+						<col width="80">
+						<col width="100">
+						<col width="200">
 					</colgroup>
 					<thead>
 						<tr>
-							<th width="50"><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
-							<th width="50">id</th>
+							<th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+							<th>id</th>
 							<th>名称</th>
-							<th >排序</th>
-							<th width="80" >类型</th>
-              <th width="80">缩略图</th>
+							<th>排序</th>
+							<th>类型</th>
+              <th>缩略图</th>
 							<th>状态</th>
-							<th width="200">操作</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,11 +59,11 @@
 							<td width="80" data-id="{{$key['id']}}" onclick="sortAjax(event,'{{route("ajaxSort")}}','column')" >{{$key['sort']}}</td>
               <td >{{ config('admin.comlumtype.'.$key['type'])}}</td>
 							<td>@if ($key['img'] == null)
-              <img class="iconmig" onclick="imgicon('{{ asset('static/admin/images/img.png') }}')" src="{{ asset('static/admin/images/img.png') }}" alt="">
+              <img title="点击放大" class="iconmig" onclick="imgicon('{{ asset('static/admin/images/img.png') }}')" src="{{ asset('static/admin/images/img.png') }}" alt="">
               @else
-							<img class="iconmig" onclick="imgicon('{{ asset('static/uploads') }}/{{$key['img']}}')" src="{{ asset('static/uploads') }}/{{$key['img']}}" alt="">
+							<img title="点击放大" class="iconmig" onclick="imgicon('{{ asset('static/uploads') }}/{{$key['img']}}')" src="{{ asset('static/uploads') }}/{{$key['img']}}" alt="">
 							@endif</td>
-							<td width="100">
+							<td >
 							<input type="checkbox" data-tid="{{$key['id']}}" @if ($key['state'] == 1)	checked="" @endif  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
 					   	</td>
 							<td>
