@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : fuck.io
-Source Server Version : 50505
+Source Server         : my
+Source Server Version : 100125
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-07-31 17:21:04
+Date: 2017-08-01 20:16:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '64', '127.0.0.1', '1501485244', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '64', '127.0.0.1', '1501586766', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -57,19 +57,18 @@ CREATE TABLE `columns` (
   `state` int(10) DEFAULT NULL,
   `lang` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of columns
 -- ----------------------------
-INSERT INTO `columns` VALUES ('11', '大类1', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
-INSERT INTO `columns` VALUES ('12', '大类2', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
-INSERT INTO `columns` VALUES ('13', '大类3', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
-INSERT INTO `columns` VALUES ('14', '大类4', null, '88', '0', '0', null, null, null, null, null, '1', 'cn');
-INSERT INTO `columns` VALUES ('16', '子类1', null, '99', '11', '0-11', 'zilei1', '0', 'SfnyyrlPaapPCoLdblBYz1yXuisARLJuNnQ4LiId.jpeg', null, '112', '1', 'cn');
-INSERT INTO `columns` VALUES ('17', '子类2', null, '88', '11', '0-11', null, null, null, null, null, '1', 'cn');
-INSERT INTO `columns` VALUES ('18', '子类3', null, '88', '11', '0-11', null, null, null, null, null, '0', 'cn');
-INSERT INTO `columns` VALUES ('19', '子子类1', null, '88', '16', '0-11-16', null, null, null, null, null, '0', 'cn');
+INSERT INTO `columns` VALUES ('3', '1-2', null, '99', '1', '0-1', '12', '0', null, '0', 'df', null, 'cn');
+INSERT INTO `columns` VALUES ('4', '12312', null, '99', '3', '0-1-3', '12312', '0', null, '0', '123', '1', 'cn');
+INSERT INTO `columns` VALUES ('6', '关于我们', null, '99', '0', '0', 'guanyuwomen', '0', null, '0', '12', '1', 'cn');
+INSERT INTO `columns` VALUES ('7', '公司简介', null, '99', '6', '0-6', 'gongsijianjie', '1', null, '0', '123', '1', 'cn');
+INSERT INTO `columns` VALUES ('8', '产品中心', null, '99', '0', '0', 'chanpinzhongxin', '0', null, '0', 'product', '1', 'cn');
+INSERT INTO `columns` VALUES ('9', '产品分类1', null, '99', '8', '0-8', 'chanpinfenlei1', '2', null, '0', 'sasd', '1', 'cn');
+INSERT INTO `columns` VALUES ('10', '子分类2', null, '99', '9', '0-8-9', 'zifenlei2', '0', null, '0', 'd', '1', 'cn');
 
 -- ----------------------------
 -- Table structure for content
@@ -203,7 +202,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -214,10 +213,15 @@ INSERT INTO `node` VALUES ('3', '栏目管理', '#', '2', '0', 'fa fa-bars', '3'
 INSERT INTO `node` VALUES ('4', '会员管理', '#', '2', '0', 'fa fa-user-circle', '4', null);
 INSERT INTO `node` VALUES ('5', '留言管理', '#', '2', '0', 'fa fa-commenting-o', '5', null);
 INSERT INTO `node` VALUES ('6', '内容管理', '#', '2', '0', 'fa fa-pencil-square-o', '6', null);
+INSERT INTO `node` VALUES ('35', '下载管理', '', '2', '6', '', '5', null);
 INSERT INTO `node` VALUES ('11', '微信管理', '#', '2', '0', 'fa fa-weixin', '11', null);
 INSERT INTO `node` VALUES ('12', '插件管理', '#', '2', '0', 'fa fa-plug', '12', null);
 INSERT INTO `node` VALUES ('13', '文件管理', '#', '2', '0', 'fa fa-folder-open', '13', null);
 INSERT INTO `node` VALUES ('14', '系统管理', '#', '2', '0', 'fa fa-desktop', '14', null);
+INSERT INTO `node` VALUES ('31', '单篇管理 ', '', '2', '6', '', '1', 'Page');
+INSERT INTO `node` VALUES ('32', '产品管理', '', '2', '6', '', '2', null);
+INSERT INTO `node` VALUES ('33', '文章管理', '', '2', '6', '', '3', null);
+INSERT INTO `node` VALUES ('34', '图片管理', '', '2', '6', '', '4', null);
 INSERT INTO `node` VALUES ('15', '内容回收站', '#', '2', '0', 'fa fa-recycle', '15', null);
 INSERT INTO `node` VALUES ('16', '基本设置', '', '2', '1', '', '99', 'site');
 INSERT INTO `node` VALUES ('17', '幻灯片管理', '', '2', '1', '', '99', 'SlideIndex');

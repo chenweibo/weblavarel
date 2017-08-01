@@ -47,8 +47,8 @@ class ColumnController extends Controller
     {
         $Column = new Column();
         if ($request->ajax()) {
-            $flag=$Column->updateState($request->id, ['state'=>$request->num]);
-            return ['code' => $flag['code'],  'msg' => $flag['msg']];
+            $flag=$Column->ComlunDelete($request->id);
+            return ['code' => $flag['code'], 'data' => route('Column'), 'msg' => $flag['msg']];
         }
     }
 }
