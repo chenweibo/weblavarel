@@ -14,8 +14,10 @@ class ContentController extends Controller
         $list = $content->where('type', 1)->orderBy('sort', 'asc')->get();
         return view('admin/content/Page', ['str'=>$list]);
     }
-    public function PagedEdit()
+    public function PageEdit(Request $request)
     {
-        return view('admin/content/PageEdit');
+        $content= new Content();
+        $data = $content->where('id', $request->id)->get()->first();
+        return view('admin/content/PageEdit', ['data'=>$data]);
     }
 }

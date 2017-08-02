@@ -44,14 +44,17 @@
 						@foreach ($str as $v)
 							<tr data-id="">
 							<td>{{ $v->name }}</td>
-							<td>123</th>
-							<td>操作</td>
+							<td>{{ $v->sort }}</th>
+							<td>
+								<a href="{{route('PageEdit',['id'=>$v['id']])}}" class="layui-btn  layui-btn-small">编辑</a>
+
+							</td>
 							</tr>
 				 			@endforeach
 					</tbody>
 				</table>
 			</div>
-			
+
 	</div>
 </div>
 
