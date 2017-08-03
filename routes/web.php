@@ -33,6 +33,7 @@ Route::get('/error', 'Admin\AdminController@error')->name('error');
 Route::any('/uploads', 'Admin\CommonController@uploads')->name('uploads');
 Route::any('/ajaxState', 'Admin\CommonController@ajaxState')->name('ajaxState');
 Route::any('/ajaxSort', 'Admin\CommonController@ajaxSort')->name('ajaxSort');
+Route::any('/EditUploads', 'Admin\CommonController@EditUploads')->name('EditUploads');
 
 // 2017-7-30 by chenweibo rewrite routes
 Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewrite');

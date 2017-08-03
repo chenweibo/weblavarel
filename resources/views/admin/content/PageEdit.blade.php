@@ -135,7 +135,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
     var E = window.wangEditor
     var editor = new E('#editor')
     editor.customConfig.uploadImgServer = '/EditUploads'
-    editor.customConfig.uploadFileName = 'images'
+    editor.customConfig.uploadFileName = 'images[]'
     editor.customConfig.uploadImgHeaders = {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 }
