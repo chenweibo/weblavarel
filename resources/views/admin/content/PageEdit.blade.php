@@ -134,12 +134,12 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 <script type="text/javascript">
     var E = window.wangEditor
     var editor = new E('#editor')
-    editor.customConfig.uploadImgServer = '/Editupload'
+    editor.customConfig.uploadImgServer = '/EditUploads'
     editor.customConfig.uploadFileName = 'images'
     editor.customConfig.uploadImgHeaders = {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 }
-    // 或者 var editor = new E( document.getElementById('#editor') )
+                                 // 或者 var editor = new E( document.getElementById('#editor') )
     editor.create()
 
 </script>
