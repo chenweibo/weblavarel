@@ -36,6 +36,7 @@ class ColumnController extends Controller
             $param = $request->all();
             $param['pid']=explodepath($param['path']);
             $flag=$Column->ComlunEdit($param);
+            
             return ['code' => $flag['code'], 'data' => route('Column'), 'msg' => $flag['msg']];
         }
         $list = $Column->orderBy('sort', 'asc')->get()->toArray();

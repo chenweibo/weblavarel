@@ -73,4 +73,7 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 //   2017-7-26 by chenweibo page routes
     Route::any('admin/page/index', 'ContentController@Page')->name('Page');
     Route::any('admin/page/edit', 'ContentController@PageEdit')->name('PageEdit');
+
+//   2017-8-4 by chenweibo product routes
+    Route::any('admin/product/index', 'ContentController@Product')->name('Product');
 });

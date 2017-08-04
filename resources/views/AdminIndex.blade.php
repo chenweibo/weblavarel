@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="renderer" content="webkit">
-<meta http-equiv="Cache-Control" content="no-siteapp"/>
-<title>后台管理系统</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>后台管理系统</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!--[if lt IE 9]>
-<meta http-equiv="refresh" content="0;ie.html"/>
-<![endif]-->
-<link href="{{ asset('static/admin/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
-<link rel="shortcut icon" href="favicon.ico">
-<link href="{{ asset('static/admin/css/bootstrap.min.css?v=3.3.6') }}" rel="stylesheet">
-<link href="{{ asset('static/admin/css/font-awesome.min.css?v=4.7.0')}}" rel="stylesheet">
-<link href="{{ asset('static/admin/css/animate.min.css')}}" rel="stylesheet">
-<link href="{{ asset('static/admin/css/style.min.css?v=4.1.0')}}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+    <link href="{{ asset('static/admin/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="{{ asset('static/admin/css/bootstrap.min.css?v=3.3.6') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/font-awesome.min.css?v=4.7.0')}}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/style.min.css?v=4.1.0')}}" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -30,7 +30,8 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img alt="image" class="img-circle" src="{{ asset('static/admin/images/profile_small.jpg')}}"/></span>
+                        <span><img alt="image" class="img-circle"
+                                   src="{{ asset('static/admin/images/profile_small.jpg')}}"/></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
                                 <span class="block m-t-xs"><strong class="font-bold">{{$username}}</strong></span>
@@ -50,24 +51,24 @@
                     </div>
                 </li>
                 @if (!empty($menu))
-                  @foreach ($menu as $v)
-                  <li class="menu">
-                    <a href="{{$v['href']}}">
-                        <i class="{{$v['style']}}" aria-hidden="true"></i>
-                        <span class="nav-label">{{$v['node_name']}} </span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        @if (!empty($v['child']))
-                         @foreach($v['child'] as $vo)
-                        <li>
-                            <a class="J_menuItem" href="{{$vo['href']}}">{{$vo['node_name']}}</a>
+                    @foreach ($menu as $v)
+                        <li class="menu">
+                            <a href="{{$v['href']}}">
+                                <i class="{{$v['style']}}" aria-hidden="true"></i>
+                                <span class="nav-label">{{$v['node_name']}} </span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                @if (!empty($v['child']))
+                                    @foreach($v['child'] as $vo)
+                                        <li>
+                                            <a class="J_menuItem" href="{{$vo['href']}}">{{$vo['node_name']}}</a>
+                                        </li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </li>
-                         @endforeach
-                      @endif
-                    </ul>
-                </li>
-                 @endforeach
+                    @endforeach
                 @endif
 
             </ul>
@@ -79,9 +80,9 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
-                        class="fa fa-bars"></i> </a>
+                                class="fa fa-bars"></i> </a>
                 </div>
-                <ul class="nav navbar-top-links navbar-right" >
+                <ul class="nav navbar-top-links navbar-right">
 
 
                     <li class="dropdown hidden-xs">
@@ -107,7 +108,7 @@
 
                 </button>
                 <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                    <li ><a href="/" target="_blank" >网站首页</a>
+                    <li><a href="/" target="_blank">网站首页</a>
                     <li class="J_tabGo"><a>前进</a>
                     </li>
                     <li class="J_tabBack"><a>后退</a>
@@ -115,7 +116,7 @@
                     <li class="J_tabFresh"><a>刷新</a>
                     </li>
 
-                    <li ><a>清除缓存</a>
+                    <li><a>清除缓存</a>
                     </li>
                     <li class="divider"></li>
                     <li class="J_tabShowActive"><a>定位当前选项卡</a>
@@ -154,7 +155,7 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
                     <div class="sidebar-title">
-                        <h3> <i class="fa fa-comments-o"></i> 主题设置</h3>
+                        <h3><i class="fa fa-comments-o"></i> 主题设置</h3>
                         <small><i class="fa fa-tim"></i> 你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。</small>
                     </div>
                     <div class="skin-setttings">
@@ -163,7 +164,8 @@
                             <span>收起左侧菜单</span>
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox"
+                                           id="collapsemenu">
                                     <label class="onoffswitch-label" for="collapsemenu">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
@@ -176,7 +178,8 @@
 
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox"
+                                           id="fixednavbar">
                                     <label class="onoffswitch-label" for="fixednavbar">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
@@ -191,7 +194,8 @@
 
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox"
+                                           id="boxedlayout">
                                     <label class="onoffswitch-label" for="boxedlayout">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
@@ -239,8 +243,6 @@
 <script src="{{ asset('static/admin/js/plugins/pace/pace.min.js')}}"></script>
 
 <script src="{{ asset('static/admin/js/plugins/toastr/toastr.min.js')}}"></script>
-
-
 
 
 </body>

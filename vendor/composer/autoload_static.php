@@ -357,7 +357,9 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
 
     public static $classMap = array (
         'App\\AdminUser' => __DIR__ . '/../..' . '/app/AdminUser.php',
+        'App\\Column' => __DIR__ . '/../..' . '/app/Column.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Content' => __DIR__ . '/../..' . '/app/Content.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\CommonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommonController.php',
@@ -367,6 +369,8 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\admin\\ColumnController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ColumnController.php',
+        'App\\Http\\Controllers\\admin\\ContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ContentController.php',
         'App\\Http\\Controllers\\admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminBase' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminBase.php',
@@ -384,6 +388,7 @@ class ComposerStaticInit62e8cedac118d806471bdd16b3ba3055
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
+        'ContentTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ContentTableSeeder.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',

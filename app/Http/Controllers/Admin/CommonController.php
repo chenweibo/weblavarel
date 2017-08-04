@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Overtrue\Pinyin\Pinyin;
 use App\Column;
+use App\Content;
 
 class CommonController extends Controller
 {
@@ -63,6 +64,12 @@ class CommonController extends Controller
             if ($request->type == 'column') {
                 $flag=$Column->updateState($request->id, ['sort'=>$request->sort]);
                 return ['code' => $flag['code'], 'msg' => $flag['msg']];
+            }
+
+            if ($request->type == 'content') {
+                $content = new Content();
+                $content->where('id', $request->id)->update(['sort'=>$request->sort]);
+                return ['code' => 1, 'msg' => '成功'];
             }
         }
     }
