@@ -36,4 +36,15 @@ class ContentController extends Controller
         $list = $content->where('type', 2)->paginate(10);
         return view('admin/content/Product', ['list'=>$list]);
     }
+    public function ProductCreate()
+    {
+        return view('admin/content/ProductCreate');
+    }
+    public function ProductEdit()
+    {
+        return view('admin/content/ProductEdit');
+    }
+    public function ProductDelete()
+    {
+    }
 }

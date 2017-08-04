@@ -24,7 +24,7 @@
                         {{session('error')}}
                     </div>
                 @endif
-                <a href="" class="btn btn-primary">添加</a>
+                <a href="{{route('ProductCreate')}}" class="btn btn-primary">添加</a>
                 <a href="" class="btn btn-primary">批量删除</a>
                 <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="false">更多操作

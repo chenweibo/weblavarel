@@ -31,6 +31,7 @@ Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
 Route::get('/error', 'Admin\AdminController@error')->name('error');
 Route::any('/uploads', 'Admin\CommonController@uploads')->name('uploads');
+Route::any('/weup', 'Admin\CommonController@weup')->name('weup');
 Route::any('/ajaxState', 'Admin\CommonController@ajaxState')->name('ajaxState');
 Route::any('/ajaxSort', 'Admin\CommonController@ajaxSort')->name('ajaxSort');
 Route::any('/EditUploads', 'Admin\CommonController@EditUploads')->name('EditUploads');
@@ -76,4 +77,7 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 
 //   2017-8-4 by chenweibo product routes
     Route::any('admin/product/index', 'ContentController@Product')->name('Product');
+    Route::any('admin/product/create', 'ContentController@ProductCreate')->name('ProductCreate');
+    Route::any('admin/product/edit', 'ContentController@ProductEdit')->name('ProductEdit');
+    Route::any('admin/product/delete', 'ContentController@ProductDelete')->name('ProductDelete');
 });

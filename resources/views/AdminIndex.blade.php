@@ -8,7 +8,6 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
