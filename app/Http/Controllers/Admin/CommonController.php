@@ -87,4 +87,14 @@ class CommonController extends Controller
             return $bool;
         }
     }
+
+    public function delImg(Request $request)
+    {
+        $img = $request->img;
+        if ($request->ajax()) {
+            $path = public_path('static/uploads').'/'.$img;
+            Storage::disk('uploads')->delete($img);
+            return 1;
+        }
+    }
 }

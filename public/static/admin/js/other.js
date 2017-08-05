@@ -177,3 +177,35 @@ function editor(str) {
     editor.txt.html(str)
 
 }
+function removeValue(str){
+
+    $( '#moreimg' ).attr('value',$( '#moreimg' ).attr('value').replace(str, ''));
+
+}
+
+function removeimg(event){
+       var img= $(event.target).parent().data('img');
+       removeValue('<img src="/static/uploads/'+img+'">');
+       $(event.target).parent().remove();
+       console.log($( '#moreimg' ).val());
+       $.ajax({
+           type: 'POST',
+           url: '/delImg',
+           data: {"img": img},
+           dataType: 'json',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           beforeSend: function () {
+               jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+           },
+           success: function (data) {
+               layer.close(jz);
+           },
+           error: function () {
+             layer.close(jz);
+               alert("出错,联系管理员")
+           }
+       });
+
+}

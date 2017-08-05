@@ -2,7 +2,7 @@
 
 @section('content')
   <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/plugins/webuploader/webuploader.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/demo/webuploader-demo.min.css')}}">
+  {{-- <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/demo/webuploader-demo.min.css')}}"> --}}
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-sm-12">
@@ -106,19 +106,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">下载：</label>
-                                <div class="col-md-4 input-group">
-                                    <input id="lefile" type="file" name="image" style="display:none">
-                                    <span class="input-group-addon" onclick="$('input[id=lefile]').click();"
-                                          style="cursor: pointer; background-color: #e7e7e7"><i
-                                                class="fa fa-folder-open"></i>选择</span>
-                                    <input id="photoCover" name="img" class="form-control" type="text" value="">
-                                    <span class="input-group-addon ut2" onclick="uploads()"
-                                          style="width:80px;cursor: pointer;pointer-events: auto;"><i
-                                                class="fa fa-folder-open"></i>点击上传</span>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">外链：</label>
                                 <div class="input-group col-sm-4">
@@ -130,30 +118,16 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">多图上传：</label>
                                 <div class="input-group col-sm-8">
+                                  <div id="uploader-demo">
+                                      <!--用来存放item-->
+                                      <div id="thelist" class="uploader-list clearfix"></div>
+                                      <div>
+                                       <div id="filePicker">选择图片</div>
 
-                                  <div id="uploader" class="wu-example">
-                                      <div class="queueList">
-                                          <div id="dndArea" class="placeholder">
-                                              <div id="filePicker"></div>
-                                              <p>或将照片拖到这里，单次最多可选300张</p>
-                                          </div>
-                                      </div>
-                                      <div class="statusBar" style="display:none;">
-                                          <div class="progress">
-                                              <span class="text">0%</span>
-                                              <span class="percentage"></span>
-                                          </div>
-                                          <div class="info"></div>
-                                          <div class="btns">
-                                              <div id="filePicker2"></div>
-                                              <div class="uploadBtn">开始上传</div>
-                                          </div>
                                       </div>
                                   </div>
-                                  <input type="hidden"  id="imgmore" value="">
-
+                                      <input type="hidden" id="moreimg" name="moreimg" value="">
                                 </div>
-
                             </div>
 
                             <div class="form-group">
@@ -203,6 +177,8 @@
     <script src="{{asset('static/admin/wangEditor.min.js')}}"></script>
     <script src="{{asset('static/admin/js/plugins/webuploader/webuploader.min.js')}}"></script>
     <script src="{{asset('static/admin/js/demo/upload.js')}}"></script>
+
+
     <script type="text/javascript">
         function toVaild() {
             var jz;

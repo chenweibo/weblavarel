@@ -50,3 +50,18 @@
 .jj {
     margin-left: 8%;
 }
+
+.upfa{width: 130px; height: 130px; float: left; position: relative; margin-right: 15px;}
+
+
+#fancybox-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 30px;
+    height: 30px;
+    background: transparent url('../img/fancybox.png') -40px 0px;
+    cursor: pointer;
+    z-index: 1103;
+    display: block;
+}
