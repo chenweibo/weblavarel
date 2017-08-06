@@ -74,7 +74,7 @@ $(function(){
  uploader.on( 'uploadSuccess', function( file ,response ) {
      $( '#'+file.id ).addClass('upload-state-done');
      $( '#'+file.id ).attr('data-img', response._raw);
-     $( '#moreimg' ).attr('value',$( '#moreimg' ).val()+'<img src="/static/uploads/'+response._raw+'">');
+     $( '#moreimg' ).attr('value',$( '#moreimg' ).val()+'<img src="'+response._raw+'">');
       console.log( $( '#moreimg' ).val());
  });
 

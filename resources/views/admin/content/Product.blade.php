@@ -74,7 +74,7 @@
                                     <td><input name="ck" lay-skin="primary" type="checkbox"></td>
                                     <td>{{ $v->id }}</td>
                                     <td>{{ $v->name }}</td>
-                                    <td>{{ $v->id }}</td>
+                                    <td>{{ $v->colums }}</td>
                                     <td data-id="{{ $v->id }}"
                                         onclick="sortAjax(event,'{{route("ajaxSort")}}','content')">{{ $v->sort }}</td>
                                     <td>@if ($v->img == null)
@@ -83,8 +83,8 @@
                                                  src="{{ asset('static/admin/images/img.png') }}" alt="">
                                         @else
                                             <img title="点击放大" class="iconmig"
-                                                 onclick="imgicon('{{ asset('static/uploads') }}/{{$key['img']}}')"
-                                                 src="{{ asset('static/uploads') }}/{{$key['img']}}" alt="">
+                                                 onclick="imgicon('{{ asset('static/uploads') }}/{{$v->img}}')"
+                                                 src="{{ asset('static/uploads') }}/{{$v->img}}" alt="">
                                         @endif</td>
                                     <td>
                                         <input type="checkbox" data-tid="{{ $v->id }}" @if ($v->show == 1)    checked=""
@@ -96,8 +96,8 @@
                                                lay-filter="switchrec" lay-text="ON|OFF">
                                     </td>
                                     <td>
-                                        <a href="" class="layui-btn  layui-btn-small">编辑</a>
-                                        <a href="javascript:ProductDel()"
+                                        <a href="{{route('ProductEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
+                                        <a href="javascript:ProductDel({{$v->id}})"
                                            class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
                                     </td>
                                 </tr>
@@ -155,7 +155,7 @@
 
                     layer.confirm('确认删除?', {icon: 3, title: '提示'}, function (index) {
                         $.ajax({
-                            url: "",
+                            url: "{{route('ProductDelete')}}",
                             type: "post",
                             data: {'id': id},
                             dataType: "json",
@@ -164,7 +164,7 @@
                             },
                             success: function (res) {
                                 if (res.code == 1) {
-                                    window.location.href = res.url;
+                                    window.location.href = res.data;
 
                                 } else {
                                     layer.alert('删除失败');

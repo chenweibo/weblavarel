@@ -1,21 +1,29 @@
-//单文件上传
-var up = $("#photoCover");
-var upfile = $("#lefile");
-$('input[id=lefile]').change(function () {
-    $('#photoCover').val($(this).val());
-});
-function uploads() {
 
-    if (up.val() == 0 || upfile.val() == 0) {
+function readyUp(event){
 
-        up.focus();
+    var file =   $(event.target).prev();
+     file.click();
+     file.change(function () {
+        $(event.target).next().val($(this).val());
+    });
+}
+function uploads(event) {
+
+      var file =$(event.target).parent().find("input[type='file']");
+      var txt =$(event.target).parent().find("input[type='text']");
+
+
+    if (file.val() == 0 || txt.val() == 0) {
+
+        txt.focus();
         swal("请选择文件!", "", "error");
         return false;
     }
     else {
-        var formElement = document.getElementById("lefile");
+        //var formElement = document.getElementById("lefile");
         var formData = new FormData();
-        formData.append("image", formElement.files[0]);
+        //formData.append("image", formElement.files[0]);
+        formData.append(file.attr('name'), file[0].files[0]);
 
 
         $.ajax({
@@ -34,7 +42,7 @@ function uploads() {
             },
             success: function (data) {
                 layer.close(jz);
-                $('#photoCover').val(data);
+                txt.val(data);
             },
             error: function () {
                 layer.close(jz);
@@ -185,7 +193,7 @@ function removeValue(str){
 
 function removeimg(event){
        var img= $(event.target).parent().data('img');
-       removeValue('<img src="/static/uploads/'+img+'">');
+       removeValue('<img src="'+img+'">');
        $(event.target).parent().remove();
        console.log($( '#moreimg' ).val());
        $.ajax({

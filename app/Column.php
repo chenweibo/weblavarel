@@ -11,6 +11,11 @@ class Column extends Model
     public $timestamps = false;
 
 
+    public function content()
+    {
+        return $this->hasOne('App\Content', 'lid');
+    }
+
     public function ComlunInsert($param)
     {
         try {
@@ -65,5 +70,9 @@ class Column extends Model
         } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
+    }
+    public function getTypeComlun($type)
+    {
+        return $this->where('type', $type)->orderBy('sort', 'asc')->get()->toArray();
     }
 }

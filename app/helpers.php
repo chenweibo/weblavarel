@@ -85,3 +85,62 @@ function columnMenu($result, $parentid=0, $format="|--")
 
      return $result;
  }
+
+ function make_tree($list, $pk='id', $pid='pid', $child='children', $root=0)
+ {
+     $tree=array();
+     $packData=array();
+     foreach ($list as  $data) {
+         $packData[$data[$pk]] = $data;
+     }
+     foreach ($packData as $key =>$val) {
+         if ($val[$pid]==$root) {//代表跟节点
+             $tree[]=& $packData[$key];
+         } else {
+             //找到其父类
+             $packData[$val[$pid]][$child][]=& $packData[$key];
+         }
+     }
+     return $tree;
+ }
+
+ function subTree($param, $pid)
+ {
+     static $res = [];
+
+     foreach ($param as $key=>$vo) {
+         if ($pid == $vo['pid']) {
+             $res[] = $vo;
+
+             subTree($param, $vo['id']);
+         }
+     }
+
+     return $res;
+ }
+
+ function level($str)
+ {
+     foreach ($str as $v) {
+         $count= count(explode('-', $v['path']));
+         if ($count == 2) {
+             $res=explodepath($v['path']);
+             break;
+         }
+     }
+     return $res;
+ }
+
+
+ function codeimg($str)
+ {
+     $d=array_filter(explode('<img src="', $str));
+
+     foreach ($d as  $key=>$vo) {
+         $d[$key]=str_replace('">', '', $vo);
+     }
+     
+
+
+     return $d;
+ }

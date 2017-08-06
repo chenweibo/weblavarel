@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : fuck.io
-Source Server Version : 50505
+Source Server         : my
+Source Server Version : 100125
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-08-05 17:07:10
+Date: 2017-08-06 21:08:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '76', '127.0.0.1', '1501919427', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '80', '127.0.0.1', '1502019190', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -57,7 +57,7 @@ CREATE TABLE `columns` (
   `state` int(10) DEFAULT NULL,
   `lang` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of columns
@@ -67,6 +67,10 @@ INSERT INTO `columns` VALUES ('26', '公司简介', null, '99', '25', '0-25', 'g
 INSERT INTO `columns` VALUES ('27', '产品中心', null, '99', '0', '0', '12', '0', null, '0', 'dd', '1', 'cn');
 INSERT INTO `columns` VALUES ('28', '新闻中心', null, '99', '0', '0', '123ds', '0', null, '0', 'sdf', '1', 'cn');
 INSERT INTO `columns` VALUES ('29', '公司新闻', null, '99', '28', '0-28', 'w', '3', null, '0', 'd', '1', 'cn');
+INSERT INTO `columns` VALUES ('30', 'ccc', null, '99', '0', '0', 'ccc', '0', 'eEGqSLTetTZ50v3cyrMz2eo3PVMiJf4QCWdtFyPK.jpeg', '0', 'd', '1', 'cn');
+INSERT INTO `columns` VALUES ('31', '产品分类1', null, '99', '27', '0-27', 'chanpinfenlei1', '2', null, '0', 'd', '1', 'cn');
+INSERT INTO `columns` VALUES ('32', '产品分类2', null, '99', '27', '0-27', 'chanpinfenlei2', '2', null, '0', 'chanpinfenlei2', '1', 'cn');
+INSERT INTO `columns` VALUES ('33', '子分类1', 'dd', '99', '31', '0-27-31', 'zifenlei1', '2', null, '0', 'zifenlei1', '1', 'cn');
 
 -- ----------------------------
 -- Table structure for content
@@ -98,42 +102,13 @@ CREATE TABLE `content` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
 INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, '<p>12213213ffddsdf</p><p>测试成功<br></p>', null, null, null, '是多少', '等等', null, null, '1', null, null, null, '2', null, null, '2017-08-04 11:42:52');
-INSERT INTO `content` VALUES ('59', '0', null, 'UHYRvpdt5w', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '10', null, null, '2017-08-04 16:59:17');
-INSERT INTO `content` VALUES ('60', '1', null, 'SNhvjNhkwt', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('61', '2', null, '5anBisKS8g', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('62', '3', null, 'FXTI7uE7ux', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('63', '4', null, 'aeMWXBZyqr', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('64', '5', null, 'Q8dk1g7Ryh', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('65', '6', null, 'FXk7K4P7uf', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('66', '7', null, 'TrRnkeJ6zM', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('67', '8', null, 'GCP4albogZ', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('68', '9', null, '5rMG12RrIy', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('69', '10', null, 'Zk30WGG2qd', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('70', '11', null, 'q9pAM3IF7c', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('71', '12', null, 'jnl89lF8Ty', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('72', '13', null, 'BbcnLpwjSq', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('73', '14', null, 'ecL0KPL1K1', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('74', '15', null, '532AKw6LF7', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('75', '16', null, 't8GgamuBV0', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('76', '17', null, 'ZXLndEiITd', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('77', '18', null, '24S6AfMUxH', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('78', '19', null, 'XWyucXEnXh', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('79', '20', null, '3VOPD8A6TU', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('80', '21', null, 'LFsNdvpHeV', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('81', '22', null, 'Uc1ghWyQZ7', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('82', '23', null, 'BZ0xHn9Tmk', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('83', '24', null, 'DIROMwuA6w', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('84', '25', null, 'tNZ03XsL38', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('85', '26', null, 'aWFpYyzn4Q', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('86', '27', null, '5pv7fkB7QP', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('87', '28', null, 'RWSCrg99I9', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
-INSERT INTO `content` VALUES ('88', '29', null, 'ILq3gMsxWY', null, null, null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, null);
+INSERT INTO `content` VALUES ('92', '阿斯达斯', null, 'asidasi', '31', '0-27-31', null, null, '<p>阿萨德<br></p>', null, null, null, '阿斯d', '阿萨德', 'cn', '0', '2', null, '1', null, '99', null, null, null);
 
 -- ----------------------------
 -- Table structure for field
@@ -336,7 +311,7 @@ CREATE TABLE `slide` (
   `slide_type` varchar(255) DEFAULT NULL,
   `slide_a` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of slide

@@ -8,7 +8,7 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>产品添加</h5>
+                        <h5>产品编辑</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -24,17 +24,18 @@
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
                             <div class="form-group">
-
+                                <input type="hidden" name="id" value="{{$data->id}}">
                                 <label class="col-sm-1 control-label">名称：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="name" type="text" class="form-control" value=""
+                                    <input id="name" type="text" class="form-control" value="{{$data->name}}"
                                            name="name" required aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">英文名称：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="enname" type="text" class="form-control" name="enname"
+                                    <input id="enname" type="text" class="form-control" value="{{$data->enname}}"
+                                           name="enname"
                                            aria-required="true">
 
                                 </div>
@@ -44,7 +45,8 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">伪静态</label>
                                 <div class="col-md-4 input-group">
-                                    <input id="jt" name="rewrite" class="form-control" type="text" value="" name="icon"
+                                    <input id="jt" name="rewrite" class="form-control" type="text"
+                                           value="{{$data->rewrite}}" name="icon"
                                            required aria-required="true">
                                     <span class="input-group-addon shengcheng " onclick="rewrite()"
                                           style="width:80px;cursor: pointer;pointer-events: auto;">自动生成</span>
@@ -56,12 +58,11 @@
                                 <label class="col-sm-1 control-label">所属分类：</label>
                                 <div class="input-group col-sm-4">
                                     <select class="form-control" name="path" id="path" required="">
-
                                         @foreach ($str as $v)
-
-
-                                            <option value="{{$v['path']}}-{{ $v['id']}}">{{$v['html']}} {{ $v['name']}}</option>
-
+                                            @if ($v['id'] != $data->id)
+                                                <option @if ($v['id'] == $data->lid)  selected="select"
+                                                        @endif    value="{{$v['path']}}-{{$v['id']}}">{{$v['html']}}{{$v['name']}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
 
@@ -70,7 +71,8 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">排序：</label>
                                 <div class="input-group col-sm-1">
-                                    <input id="site_sort" type="text" value="99" class="form-control" name="sort"
+                                    <input id="site_sort" type="text" value="{{$data->sort}}" class="form-control"
+                                           name="sort"
                                            aria-required="true">
                                 </div>
                             </div>
@@ -81,20 +83,24 @@
                                     <div id="editor">
                                     </div>
                                 </div>
-                                <input type="hidden" name="info" id="info" value=''>
+                                <input type="hidden" name="info" id="info" value='{{$data->info}}'>
                             </div>
                             <div class="form-group layui-form">
                                 <label class="col-sm-1 control-label">推荐：</label>
                                 <div class=" col-sm-1">
-                                    <input type="checkbox" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                                    <input type="hidden" class="cate_recommend" name="recommend" value="0">
+                                    <input type="checkbox" lay-skin="switch" @if ($data->recommend == 1) checked=""
+                                           @endif lay-filter="switchTest" lay-text="ON|OFF">
+                                    <input type="hidden" class="recommend" name="recommend"
+                                           value="{{ $data->recommend }}">
                                 </div>
+
                                 <label class=" control-label" style="float: left; margin-right: 15px">显示：</label>
                                 <div class="input-group col-sm-1">
-                                    <input type="checkbox" checked="" lay-skin="switch" lay-filter="switchTestshow"
-                                           lay-text="ON|OFF">
-                                    <input type="hidden" class="show" name="show" value="1">
+                                    <input type="checkbox" @if ($data->show == 1) checked="" @endif lay-skin="switch"
+                                           lay-filter="switchTestshow" lay-text="ON|OFF">
+                                    <input type="hidden" class="show" name="show" value="{{ $data->show }}">
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">缩略图：</label>
@@ -103,7 +109,7 @@
                                     <span class="input-group-addon" onclick="readyUp(event)"
                                           style="cursor: pointer; background-color: #e7e7e7"><i
                                                 class="fa fa-folder-open"></i>选择</span>
-                                    <input name="img" class="form-control" type="text" value="">
+                                    <input name="img" class="form-control" type="text" value="{{ $data->img }}">
                                     <span class="input-group-addon ut2" onclick="uploads(event)"
                                           style="width:80px;cursor: pointer;pointer-events: auto;"><i
                                                 class="fa fa-folder-open"></i>点击上传</span>
@@ -116,7 +122,7 @@
                                     <span class="input-group-addon" onclick="readyUp(event)"
                                           style="cursor: pointer; background-color: #e7e7e7"><i
                                                 class="fa fa-folder-open"></i>选择</span>
-                                    <input name="down" class="form-control" type="text" value="">
+                                    <input name="down" class="form-control" type="text" value="{{ $data->down }}">
                                     <span class="input-group-addon ut2" onclick="uploads(event)"
                                           style="width:80px;cursor: pointer;pointer-events: auto;"><i
                                                 class="fa fa-folder-open"></i>点击上传</span>
@@ -125,7 +131,8 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">外链：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="keywords" type="text" class="form-control" name="link"
+                                    <input id="keywords" type="text" value="{{ $data->link }}" class="form-control"
+                                           name="link"
                                            aria-required="true">
 
                                 </div>
@@ -136,20 +143,27 @@
                                 <div class="input-group col-sm-8">
                                     <div id="uploader-demo">
                                         <!--用来存放item-->
-                                        <div id="thelist" class="uploader-list clearfix"></div>
+                                        <div id="thelist" class="uploader-list clearfix">
+                                            @foreach (codeimg($data->moreimg) as $v)
+                                                <div class="file-item thumbnail upfa upload-state-done"
+                                                     data-img="{{$v}}"><img src="{{ asset('static/uploads') }}/{{$v}}">
+                                                    <a id="fancybox-close" onclick="removeimg(event)"
+                                                       style="display: inline;"></a></div>
+                                            @endforeach
+                                        </div>
                                         <div>
                                             <div id="filePicker">选择图片</div>
 
                                         </div>
                                     </div>
-                                    <input type="hidden" id="moreimg" name="moreimg" value="">
+                                    <input type="hidden" id="moreimg" name="moreimg" value="{{ $data->moreimg }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">关键字：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="keywords" type="text" value="" class="form-control"
+                                    <input id="keywords" type="text" value="{{ $data->keywords }}" class="form-control"
                                            name="keywords" aria-required="true">
                                 </div>
                             </div>
@@ -157,15 +171,17 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">关键字描述：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="description" type="text" value=""
+                                    <input id="description" type="text" value="{{ $data->description }}"
                                            class="form-control" name="description" aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group layui-form">
                                 <label class="col-sm-1 control-label">语言：</label>
                                 <div class=" col-sm-4">
-                                    <input type="radio" name="lang" value="cn" title="中文" checked="">
-                                    <input type="radio" name="lang" value="en" title="英文">
+                                    <input type="radio" name="lang" value="cn" @if ($data->lang == 'cn') checked=""
+                                           @endif title="中文">
+                                    <input type="radio" name="lang" value="en" @if ($data->lang == 'en') checked=""
+                                           @endif title="英文">
                                 </div>
                             </div>
                             <div class="btn-group jj ">
@@ -198,7 +214,7 @@
     <script type="text/javascript">
         function toVaild() {
             var jz;
-            var url = "{{ route('ProductCreate')}}";
+            var url = "{{ route('ProductEdit')}}";
             $.ajax({
                 type: "POST",
                 url: url,
@@ -247,11 +263,8 @@
                 });
 
             });
-            editor();
+            var info = '{!! $data->info !!}';
+            editor(info);
         })
-
     </script>
-
-
-
 @endsection

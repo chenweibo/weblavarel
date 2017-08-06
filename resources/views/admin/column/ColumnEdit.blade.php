@@ -109,17 +109,18 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">缩略图：</label>
+
                                 <div class="col-md-4 input-group">
-                                    <input id="lefile" type="file" name="image" style="display:none">
-                                    <span class="input-group-addon" onclick="$('input[id=lefile]').click();"
+                                    <input type="file" name="image" style="display:none">
+                                    <span class="input-group-addon" onclick="readyUp(event)"
                                           style="cursor: pointer; background-color: #e7e7e7"><i
                                                 class="fa fa-folder-open"></i>选择</span>
-                                    <input id="photoCover" name="img" class="form-control" type="text"
-                                           value="{{ $str->img }}">
-                                    <span class="input-group-addon ut2" onclick="uploads()"
+                                    <input name="img" class="form-control" type="text" value="{{ $str->img }}">
+                                    <span class="input-group-addon ut2" onclick="uploads(event)"
                                           style="width:80px;cursor: pointer;pointer-events: auto;"><i
                                                 class="fa fa-folder-open"></i>点击上传</span>
                                 </div>
+
                             </div>
 
                             <div class="form-group layui-form">
