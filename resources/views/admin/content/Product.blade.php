@@ -24,14 +24,15 @@
                         {{session('error')}}
                     </div>
                 @endif
+
                 <a href="{{route('ProductCreate')}}" class="btn btn-primary">添加</a>
-                <a href="" class="btn btn-primary">批量删除</a>
+                <a href="#" onclick="javascript:Del(arr,'{{route("ProductMoreDelete")}}')" class="btn btn-primary">批量删除</a>
                 <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="false">更多操作
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="buttons.html#">移动</a>
+                        <li><a href="#" onclick="movefile()">移动</a>
                         </li>
                         <li><a href="buttons.html#">复制</a>
                         </li>
@@ -40,7 +41,25 @@
 
                     </ul>
                 </div>
+              <div  class="admin_search row" style=" height:35px; float:right">
+  <form class="navbar-form navbar-left zz" action="{{route('Product')}}" method="get" role="search">
+  	<div class="form-group">
+  	<select class="form-control" name="path" required>
 
+  	<option value="0">选择分类</option>
+    @foreach ($cate as $v)
+    <option value="{{$v['path']}}">{{$v['name']}}</option>
+    @endforeach
+  	</select>
+  	</div>
+    <div class="input-group">
+    <input id="keys" type="text" class="form-control" name="keys">
+    </div>
+    <button type="submit"  style="margin-bottom:0" class="btn btn-primary">搜索</button>
+  </form>
+              </div>
+
+    <div class="clearfix" style="clear:both"></div>
                 <div class="layui-form">
                     <div class="table-min">
                         <table class="layui-table">
@@ -71,7 +90,7 @@
                             <tbody>
                             @foreach ($list as $v)
                                 <tr>
-                                    <td><input name="ck" lay-skin="primary" type="checkbox"></td>
+                                    <td><input data-id="{{ $v->id }}" name="ck" lay-skin="primary" lay-filter="son" type="checkbox"></td>
                                     <td>{{ $v->id }}</td>
                                     <td>{{ $v->name }}</td>
                                     <td>{{ $v->colums }}</td>
@@ -88,16 +107,16 @@
                                         @endif</td>
                                     <td>
                                         <input type="checkbox" data-tid="{{ $v->id }}" @if ($v->show == 1)    checked=""
-                                               @endif  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+                                        @endif  lay-skin="switch" lay-filter="show" lay-text="ON|OFF">
                                     </td>
                                     <td>
                                         <input type="checkbox" data-tid="{{ $v->id }}"
                                                @if ($v->recommend == 1)    checked="" @endif  lay-skin="switch"
-                                               lay-filter="switchrec" lay-text="ON|OFF">
+                                               lay-filter="recommend" lay-text="ON|OFF">
                                     </td>
                                     <td>
                                         <a href="{{route('ProductEdit',['id'=>$v->id])}}" class="layui-btn  layui-btn-small">编辑</a>
-                                        <a href="javascript:ProductDel({{$v->id}})"
+                                        <a href="javascript:Del({{$v->id}},'{{route("ProductDelete")}}')"
                                            class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
                                     </td>
                                 </tr>
@@ -111,6 +130,7 @@
                 {{ $list->links() }}
             </div>
 
+
             <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>
             <script src="{{asset('static/admin/js/plugins/validate/jquery.validate.min.js')}}"></script>
             <script src="{{asset('static/admin/js/plugins/validate/messages_zh.min.js')}}"></script>
@@ -120,64 +140,56 @@
             <script src="{{asset('static/admin/js/other.js')}}"></script>
 
             <script>
+            var arr=[];
+            layui.use('form', function () {
+                var $ = layui.jquery,
+                    form = layui.form();
+                //全选
+                form.on('checkbox(allChoose)', function (data) {
 
-                layui.use('form', function () {
-                    var $ = layui.jquery,
-                        form = layui.form();
-                    //全选
-                    form.on('checkbox(allChoose)', function (data) {
-                        var child = $(data.elem).parents('table').find('tbody td input[name="ck"]');
-                        child.each(function (index, item) {
-                            item.checked = data.elem.checked;
-                        });
-                        form.render('checkbox');
+                    var child = $(data.elem).parents('table').find('tbody td input[name="ck"]');
+                    child.each(function (index, item) {
+                        item.checked = data.elem.checked;
                     });
-
-                    form.on('switch(switchTest)', function (data) {
-                        var id = this.attributes['data-tid'].nodeValue;
-                        var state = this.checked ? '1' : '0';
-                        var url = "{{route('ajaxState')}}";
-                        var type = "column";
-                        alert(state);
-                    });
-
-                    form.on('switch(switchrec)', function (data) {
-                        var id = this.attributes['data-tid'].nodeValue;
-                        var state = this.checked ? '1' : '0';
-                        var url = "{{route('ajaxState')}}";
-                        var type = "column";
-                        alert(state);
-                    });
+                    if(data.elem.checked == false){
+                      arr=[];
+                    }else {
+                      child.each(function(){
+                       arr.push($(this).data('id'));
+                  });
+                    }
+                    form.render('checkbox');
+                    console.log(arr);
                 });
 
+                form.on('checkbox(son)', function (data) {
+                        if(data.elem.checked == false){
+                          arr.splice($.inArray($(data.elem).data('id'),arr),1);
+                        }
+                        else {
+                          arr.push($(data.elem).data('id'));
+                        }
+                         console.log(arr);
 
-                function ProductDel(id) {
+                  });
+                form.on('switch(show)', function (data) {
+                    var id = this.attributes['data-tid'].nodeValue;
+                    var state = this.checked ? '1' : '0';
+                    var url = "{{route('ajaxState')}}";
+                    var type = "content_show";
+                    stateAjax(id, state, url, type)
+                });
 
-                    layer.confirm('确认删除?', {icon: 3, title: '提示'}, function (index) {
-                        $.ajax({
-                            url: "{{route('ProductDelete')}}",
-                            type: "post",
-                            data: {'id': id},
-                            dataType: "json",
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function (res) {
-                                if (res.code == 1) {
-                                    window.location.href = res.data;
+                form.on('switch(recommend)', function (data) {
+                    var id = this.attributes['data-tid'].nodeValue;
+                    var state = this.checked ? '1' : '0';
+                    var url = "{{route('ajaxState')}}";
+                    var type = "content_recommend";
+                    stateAjax(id, state, url, type)
+                });
+            });
 
-                                } else {
-                                    layer.alert('删除失败');
-                                }
-                            },
-                            error: function (msg) {
-                                layer.alert('权限不足联系管理员');
-                            },
-                        })
-                        layer.close(index);
-                    })
 
-                }
             </script>
 
 @endsection

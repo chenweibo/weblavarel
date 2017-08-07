@@ -76,7 +76,7 @@
                                     <td>
                                         <a href="{{route('ColumnEdit',['id'=>$key['id']])}}"
                                            class="layui-btn  layui-btn-small">编辑</a>
-                                        <a href="javascript:ColumnDel({{$key['id']}})"
+                                        <a href="javascript:Del({{$key['id']}},'{{ route('ColumnDelete') }}')"
                                            class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
                                     </td>
                                 </tr>
@@ -116,35 +116,6 @@
                         form.render('checkbox');
                     });
                 });
-
-
-                function ColumnDel(id) {
-
-                    layer.confirm('确认删除?', {icon: 3, title: '提示'}, function (index) {
-                        $.ajax({
-                            url: "{{ route('ColumnDelete') }}",
-                            type: "post",
-                            data: {'id': id},
-                            dataType: "json",
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function (res) {
-                                if (res.code == 1) {
-                                    window.location.href = res.url;
-                                    location.reload();
-                                } else {
-                                    layer.alert('删除失败');
-                                }
-                            },
-                            error: function (msg) {
-                                layer.alert('权限不足联系管理员');
-                            },
-                        })
-                        layer.close(index);
-                    })
-
-                }
             </script>
 
 @endsection

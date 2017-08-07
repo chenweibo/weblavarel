@@ -14,6 +14,15 @@
         width: 100%;
         overflow-x: auto;
     }
+    .admin_search{
+      display: none;
+    }
+}
+@media only screen and (max-width: 800px) {
+
+    .admin_search{
+      display: none;
+    }
 }
 
 .dc {
@@ -65,3 +74,4 @@
     z-index: 1103;
     display: block;
 }
+.zz{margin-top: 0;}

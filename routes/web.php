@@ -77,8 +77,9 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/page/edit', 'ContentController@PageEdit')->name('PageEdit');
 
 //   2017-8-4 by chenweibo product routes
-    Route::any('admin/product/index', 'ContentController@Product')->name('Product');
+    Route::any('admin/product/{id?}/{keys?}', 'ContentController@Product')->name('Product');
     Route::any('admin/product/create', 'ContentController@ProductCreate')->name('ProductCreate');
     Route::any('admin/product/edit', 'ContentController@ProductEdit')->name('ProductEdit');
     Route::any('admin/product/delete', 'ContentController@ProductDelete')->name('ProductDelete');
+    Route::any('admin/product/moredelete', 'ContentController@ProductMoreDelete')->name('ProductMoreDelete');
 });

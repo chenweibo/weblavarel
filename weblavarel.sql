@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 100125
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 100125
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-06 21:08:29
+Date: 2017-08-07 17:10:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '80', '127.0.0.1', '1502019190', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '85', '127.0.0.1', '1502093527', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -67,7 +67,6 @@ INSERT INTO `columns` VALUES ('26', '公司简介', null, '99', '25', '0-25', 'g
 INSERT INTO `columns` VALUES ('27', '产品中心', null, '99', '0', '0', '12', '0', null, '0', 'dd', '1', 'cn');
 INSERT INTO `columns` VALUES ('28', '新闻中心', null, '99', '0', '0', '123ds', '0', null, '0', 'sdf', '1', 'cn');
 INSERT INTO `columns` VALUES ('29', '公司新闻', null, '99', '28', '0-28', 'w', '3', null, '0', 'd', '1', 'cn');
-INSERT INTO `columns` VALUES ('30', 'ccc', null, '99', '0', '0', 'ccc', '0', 'eEGqSLTetTZ50v3cyrMz2eo3PVMiJf4QCWdtFyPK.jpeg', '0', 'd', '1', 'cn');
 INSERT INTO `columns` VALUES ('31', '产品分类1', null, '99', '27', '0-27', 'chanpinfenlei1', '2', null, '0', 'd', '1', 'cn');
 INSERT INTO `columns` VALUES ('32', '产品分类2', null, '99', '27', '0-27', 'chanpinfenlei2', '2', null, '0', 'chanpinfenlei2', '1', 'cn');
 INSERT INTO `columns` VALUES ('33', '子分类1', 'dd', '99', '31', '0-27-31', 'zifenlei1', '2', null, '0', 'zifenlei1', '1', 'cn');
@@ -102,13 +101,13 @@ CREATE TABLE `content` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
 INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, '<p>12213213ffddsdf</p><p>测试成功<br></p>', null, null, null, '是多少', '等等', null, null, '1', null, null, null, '2', null, null, '2017-08-04 11:42:52');
-INSERT INTO `content` VALUES ('92', '阿斯达斯', null, 'asidasi', '31', '0-27-31', null, null, '<p>阿萨德<br></p>', null, null, null, '阿斯d', '阿萨德', 'cn', '0', '2', null, '1', null, '99', null, null, null);
+INSERT INTO `content` VALUES ('103', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-07 16:38:55');
 
 -- ----------------------------
 -- Table structure for field
@@ -198,7 +197,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -241,6 +240,7 @@ INSERT INTO `node` VALUES ('39', '栏目删除', '', '1', '30', '', '99', 'Colum
 INSERT INTO `node` VALUES ('40', '产品添加', '', '1', '32', '', '99', 'ProductCreate');
 INSERT INTO `node` VALUES ('41', '产品编辑', '', '1', '32', '', '99', 'ProductEdit');
 INSERT INTO `node` VALUES ('42', '产品删除', '', '1', '32', '', '99', 'ProductDelete');
+INSERT INTO `node` VALUES ('43', '批量删除', '', '1', '32', '', '99', 'ProductMoreDelete');
 
 -- ----------------------------
 -- Table structure for page

@@ -32,15 +32,18 @@ class ContentController extends Controller
         return view('admin/content/PageEdit', ['data'=>$data]);
     }
 
-    public function Product(Request $request)
+    public function Product(Request $request, $id="", $key="")
     {
+        $Column = new Column();
         $content= new Content();
         $list=$content
             ->where('content.type', 2)
             ->join('columns', 'content.lid', '=', 'columns.id')
             ->select('content.*', 'columns.name as colums')
             ->paginate(10);
-        return view('admin/content/Product', ['list'=>$list]);
+        $menu  = $Column->getTypeComlun(2);
+        $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        return view('admin/content/Product', ['list'=>$list,'cate'=>$menu]);
     }
     public function ProductCreate(Request $request)
     {
@@ -81,6 +84,16 @@ class ContentController extends Controller
             $id=$request->id;
             $flag=$content->contentDelete($id);
             return ['code' => $flag['code'], 'data' => route('Product'), 'msg' => $flag['msg']];
+        }
+    }
+    public function ProductMoreDelete(Request $request)
+    {
+        $content= new Content();
+
+        if ($request->ajax()) {
+            $id=$request->id;
+            $content->destroy($id);
+            return ['code' => 1, 'data' => route('Product'), 'msg' => ''];
         }
     }
 }

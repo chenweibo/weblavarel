@@ -217,3 +217,106 @@ function removeimg(event){
        });
 
 }
+
+function contentIndexForm(){
+
+
+  var arr=[];
+  layui.use('form', function () {
+      var $ = layui.jquery,
+          form = layui.form();
+      
+      form.on('checkbox(allChoose)', function (data) {
+
+          var child = $(data.elem).parents('table').find('tbody td input[name="ck"]');
+          child.each(function (index, item) {
+              item.checked = data.elem.checked;
+          });
+          if(data.elem.checked == false){
+            arr=[];
+          }else {
+            child.each(function(){
+             arr.push($(this).data('id'));
+        });
+          }
+          form.render('checkbox');
+          console.log(arr);
+      });
+
+      form.on('checkbox(son)', function (data) {
+              if(data.elem.checked == false){
+                arr.splice($.inArray($(data.elem).data('id'),arr),1);
+              }
+              else {
+                arr.push($(data.elem).data('id'));
+              }
+               console.log(arr);
+
+        });
+      form.on('switch(show)', function (data) {
+          var id = this.attributes['data-tid'].nodeValue;
+          var state = this.checked ? '1' : '0';
+          var url = "{{route('ajaxState')}}";
+          var type = "column";
+          alert(id);
+      });
+
+      form.on('switch(recommend)', function (data) {
+          var id = this.attributes['data-tid'].nodeValue;
+          var state = this.checked ? '1' : '0';
+          var url = "{{route('ajaxState')}}";
+          var type = "column";
+          alert(id);
+      });
+  });
+
+
+}
+
+function Del(id,url){
+
+  layer.confirm('确认删除?', {icon: 3, title: '提示'}, function (index) {
+      $.ajax({
+          url: url,
+          type: "post",
+          data: {'id': id},
+          dataType: "json",
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: function (res) {
+              if (res.code == 1) {
+                  window.location.href = res.data;
+
+              } else {
+                  layer.alert('删除失败');
+              }
+          },
+          error: function (msg) {
+              layer.alert('权限不足联系管理员');
+          },
+      })
+      layer.close(index);
+  })
+}
+
+function removePro(){
+
+
+     alert('dd');
+}
+
+
+function movefile(){
+
+  var demo ='<form class="navbar-form navbar-left zz" role="search"><div class="form-group"><select class="form-control" name="path" required><option value="0">顶级分类</option></select></div><button type="button" onclick="removePro()" class="btn btn-default">移动</button></form>'
+  layer.open({
+      type: 1,
+      skin: 'layui-layer-filemove', //样式类名
+      offset: '200px',
+      title: '产品移动',
+      anim: 1,
+      content: demo
+  });
+
+}

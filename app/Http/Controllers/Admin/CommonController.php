@@ -49,11 +49,20 @@ class CommonController extends Controller
 //common ajax state
     public function ajaxState(Request $request)
     {
+        $content= new Content();
         $Column = new Column();
         if ($request->ajax()) {
             if ($request->type == 'column') {
                 $flag=$Column->updateState($request->id, ['state'=>$request->num]);
                 return ['code' => $flag['code'], 'msg' => $flag['msg']];
+            }
+            if ($request->type == 'content_show') {
+                $flag=$content->where('id', $request->id)->update(['show'=>$request->num]);
+                return ['code' => 1, 'msg' => '成功'];
+            }
+            if ($request->type == 'content_recommend') {
+                $flag=$content->where('id', $request->id)->update(['recommend'=>$request->num]);
+                return ['code' => 1, 'msg' => '成功'];
             }
         }
     }
