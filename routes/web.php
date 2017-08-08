@@ -36,6 +36,7 @@ Route::any('/ajaxState', 'Admin\CommonController@ajaxState')->name('ajaxState');
 Route::any('/ajaxSort', 'Admin\CommonController@ajaxSort')->name('ajaxSort');
 Route::any('/EditUploads', 'Admin\CommonController@EditUploads')->name('EditUploads');
 Route::any('/delImg', 'Admin\CommonController@delImg')->name('delImg');
+Route::any('/getcate', 'Admin\CommonController@getcate')->name('getcate');
 
 // 2017-7-30 by chenweibo rewrite routes
 Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewrite');
@@ -78,8 +79,8 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 
 //   2017-8-4 by chenweibo product routes
     Route::any('admin/product/{id?}/{keys?}', 'ContentController@Product')->name('Product');
-    Route::any('admin/product/create', 'ContentController@ProductCreate')->name('ProductCreate');
-    Route::any('admin/product/edit', 'ContentController@ProductEdit')->name('ProductEdit');
-    Route::any('admin/product/delete', 'ContentController@ProductDelete')->name('ProductDelete');
-    Route::any('admin/product/moredelete', 'ContentController@ProductMoreDelete')->name('ProductMoreDelete');
+    Route::any('admin/productCreate/', 'ContentController@ProductCreate')->name('ProductCreate');
+    Route::any('admin/productEdit/', 'ContentController@ProductEdit')->name('ProductEdit');
+    Route::any('admin/productEelete/', 'ContentController@ProductDelete')->name('ProductDelete');
+    Route::any('admin/productMoredelete/', 'ContentController@ProductMoreDelete')->name('ProductMoreDelete');
 });

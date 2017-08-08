@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-07 17:10:22
+Date: 2017-08-08 17:12:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '85', '127.0.0.1', '1502093527', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '89', '127.0.0.1', '1502172378', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -101,13 +101,37 @@ CREATE TABLE `content` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
 INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, '<p>12213213ffddsdf</p><p>测试成功<br></p>', null, null, null, '是多少', '等等', null, null, '1', null, null, null, '2', null, null, '2017-08-04 11:42:52');
-INSERT INTO `content` VALUES ('103', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-07 16:38:55');
+INSERT INTO `content` VALUES ('103', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '89', null, null, '2017-08-08 16:25:37');
+INSERT INTO `content` VALUES ('105', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 16:21:06');
+INSERT INTO `content` VALUES ('108', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('109', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 16:21:10');
+INSERT INTO `content` VALUES ('110', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('111', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('112', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('113', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('116', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('117', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('118', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('119', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('120', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('121', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('122', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('123', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('124', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('125', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('126', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('127', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('128', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('129', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('130', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('131', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('132', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
 
 -- ----------------------------
 -- Table structure for field
@@ -311,7 +335,7 @@ CREATE TABLE `slide` (
   `slide_type` varchar(255) DEFAULT NULL,
   `slide_a` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of slide

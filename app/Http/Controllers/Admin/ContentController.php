@@ -32,18 +32,29 @@ class ContentController extends Controller
         return view('admin/content/PageEdit', ['data'=>$data]);
     }
 
-    public function Product(Request $request, $id="", $key="")
+    public function Product(Request $request, $id="", $keys="")
     {
         $Column = new Column();
         $content= new Content();
+        $map[] = ['content.type','=',2];
+        if (!empty($request->path) && empty($request->keys)) {
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        if (empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+        }
+        if (!empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
         $list=$content
-            ->where('content.type', 2)
-            ->join('columns', 'content.lid', '=', 'columns.id')
-            ->select('content.*', 'columns.name as colums')
-            ->paginate(10);
+          ->where($map)
+          ->join('columns', 'content.lid', '=', 'columns.id')
+          ->select('content.*', 'columns.name as colums')
+          ->paginate(10);
         $menu  = $Column->getTypeComlun(2);
         $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
-        return view('admin/content/Product', ['list'=>$list,'cate'=>$menu]);
+        return view('admin/content/Product', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
     }
     public function ProductCreate(Request $request)
     {

@@ -225,7 +225,7 @@ function contentIndexForm(){
   layui.use('form', function () {
       var $ = layui.jquery,
           form = layui.form();
-      
+
       form.on('checkbox(allChoose)', function (data) {
 
           var child = $(data.elem).parents('table').find('tbody td input[name="ck"]');
@@ -300,23 +300,99 @@ function Del(id,url){
   })
 }
 
-function removePro(){
+function removePro(url){
 
+  $.ajax({
+      type: "POST",
+      url: "/getcate",
+      data: $('#movefile').serialize(),// 你的formid
+      async: false,
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      beforeSend: function () {
+          jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+      },
+      error: function (request) {
+          layer.close(jz);
+          swal("网络错误!", "", "error");
+      },
+      success: function (data) {
+          //关闭加载层
+          layer.close(jz);
+         if(data.code==1){
+           location.reload();
+         }
+      }
+  });
 
-     alert('dd');
 }
 
 
-function movefile(){
-
-  var demo ='<form class="navbar-form navbar-left zz" role="search"><div class="form-group"><select class="form-control" name="path" required><option value="0">顶级分类</option></select></div><button type="button" onclick="removePro()" class="btn btn-default">移动</button></form>'
-  layer.open({
+function movefile(arr){
+  var html;
+ if(arr.length==0){
+   layer.msg('没有选择产品哦', {icon: 5});
+ }
+ else {
+  $.ajax({
+      url: '/getcate',
+      type: "get",
+      dataType: "json",
+      async: false,
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (data) {
+        var demo ='<form id="movefile" style="margin-top:8px" class="navbar-form navbar-left zz" role="search"><div class="form-group"><select class="form-control" name="path" required>';
+          $.each(data.res, function(i, item) {
+             demo+='<option value="'+item.path+'-'+item.id+'">'+item.html+''+item.name+'</option>'
+  					})
+           demo +='</select></div><input type="hidden" name="type" value="move"><input type="hidden" name="id" value="'+arr+'"><button type="button" onclick="removePro()" style="margin-left:5px;"  class="btn btn-default">移动</button></form>';
+             html=demo;
+      },
+  })
+layer.open({
       type: 1,
       skin: 'layui-layer-filemove', //样式类名
       offset: '200px',
       title: '产品移动',
       anim: 1,
-      content: demo
+      content: html
   });
+ }
+}
 
+function copyfile(arr){
+  var html;
+ if(arr.length==0){
+   layer.msg('没有选择产品哦', {icon: 5});
+ }
+ else {
+  $.ajax({
+      url: '/getcate',
+      type: "get",
+      dataType: "json",
+      async: false,
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (data) {
+        var demo ='<form id="movefile" style="margin-top:8px" class="navbar-form navbar-left zz" role="search"><div class="form-group"><select class="form-control" name="path" required>';
+          $.each(data.res, function(i, item) {
+             demo+='<option value="'+item.path+'-'+item.id+'">'+item.html+''+item.name+'</option>'
+  					})
+           demo +='</select></div><input type="hidden" name="type" value="copy"><input type="hidden" name="id" value="'+arr+'"><button type="button" onclick="removePro()" style="margin-left:5px;"  class="btn btn-default">复制</button></form>';
+             html=demo;
+      },
+  })
+layer.open({
+      type: 1,
+      skin: 'layui-layer-filemove', //样式类名
+      offset: '200px',
+      title: '产品复制',
+      anim: 1,
+      content: html
+  });
+ }
 }

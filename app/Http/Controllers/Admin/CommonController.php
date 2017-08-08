@@ -106,4 +106,37 @@ class CommonController extends Controller
             return 1;
         }
     }
+    public function getcate(Request $request)
+    {
+        $content= new Content();
+        $Column = new Column();
+        if ($request->isMethod('post')) {
+            if ($request->type == 'move') {
+                $path = $request->path;
+                $lid=explodepath($path);
+                $list=explode(',', $request->id);
+                foreach ($list as $v) {
+                    $content->where('id', $v)->update(['lid'=>$lid,'path'=>$path]);
+                }
+                return ['code' => 1];
+            }
+            if ($request->type == 'copy') {
+                $data=[];
+                $path = $request->path;
+                $lid=explodepath($path);
+                $list=explode(',', $request->id);
+                foreach ($list as $v) {
+                    $str = $content->where('id', $v)->get()->first()->toArray();
+                    $str['path'] = $path;
+                    $str['lid'] = $lid;
+                    $content->insert(array_except($str, ['id']));
+                }
+                return ['code' => 1 ];
+            }
+        }
+        $Column = new Column();
+        $menu  = $Column->getTypeComlun(2);
+        $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        return ['res'=>$menu];
+    }
 }
