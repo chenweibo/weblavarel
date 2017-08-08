@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Overtrue\Pinyin\Pinyin;
 use App\Column;
 use App\Content;
+use App\User;
 
 class CommonController extends Controller
 {
@@ -51,6 +52,7 @@ class CommonController extends Controller
     {
         $content= new Content();
         $Column = new Column();
+        $user = new User();
         if ($request->ajax()) {
             if ($request->type == 'column') {
                 $flag=$Column->updateState($request->id, ['state'=>$request->num]);
@@ -62,6 +64,10 @@ class CommonController extends Controller
             }
             if ($request->type == 'content_recommend') {
                 $flag=$content->where('id', $request->id)->update(['recommend'=>$request->num]);
+                return ['code' => 1, 'msg' => '成功'];
+            }
+            if ($request->type == 'member') {
+                $flag=$user->where('id', $request->id)->update(['status'=>$request->num]);
                 return ['code' => 1, 'msg' => '成功'];
             }
         }

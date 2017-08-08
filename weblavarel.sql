@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : fuck.io
-Source Server Version : 50505
+Source Server         : my
+Source Server Version : 100125
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-08-08 17:12:45
+Date: 2017-08-08 22:06:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '89', '127.0.0.1', '1502172378', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '92', '127.0.0.1', '1502194145', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -107,11 +107,11 @@ CREATE TABLE `content` (
 -- Records of content
 -- ----------------------------
 INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, '<p>12213213ffddsdf</p><p>测试成功<br></p>', null, null, null, '是多少', '等等', null, null, '1', null, null, null, '2', null, null, '2017-08-04 11:42:52');
-INSERT INTO `content` VALUES ('103', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '89', null, null, '2017-08-08 16:25:37');
+INSERT INTO `content` VALUES ('103', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '89', null, null, '2017-08-08 19:51:26');
 INSERT INTO `content` VALUES ('105', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 16:21:06');
-INSERT INTO `content` VALUES ('108', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('108', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 19:52:40');
 INSERT INTO `content` VALUES ('109', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 16:21:10');
-INSERT INTO `content` VALUES ('110', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('110', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 19:52:25');
 INSERT INTO `content` VALUES ('111', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
 INSERT INTO `content` VALUES ('112', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
 INSERT INTO `content` VALUES ('113', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
@@ -155,10 +155,10 @@ INSERT INTO `field` VALUES ('8', '邮箱', '1', '5', '99', 'mail');
 INSERT INTO `field` VALUES ('9', '电话', '1', '5', '99', 'tel');
 
 -- ----------------------------
--- Table structure for gbook
+-- Table structure for gbooks
 -- ----------------------------
-DROP TABLE IF EXISTS `gbook`;
-CREATE TABLE `gbook` (
+DROP TABLE IF EXISTS `gbooks`;
+CREATE TABLE `gbooks` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -167,11 +167,13 @@ CREATE TABLE `gbook` (
   `email` varchar(255) DEFAULT NULL,
   `telephone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of gbook
+-- Records of gbooks
 -- ----------------------------
+INSERT INTO `gbooks` VALUES ('1', 'asdf', 'asdf', 'asfd', '2017-08-09 21:57:49', 'asfd', 'asdf');
+INSERT INTO `gbooks` VALUES ('2', 'asdf', 'asdf', 'asfd', '2017-08-09 21:57:49', 'sdf', 'ws');
 
 -- ----------------------------
 -- Table structure for member
@@ -221,7 +223,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -265,6 +267,13 @@ INSERT INTO `node` VALUES ('40', '产品添加', '', '1', '32', '', '99', 'Produ
 INSERT INTO `node` VALUES ('41', '产品编辑', '', '1', '32', '', '99', 'ProductEdit');
 INSERT INTO `node` VALUES ('42', '产品删除', '', '1', '32', '', '99', 'ProductDelete');
 INSERT INTO `node` VALUES ('43', '批量删除', '', '1', '32', '', '99', 'ProductMoreDelete');
+INSERT INTO `node` VALUES ('44', '会员列表', '', '2', '4', '', '99', 'MemberIndex');
+INSERT INTO `node` VALUES ('45', '会员添加', '', '1', '44', '', '99', 'MemberCreate');
+INSERT INTO `node` VALUES ('46', '会员编辑', '', '1', '44', '', '99', 'MemberEdit');
+INSERT INTO `node` VALUES ('47', '会员删除', '', '1', '44', '', '99', 'MemberDelete');
+INSERT INTO `node` VALUES ('48', '留言列表', '', '2', '5', '', '99', 'GbookIndex');
+INSERT INTO `node` VALUES ('49', '留言查看', '', '1', '49', '', '99', 'GbookEdit');
+INSERT INTO `node` VALUES ('50', '留言删除', '', '1', '49', '', '99', 'GbookDelete');
 
 -- ----------------------------
 -- Table structure for page
@@ -353,11 +362,12 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `status` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'boge', '563960993@qq.com', '$2y$10$J21hdKoQTeu1BWbpB.oZ7e90v8de1lcmbPyRw3oS3ozFlyZbH.9SO', 'pt87dxRjglI2obNeTNqAzezgku5w7dr43nYn9bBMiMGYrFJnpLJYS3BwECYb', '2017-06-20 01:55:31', '2017-06-20 01:55:31');
+INSERT INTO `users` VALUES ('1', 'boge', '563960993@qq.com', '$2y$10$J21hdKoQTeu1BWbpB.oZ7e90v8de1lcmbPyRw3oS3ozFlyZbH.9SO', 'pt87dxRjglI2obNeTNqAzezgku5w7dr43nYn9bBMiMGYrFJnpLJYS3BwECYb', '2017-06-20 01:55:31', '2017-06-20 01:55:31', '1');

@@ -42,7 +42,7 @@ Route::any('/getcate', 'Admin\CommonController@getcate')->name('getcate');
 Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewrite');
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
-    Route::get('/admin', 'AdminController@index')->name('AdminIndex');
+    Route::get('/admin_index', 'AdminController@index')->name('AdminIndex');
     Route::get('/adminmain', 'AdminController@indexPage')->name('adminmain');
     Route::any('/site', 'AdminController@site')->name('site');
 
@@ -83,4 +83,15 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/productEdit/', 'ContentController@ProductEdit')->name('ProductEdit');
     Route::any('admin/productEelete/', 'ContentController@ProductDelete')->name('ProductDelete');
     Route::any('admin/productMoredelete/', 'ContentController@ProductMoreDelete')->name('ProductMoreDelete');
+
+  //   2017-8-8 by chenweibo mumber routes
+    Route::any('admin/Member', 'MemberController@MemberIndex')->name('MemberIndex');
+    Route::any('admin/Member/create', 'MemberController@MemberCreate')->name('MemberCreate');
+    Route::any('admin/Member/edit/{id?}', 'MemberController@MemberEdit')->name('MemberEdit');
+    Route::any('admin/Member/delete', 'MemberController@MemberDelete')->name('MemberDelete');
+
+  //   2017-8-8 by chenweibo gbook routes
+    Route::any('admin/gbook', 'GbookController@GbookIndex')->name('GbookIndex');
+    Route::any('admin/gbook/edit/{id?}', 'GbookController@GbookEdit')->name('GbookEdit');
+    Route::any('admin/gbook/delete', 'GbookController@GbookDelete')->name('GbookDelete');
 });
