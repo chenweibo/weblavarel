@@ -43,6 +43,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="admin_search row" style=" height:35px; float:right">
                     <form class="navbar-form navbar-left zz" action="{{route('Product')}}" method="get" role="search">
                         <div class="form-group">

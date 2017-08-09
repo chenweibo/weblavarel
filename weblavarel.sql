@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 100125
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 100125
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-08 22:06:53
+Date: 2017-08-09 17:10:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,12 +107,8 @@ CREATE TABLE `content` (
 -- Records of content
 -- ----------------------------
 INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, '<p>12213213ffddsdf</p><p>测试成功<br></p>', null, null, null, '是多少', '等等', null, null, '1', null, null, null, '2', null, null, '2017-08-04 11:42:52');
-INSERT INTO `content` VALUES ('103', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '89', null, null, '2017-08-08 19:51:26');
-INSERT INTO `content` VALUES ('105', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 16:21:06');
-INSERT INTO `content` VALUES ('108', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 19:52:40');
-INSERT INTO `content` VALUES ('109', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 16:21:10');
 INSERT INTO `content` VALUES ('110', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 19:52:25');
-INSERT INTO `content` VALUES ('111', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('111', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-09 13:28:12');
 INSERT INTO `content` VALUES ('112', 'ccz', null, 'ccz', '33', '0-27-31-33', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 15:45:27');
 INSERT INTO `content` VALUES ('113', 'sdfsad', 'sd', 'sdfsad', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
 INSERT INTO `content` VALUES ('116', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', null, '1', null, '88', null, null, '2017-08-08 15:45:33');
@@ -153,6 +149,25 @@ CREATE TABLE `field` (
 INSERT INTO `field` VALUES ('7', '简单描述', '1', '1', '99', 'miaoshu');
 INSERT INTO `field` VALUES ('8', '邮箱', '1', '5', '99', 'mail');
 INSERT INTO `field` VALUES ('9', '电话', '1', '5', '99', 'tel');
+
+-- ----------------------------
+-- Table structure for gbook
+-- ----------------------------
+DROP TABLE IF EXISTS `gbook`;
+CREATE TABLE `gbook` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `telephone` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gbook
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for gbooks
@@ -223,7 +238,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -274,6 +289,9 @@ INSERT INTO `node` VALUES ('47', '会员删除', '', '1', '44', '', '99', 'Membe
 INSERT INTO `node` VALUES ('48', '留言列表', '', '2', '5', '', '99', 'GbookIndex');
 INSERT INTO `node` VALUES ('49', '留言查看', '', '1', '49', '', '99', 'GbookEdit');
 INSERT INTO `node` VALUES ('50', '留言删除', '', '1', '49', '', '99', 'GbookDelete');
+INSERT INTO `node` VALUES ('51', '回收站列表', '', '2', '15', '', '99', 'RecycleIndex');
+INSERT INTO `node` VALUES ('52', '内容恢复', '', '1', '51', '', '99', 'RecycleRecover');
+INSERT INTO `node` VALUES ('53', '彻底删除', '', '1', '51', '', '99', 'RecycleDelete');
 
 -- ----------------------------
 -- Table structure for page
@@ -314,6 +332,43 @@ CREATE TABLE `password_resets` (
 -- Records of password_resets
 -- ----------------------------
 INSERT INTO `password_resets` VALUES ('563960993@qq.com', '$2y$10$X1AnicYlVfecAtMU7Fjqvu06TNmhLAAAo/qM2Icem28ltLd5VSAjy', '2017-06-20 02:13:41');
+
+-- ----------------------------
+-- Table structure for recycles
+-- ----------------------------
+DROP TABLE IF EXISTS `recycles`;
+CREATE TABLE `recycles` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `enname` varchar(255) DEFAULT NULL,
+  `rewrite` varchar(255) DEFAULT NULL,
+  `lid` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `info` mediumtext,
+  `img` varchar(255) DEFAULT NULL,
+  `moreimg` varchar(255) DEFAULT NULL,
+  `down` varchar(255) DEFAULT NULL,
+  `keywords` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `lang` varchar(255) DEFAULT NULL,
+  `recommend` int(10) DEFAULT NULL,
+  `type` int(255) DEFAULT NULL,
+  `click` int(255) DEFAULT NULL,
+  `show` int(10) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `sort` int(50) DEFAULT '88',
+  `miaoshu` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of recycles
+-- ----------------------------
+INSERT INTO `recycles` VALUES ('108', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', null, '0', null, '99', null, null, '2017-08-08 19:52:40');
 
 -- ----------------------------
 -- Table structure for role

@@ -20,11 +20,10 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
 /*
-|--------------------------------------------------------------------------
-| chenweibo 2017-7-6 admin router create
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------------------------------------------------------------------
+| chenweibo  admin router //警告下面路由勿动！！
+|------------------------------------------------------------------------------------------------------------------------------------
 */
 // 2017-8-3 by chenweibo common routes
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
@@ -94,4 +93,9 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/gbook', 'GbookController@GbookIndex')->name('GbookIndex');
     Route::any('admin/gbook/edit/{id?}', 'GbookController@GbookEdit')->name('GbookEdit');
     Route::any('admin/gbook/delete', 'GbookController@GbookDelete')->name('GbookDelete');
+
+  //   2017-8-9 by chenweibo recycle routes
+    Route::any('admin/recycle', 'ContentController@RecycleIndex')->name('RecycleIndex');
+    Route::any('admin/recycle/recover', 'ContentController@RecycleRecover')->name('RecycleRecover');
+    Route::any('admin/recycle/delete', 'ContentController@RecycleDelete')->name('RecycleDelete');
 });

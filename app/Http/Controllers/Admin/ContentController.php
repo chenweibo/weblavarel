@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Events\MoveRecycle;
+use App\Recycle;
 use App\Content;
 use App\Column;
 
@@ -54,6 +56,7 @@ class ContentController extends Controller
           ->paginate(10);
         $menu  = $Column->getTypeComlun(2);
         $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+
         return view('admin/content/Product', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
     }
     public function ProductCreate(Request $request)
@@ -93,8 +96,10 @@ class ContentController extends Controller
         $content= new Content();
         if ($request->ajax()) {
             $id=$request->id;
-            $flag=$content->contentDelete($id);
-            return ['code' => $flag['code'], 'data' => route('Product'), 'msg' => $flag['msg']];
+            $list=$content->where('id', $id)->get()->first()->toArray();
+            $content->where('id', $id)->delete();
+            event(new MoveRecycle($list));
+            return ['code' => 1, 'data' => route('Product'), 'msg' => ''];
         }
     }
     public function ProductMoreDelete(Request $request)
@@ -103,8 +108,45 @@ class ContentController extends Controller
 
         if ($request->ajax()) {
             $id=$request->id;
-            $content->destroy($id);
+            foreach ($id as $v) {
+                $list=$content->where('id', $v)->get()->first()->toArray();
+                $content->destroy($v);
+                event(new MoveRecycle($list));
+            }
             return ['code' => 1, 'data' => route('Product'), 'msg' => ''];
+        }
+    }
+
+    public function RecycleIndex()
+    {
+        $recycle = new Recycle();
+        $list = $recycle->paginate(10);
+
+        return view('admin/content/RecycleIndex', ['list'=>$list]);
+    }
+    public function RecycleRecover(Request $request)
+    {
+        $content= new Content();
+        $id=$request->id;
+        $recycle = new Recycle();
+        $data= $recycle->where('id', $id)->get()->first()->toArray();
+        if ($request->ajax()) {
+            if ($content->insert($data)) {
+                $recycle->destroy($id);
+                return ['code' => 1, 'data' => route('RecycleIndex'), 'msg' => ''];
+            } else {
+                return ['code' => 0];
+            }
+        }
+    }
+
+    public function RecycleDelete(Request $request)
+    {
+        $recycle = new Recycle();
+        if ($request->ajax()) {
+            $id=$request->id;
+            $recycle->where('id', $id)->delete();
+            return ['code' => 1, 'data' => route('RecycleIndex'), 'msg' => ''];
         }
     }
 }

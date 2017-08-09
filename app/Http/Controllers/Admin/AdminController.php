@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+
 use App\UserType;
 use Route;
 
@@ -21,6 +22,7 @@ class AdminController extends Controller
         $name = Route::currentRouteName();
         $usertype= new UserType();
         $info=$usertype->getRoleInfo(2);
+
         return view('AdminIndex', ['username'=>session('adminuser'),'rolename'=>session('role'),'menu'=>$node->getMenu(session('rule'))]);
     }
 
