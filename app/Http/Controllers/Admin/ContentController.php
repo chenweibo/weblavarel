@@ -5,10 +5,13 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use App\Events\MoveRecycle;
+use App\Events\FieldEvent;
 use App\Recycle;
 use App\Content;
 use App\Column;
+use App\Field;
 
 class ContentController extends Controller
 {
@@ -147,6 +150,58 @@ class ContentController extends Controller
             $id=$request->id;
             $recycle->where('id', $id)->delete();
             return ['code' => 1, 'data' => route('RecycleIndex'), 'msg' => ''];
+        }
+    }
+
+    public function FieldIndex(Request $request)
+    {
+        $field = new Field();
+        $list = $field->get();
+        $dd= new Schema();
+        return view('admin/content/FieldIndex', ['list'=>$list]);
+    }
+    public function FieldCreate(Request $request)
+    {
+        $field = new Field();
+        if ($request->ajax()) {
+            $param = $request->all();
+            if ($request->type!=6) {
+                if (Schema::hasColumn('content', $param['column_name'])) {
+                    return ['code' => 0,  'msg' => '表字段已存在，换个名称'];
+                } else {
+                    $field->insert($param);
+                    event(new FieldEvent($param['column_name'], $param['column_type'], $param['type']));
+                    return ['code' => 1, 'data' => route('FieldIndex'), 'msg' => ''];
+                }
+            } else {
+                if (Schema::hasColumn('gbook', $param['column_name'])) {
+                    return ['code' => 0,  'msg' => '表字段已存在，换个名称'];
+                } else {
+                    $field->insert($param);
+                    event(new FieldEvent($param['column_name'], $param['column_type'], $param['type']));
+
+                    return ['code' => 1, 'data' => route('FieldIndex'), 'msg' => ''];
+              # code...
+                }
+            }
+        }
+        return view('admin/content/FieldCreate');
+    }
+    public function FieldDelete(Request $request)
+    {
+        $field = new Field();
+        $data = $field->find($request->id);
+        if ($request->isMethod('post')) {
+            if ($data->type!=6) {
+                $field->where('id', $request->id)->delete();
+                DB::statement('alter table content drop column '.$data->column_name);
+                DB::statement('alter table recycles drop column '.$data->column_name);
+                return ['code' => 1, 'data' => route('FieldIndex'), 'msg' => ''];
+            } else {
+                $field->where('id', $request->id)->delete();
+                DB::statement('alter table gbooks drop column '.$data->column_name);
+                return ['code' => 1, 'data' => route('FieldIndex'), 'msg' => ''];
+            }
         }
     }
 }

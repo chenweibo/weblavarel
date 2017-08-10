@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\MoveRecycle' => [
             'App\Listeners\MoveRecycleListener',
         ],
+        'App\Events\FieldEvent' => [
+            'App\Listeners\FieldCreateListener',
+        ],
     ];
 
     /**

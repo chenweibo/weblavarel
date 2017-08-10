@@ -98,4 +98,10 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/recycle', 'ContentController@RecycleIndex')->name('RecycleIndex');
     Route::any('admin/recycle/recover', 'ContentController@RecycleRecover')->name('RecycleRecover');
     Route::any('admin/recycle/delete', 'ContentController@RecycleDelete')->name('RecycleDelete');
+
+  //   2017-8-10 by chenweibo field routes
+    Route::any('admin/field', 'ContentController@FieldIndex')->name('FieldIndex');
+    Route::any('admin/field/create', 'ContentController@FieldCreate')->name('FieldCreate');
+    Route::any('admin/field/edit', 'ContentController@FieldEdit')->name('FieldEdit');
+    Route::any('admin/field/delete', 'ContentController@FieldDelete')->name('FieldDelete');
 });
