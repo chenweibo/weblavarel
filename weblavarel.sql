@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : fuck.io
-Source Server Version : 50505
+Source Server         : my
+Source Server Version : 100125
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-08-10 17:14:45
+Date: 2017-08-10 21:54:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '94', '127.0.0.1', '1502346754', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '95', '127.0.0.1', '1502362354', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -93,20 +93,20 @@ CREATE TABLE `content` (
   `lang` varchar(255) DEFAULT NULL,
   `recommend` int(10) DEFAULT NULL,
   `type` int(255) DEFAULT NULL,
-  `click` int(255) NOT NULL,
+  `click` int(255) NOT NULL DEFAULT '50',
   `show` int(10) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   `sort` int(50) DEFAULT '88',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`,`click`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, '<p>12213213ffddsdf</p><p>测试成功<br></p>', null, null, null, '是多少', '等等', null, null, '1', '0', null, null, '2', null, '2017-08-04 11:42:52');
-INSERT INTO `content` VALUES ('116', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-08 15:45:33');
+INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, null, null, null, null, '是多少', '等等', null, null, '1', '0', null, null, '2', null, '2017-08-10 21:13:25');
+INSERT INTO `content` VALUES ('116', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, '<p>阿斯大苏打<br></p>', null, null, null, '阿斯', 'asdf', 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-10 21:02:47');
 INSERT INTO `content` VALUES ('117', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', '0', '0', null, '99', null, '2017-08-08 15:45:27');
 INSERT INTO `content` VALUES ('118', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-08 15:45:33');
 INSERT INTO `content` VALUES ('119', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', '0', '0', null, '99', null, '2017-08-08 15:45:27');
@@ -123,6 +123,21 @@ INSERT INTO `content` VALUES ('129', 'ccz', null, 'ccz', '32', '0-27-32', null, 
 INSERT INTO `content` VALUES ('130', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-08 15:45:33');
 INSERT INTO `content` VALUES ('131', 'sdfsad', 'sd', 'sdfsad', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-08 15:45:33');
 INSERT INTO `content` VALUES ('132', 'ccz', null, 'ccz', '32', '0-27-32', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', '0', '0', null, '99', null, '2017-08-08 15:45:27');
+INSERT INTO `content` VALUES ('133', 'asdf', 'asdf', 'sdfasd', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('134', 'sdfsdf', 'ccc', 'sef', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('135', 'asdfsadf', 'sdfsd', 'sdfff', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('136', 'asdf', 'ccc', 'asdf', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('137', 'asdf', 'sadf', 'asdfsadfasd', '31', '0-27-31', null, null, '<p><br></p><p><br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('138', '阿斯蒂芬', '撒d', '阿萨德', '32', '0-27-32', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('139', '斯蒂芬速度', null, '速度', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('140', '阿斯蒂芬', '撒旦', '的富士达', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('141', '阿斯蒂芬', '撒旦法', 'dd迭代速度', '31', '0-27-31', null, null, '<p><br></p><p><br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('142', '阿萨德死', null, 'asadesi', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('143', '迭代', null, '斯蒂芬', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('144', 's的 死', null, 'sdesi', '33', '0-27-31-33', null, null, '<p>死的<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', 's的', '99', null, null);
+INSERT INTO `content` VALUES ('145', '下次vxc', null, 'xiacivxc', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('146', '速度', null, 'sudu', '33', '0-27-31-33', null, null, '<p>速度速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('147', '速度范德萨', null, 'sudufandesa', '32', '0-27-32', null, null, '<p>&nbsp;斯蒂芬速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
 
 -- ----------------------------
 -- Table structure for field
@@ -136,7 +151,7 @@ CREATE TABLE `field` (
   `sort` int(50) DEFAULT '99',
   `column_type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of field

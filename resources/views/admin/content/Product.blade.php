@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <a href="{{route('ProductCreate')}}" class="btn btn-primary">添加</a>
+                <a href="{{route('ProductCreate',['pid'=>$id])}}" class="btn btn-primary">添加</a>
                 <a href="#" onclick="javascript:Del(arr,'{{route("ProductMoreDelete")}}')"
                    class="btn btn-primary">批量删除</a>
                 <div class="btn-group">

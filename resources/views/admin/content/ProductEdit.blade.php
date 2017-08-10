@@ -2,6 +2,7 @@
 
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/plugins/webuploader/webuploader.css')}}">
+    <script src="{{asset('static/admin/wangEditor.min.js')}}"></script>
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/demo/webuploader-demo.min.css')}}"> --}}
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -24,17 +25,17 @@
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
                             <div class="form-group">
-                                <input type="hidden" name="id" value="{{$data->id}}">
+                                <input type="hidden" name="id" value="{{$data['id']}}">
                                 <label class="col-sm-1 control-label">名称：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="name" type="text" class="form-control" value="{{$data->name}}"
+                                    <input id="name" type="text" class="form-control" value="{{$data['name']}}"
                                            name="name" required aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">英文名称：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="enname" type="text" class="form-control" value="{{$data->enname}}"
+                                    <input id="enname" type="text" class="form-control" value="{{$data['enname']}}"
                                            name="enname"
                                            aria-required="true">
 
@@ -46,7 +47,7 @@
                                 <label class="col-sm-1 control-label">伪静态</label>
                                 <div class="col-md-4 input-group">
                                     <input id="jt" name="rewrite" class="form-control" type="text"
-                                           value="{{$data->rewrite}}" name="icon"
+                                           value="{{$data['rewrite']}}" name="icon"
                                            required aria-required="true">
                                     <span class="input-group-addon shengcheng " onclick="rewrite()"
                                           style="width:80px;cursor: pointer;pointer-events: auto;">自动生成</span>
@@ -59,8 +60,8 @@
                                 <div class="input-group col-sm-4">
                                     <select class="form-control" name="path" id="path" required="">
                                         @foreach ($str as $v)
-                                            @if ($v['id'] != $data->id)
-                                                <option @if ($v['id'] == $data->lid)  selected="select"
+                                            @if ($v['id'] != $data['id'])
+                                                <option @if ($v['id'] == $data['id'])  selected="select"
                                                         @endif    value="{{$v['path']}}-{{$v['id']}}">{{$v['html']}}{{$v['name']}}</option>
                                             @endif
                                         @endforeach
@@ -71,34 +72,92 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">排序：</label>
                                 <div class="input-group col-sm-1">
-                                    <input id="site_sort" type="text" value="{{$data->sort}}" class="form-control"
+                                    <input id="site_sort" type="text" value="{{$data['sort']}}" class="form-control"
                                            name="sort"
                                            aria-required="true">
                                 </div>
                             </div>
-
+                            @foreach ($file as $v)
+                             @if ($v->column_type==0)
+                               <div class="form-group">
+                                   <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                   <div class="input-group col-sm-4">
+                                       <input id="{{$v->column_name}}" type="text" class="form-control" value="{{$data[$v->column_name]}}"
+                                              name="{{$v->column_name}}" required aria-required="true">
+                                   </div>
+                               </div>
+                             @endif
+                             @if ($v->column_type==1)
+                               <div class="form-group">
+                                   <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                   <div class="input-group col-sm-4">
+                                       <textarea class="layui-textarea" name="{{$v->column_name}}" rows="8" cols="80">{{$data[$v->column_name]}}</textarea>
+                                   </div>
+                               </div>
+                             @endif
+                             @if ($v->column_type==2)
+                               <div class="form-group">
+                                   <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                   <div class="input-group col-sm-8">
+                                       <div id="{{$v->column_name}}">
+                                       </div>
+                                   </div>
+                            <input type="hidden" name="{{$v->column_name}}" class="{{$v->column_name}}" value=''>
+                               </div>
+                               <script type="text/javascript">
+                               var E = window.wangEditor
+                               var str = '{!! $data[$v->column_name] !!}';
+                               var {{$v->column_name}} = new E('#{{$v->column_name}}')
+                               {{$v->column_name}}.customConfig.uploadImgServer = '/EditUploads'
+                               {{$v->column_name}}.customConfig.uploadFileName = 'images[]'
+                               {{$v->column_name}}.customConfig.uploadImgHeaders = {
+                                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                               }
+                               {{$v->column_name}}.customConfig.onchange = function (html) {
+                                   $('.{{$v->column_name}}').attr('value', html)
+                               }
+                               {{$v->column_name}}.create()
+                               {{$v->column_name}}.txt.html(str)
+                               </script>
+                             @endif
+                             @if ($v->column_type==3)
+                               <div class="form-group">
+                                   <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                   <div class="col-md-4 input-group">
+                                       <input type="file" name="image" style="display:none">
+                                       <span class="input-group-addon" onclick="readyUp(event)"
+                                             style="cursor: pointer; background-color: #e7e7e7"><i
+                                                   class="fa fa-folder-open"></i>选择</span>
+                                       <input name="{{$v->column_name}}" class="form-control" type="text" value="{{$data[$v->column_name]}}">
+                                       <span class="input-group-addon ut2" onclick="uploads(event)"
+                                             style="width:80px;cursor: pointer;pointer-events: auto;"><i
+                                                   class="fa fa-folder-open"></i>点击上传</span>
+                                   </div>
+                               </div>
+                             @endif
+                            @endforeach
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">主要内容：</label>
                                 <div class="input-group col-sm-8">
                                     <div id="editor">
                                     </div>
                                 </div>
-                                <input type="hidden" name="info" id="info" value='{{$data->info}}'>
+                                <input type="hidden" name="info" id="info" value='{{$data['info']}}'>
                             </div>
                             <div class="form-group layui-form">
                                 <label class="col-sm-1 control-label">推荐：</label>
                                 <div class=" col-sm-1">
-                                    <input type="checkbox" lay-skin="switch" @if ($data->recommend == 1) checked=""
+                                    <input type="checkbox" lay-skin="switch" @if ($data['recommend'] == 1) checked=""
                                            @endif lay-filter="switchTest" lay-text="ON|OFF">
                                     <input type="hidden" class="recommend" name="recommend"
-                                           value="{{ $data->recommend }}">
+                                           value="{{ $data['recommend'] }}">
                                 </div>
 
                                 <label class=" control-label" style="float: left; margin-right: 15px">显示：</label>
                                 <div class="input-group col-sm-1">
-                                    <input type="checkbox" @if ($data->show == 1) checked="" @endif lay-skin="switch"
+                                    <input type="checkbox" @if ($data['show'] == 1) checked="" @endif lay-skin="switch"
                                            lay-filter="switchTestshow" lay-text="ON|OFF">
-                                    <input type="hidden" class="show" name="show" value="{{ $data->show }}">
+                                    <input type="hidden" class="show" name="show" value="{{ $data['show'] }}">
                                 </div>
 
                             </div>
@@ -109,7 +168,7 @@
                                     <span class="input-group-addon" onclick="readyUp(event)"
                                           style="cursor: pointer; background-color: #e7e7e7"><i
                                                 class="fa fa-folder-open"></i>选择</span>
-                                    <input name="img" class="form-control" type="text" value="{{ $data->img }}">
+                                    <input name="img" class="form-control" type="text" value="{{ $data['img'] }}">
                                     <span class="input-group-addon ut2" onclick="uploads(event)"
                                           style="width:80px;cursor: pointer;pointer-events: auto;"><i
                                                 class="fa fa-folder-open"></i>点击上传</span>
@@ -122,7 +181,7 @@
                                     <span class="input-group-addon" onclick="readyUp(event)"
                                           style="cursor: pointer; background-color: #e7e7e7"><i
                                                 class="fa fa-folder-open"></i>选择</span>
-                                    <input name="down" class="form-control" type="text" value="{{ $data->down }}">
+                                    <input name="down" class="form-control" type="text" value="{{ $data['down'] }}">
                                     <span class="input-group-addon ut2" onclick="uploads(event)"
                                           style="width:80px;cursor: pointer;pointer-events: auto;"><i
                                                 class="fa fa-folder-open"></i>点击上传</span>
@@ -131,7 +190,7 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">外链：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="keywords" type="text" value="{{ $data->link }}" class="form-control"
+                                    <input id="keywords" type="text" value="{{ $data['link'] }}" class="form-control"
                                            name="link"
                                            aria-required="true">
 
@@ -144,7 +203,7 @@
                                     <div id="uploader-demo">
                                         <!--用来存放item-->
                                         <div id="thelist" class="uploader-list clearfix">
-                                            @foreach (codeimg($data->moreimg) as $v)
+                                            @foreach (codeimg($data['moreimg']) as $v)
                                                 <div class="file-item thumbnail upfa upload-state-done"
                                                      data-img="{{$v}}"><img src="{{ asset('static/uploads') }}/{{$v}}">
                                                     <a id="fancybox-close" onclick="removeimg(event)"
@@ -156,14 +215,14 @@
 
                                         </div>
                                     </div>
-                                    <input type="hidden" id="moreimg" name="moreimg" value="{{ $data->moreimg }}">
+                                    <input type="hidden" id="moreimg" name="moreimg" value="{{ $data['moreimg'] }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">关键字：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="keywords" type="text" value="{{ $data->keywords }}" class="form-control"
+                                    <input id="keywords" type="text" value="{{ $data['keywords'] }}" class="form-control"
                                            name="keywords" aria-required="true">
                                 </div>
                             </div>
@@ -171,16 +230,16 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">关键字描述：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="description" type="text" value="{{ $data->description }}"
+                                    <input id="description" type="text" value="{{ $data['description'] }}"
                                            class="form-control" name="description" aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group layui-form">
                                 <label class="col-sm-1 control-label">语言：</label>
                                 <div class=" col-sm-4">
-                                    <input type="radio" name="lang" value="cn" @if ($data->lang == 'cn') checked=""
+                                    <input type="radio" name="lang" value="cn" @if ($data['lang'] == 'cn') checked=""
                                            @endif title="中文">
-                                    <input type="radio" name="lang" value="en" @if ($data->lang == 'en') checked=""
+                                    <input type="radio" name="lang" value="en" @if ($data['lang'] == 'en') checked=""
                                            @endif title="英文">
                                 </div>
                             </div>
@@ -263,7 +322,7 @@
                 });
 
             });
-            var info = '{!! $data->info !!}';
+            var info = '{!! $data['info'] !!}';
             editor(info);
         })
     </script>

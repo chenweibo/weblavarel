@@ -2,6 +2,7 @@
 
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/plugins/webuploader/webuploader.css')}}">
+    <script src="{{asset('static/admin/wangEditor.min.js')}}"></script>
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('static/admin/css/demo/webuploader-demo.min.css')}}"> --}}
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -24,7 +25,6 @@
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
                             <div class="form-group">
-
                                 <label class="col-sm-1 control-label">名称：</label>
                                 <div class="input-group col-sm-4">
                                     <input id="name" type="text" class="form-control" value=""
@@ -56,12 +56,8 @@
                                 <label class="col-sm-1 control-label">所属分类：</label>
                                 <div class="input-group col-sm-4">
                                     <select class="form-control" name="path" id="path" required="">
-
                                         @foreach ($str as $v)
-
-
-                                            <option value="{{$v['path']}}-{{ $v['id']}}">{{$v['html']}} {{ $v['name']}}</option>
-
+                                            <option @if($v['id'] == $pid) selected="select" @endif value="{{$v['path']}}-{{ $v['id']}}">{{$v['html']}} {{ $v['name']}}</option>
                                         @endforeach
                                     </select>
 
@@ -74,7 +70,63 @@
                                            aria-required="true">
                                 </div>
                             </div>
-
+                             @foreach ($file as $v)
+                              @if ($v->column_type==0)
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                    <div class="input-group col-sm-4">
+                                        <input id="{{$v->column_name}}" type="text" class="form-control" value=""
+                                               name="{{$v->column_name}}" required aria-required="true">
+                                    </div>
+                                </div>
+                              @endif
+                              @if ($v->column_type==1)
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                    <div class="input-group col-sm-4">
+                                        <textarea class="layui-textarea" name="{{$v->column_name}}" rows="8" cols="80"></textarea>
+                                    </div>
+                                </div>
+                              @endif
+                              @if ($v->column_type==2)
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                    <div class="input-group col-sm-8">
+                                        <div id="{{$v->column_name}}">
+                                        </div>
+                                    </div>
+                             <input type="hidden" name="{{$v->column_name}}" class="{{$v->column_name}}" value=''>
+                                </div>
+                                <script type="text/javascript">
+                                var E = window.wangEditor
+                                var {{$v->column_name}} = new E('#{{$v->column_name}}')
+                                {{$v->column_name}}.customConfig.uploadImgServer = '/EditUploads'
+                                {{$v->column_name}}.customConfig.uploadFileName = 'images[]'
+                                {{$v->column_name}}.customConfig.uploadImgHeaders = {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                                {{$v->column_name}}.customConfig.onchange = function (html) {
+                                    $('.{{$v->column_name}}').attr('value', html)
+                                }
+                                {{$v->column_name}}.create()
+                                </script>
+                              @endif
+                              @if ($v->column_type==3)
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">{{$v->column_name}}：</label>
+                                    <div class="col-md-4 input-group">
+                                        <input type="file" name="image" style="display:none">
+                                        <span class="input-group-addon" onclick="readyUp(event)"
+                                              style="cursor: pointer; background-color: #e7e7e7"><i
+                                                    class="fa fa-folder-open"></i>选择</span>
+                                        <input name="{{$v->column_name}}" class="form-control" type="text" value="">
+                                        <span class="input-group-addon ut2" onclick="uploads(event)"
+                                              style="width:80px;cursor: pointer;pointer-events: auto;"><i
+                                                    class="fa fa-folder-open"></i>点击上传</span>
+                                    </div>
+                                </div>
+                              @endif
+                             @endforeach
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">主要内容：</label>
                                 <div class="input-group col-sm-8">
@@ -190,7 +242,6 @@
     <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
     <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
     <script src="{{asset('static/admin/js/other.js')}}"></script>
-    <script src="{{asset('static/admin/wangEditor.min.js')}}"></script>
     <script src="{{asset('static/admin/js/plugins/webuploader/webuploader.min.js')}}"></script>
     <script src="{{asset('static/admin/js/demo/upload.js')}}"></script>
 

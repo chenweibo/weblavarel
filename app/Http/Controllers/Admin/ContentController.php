@@ -24,6 +24,7 @@ class ContentController extends Controller
     public function PageEdit(Request $request)
     {
         $content= new Content();
+        $field= new Field();
         if ($request->ajax()) {
             $data=$content->where('id', $request->id)->update($request->all());
             if ($data) {
@@ -32,9 +33,10 @@ class ContentController extends Controller
                 return ['code' => 0,  'msg' => '编辑失败'];
             }
         }
-        $data = $content->where('id', $request->id)->get()->first();
+        $file= $field->where('type', 1)->orderBy('sort', 'asc')->get();
+        $data = $content->where('id', $request->id)->get()->first()->toArray();
         //dd($data->info);
-        return view('admin/content/PageEdit', ['data'=>$data]);
+        return view('admin/content/PageEdit', ['data'=>$data,'file'=>$file]);
     }
 
     public function Product(Request $request, $id="", $keys="")
@@ -66,22 +68,25 @@ class ContentController extends Controller
     {
         $Column = new Column();
         $content= new Content();
+        $pid = $request->pid;
+        $field= new Field();
         if ($request->ajax()) {
             $param=$request->all();
             $param['type']=2;
             $param['lid']=explodepath($param['path']);
             $flag=$content->contentInsert($param);
-            return ['code' => $flag['code'], 'data' => route('Product'), 'msg' => $flag['msg']];
+            return ['code' => $flag['code'], 'data' => route('Product').'?path='.$param['lid'], 'msg' => $flag['msg']];
         }
-
+        $file= $field->where('type', 2)->orderBy('sort', 'asc')->get();
         $menu  = $Column->getTypeComlun(2);
         $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
-        return view('admin/content/ProductCreate', ['str'=>$menu]);
+        return view('admin/content/ProductCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
     }
     public function ProductEdit(Request $request)
     {
         $Column = new Column();
         $content= new Content();
+        $field= new Field();
         if ($request->ajax()) {
             $param=$request->all();
             $param['type']=2;
@@ -89,10 +94,11 @@ class ContentController extends Controller
             $flag=$content->contentUpdate($param);
             return ['code' => $flag['code'], 'data' => route('Product'), 'msg' => $flag['msg']];
         }
+        $file= $field->where('type', 2)->orderBy('sort', 'asc')->get();
         $menu  = $Column->getTypeComlun(2);
         $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
-        $data = $content->where('id', $request->id)->get()->first();
-        return view('admin/content/ProductEdit', ['str'=>$menu,'data'=>$data]);
+        $data = $content->where('id', $request->id)->get()->first()->toArray();
+        return view('admin/content/ProductEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
     }
     public function ProductDelete(Request $request)
     {

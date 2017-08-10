@@ -84,7 +84,7 @@ function rewrite() {
                 alert("出错,联系管理员")
             }
         });
-        return ture;
+        return true;
     }
 }
 
@@ -185,6 +185,7 @@ function editor(str) {
     editor.txt.html(str)
 
 }
+
 function removeValue(str){
 
     $( '#moreimg' ).attr('value',$( '#moreimg' ).attr('value').replace(str, ''));
