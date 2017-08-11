@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
-
 use App\UserType;
+use App\Content;
+use App\Gbook;
 use Route;
 
 class AdminController extends Controller
@@ -28,7 +29,15 @@ class AdminController extends Controller
 
     public function indexPage(Request $request)
     {
-        return view('admin/index');
+        $content= new Content();
+        $gbook = new Gbook();
+        $page = $content->where('type', 1)->count();
+        $product = $content->where('type', 2)->count();
+        $article = $content->where('type', 3)->count();
+        $image = $content->where('type', 4)->count();
+        $down = $content->where('type', 5)->count();
+        $book = $gbook->count();
+        return view('admin/index', ['page'=>$page,'product'=>$product,'article'=>$article,'image'=>$image,'down'=>$down,'gbook'=>$book]);
     }
 
     public function site(Request $request)

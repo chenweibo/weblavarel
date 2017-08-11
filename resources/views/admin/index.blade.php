@@ -34,17 +34,14 @@
         <div class="col-sm-3">
             <div class="widget style1 lazur-bg">
 
-                <div class="row"><a class="nav nav-second-level collapse in" aria-expanded="true"
-                                    href="{:url('product/contentlist')}" data-indent="9" style="color: #fff;">
-
+                <div class="row">
                         <div class="col-xs-4">
                             <i class="fa fa-th-large fa-5x"></i>
                         </div>
                         <div class="col-xs-8 text-right">
                             <span> 产品数量 </span>
-                            <h2 class="font-bold">-</h2>
+                            <h2 class="font-bold">{{$product}}</h2>
                         </div>
-                    </a>
                 </div>
 
 
@@ -58,7 +55,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 文章数量 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$article}}</h2>
                     </div>
                 </div>
             </div>
@@ -75,20 +72,20 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 单篇 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$page}}</h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="widget lazur-bg" style="background-color: #ec971f;">
+            <div class="widget style1 lazur-bg" style="background-color: #ec971f;">
                 <div class="row">
                     <div class="col-xs-4 text-center">
                         <i class="fa fa-cloud-download fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 下载数量 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$down}}</h2>
                     </div>
                 </div>
             </div>
@@ -101,7 +98,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 图片数量 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$image}}</h2>
                     </div>
                 </div>
             </div>
@@ -115,7 +112,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 留言数量 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$gbook}}</h2>
                     </div>
                 </div>
             </div>
@@ -175,6 +172,12 @@
                             <td>运行环境</td>
                             <td>@php
                                     echo $_SERVER["SERVER_SOFTWARE"];
+                                @endphp</td>
+                        </tr>
+                        <tr>
+                            <td>php版本</td>
+                            <td>@php
+                                    echo PHP_VERSION;
                                 @endphp</td>
                         </tr>
                         <tr>

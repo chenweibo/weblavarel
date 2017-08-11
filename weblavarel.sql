@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-11 14:49:19
+Date: 2017-08-11 15:16:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -285,9 +285,9 @@ INSERT INTO `node` VALUES ('51', '回收站列表', '', '2', '15', '', '99', 'Re
 INSERT INTO `node` VALUES ('52', '内容恢复', '', '1', '51', '', '99', 'RecycleRecover');
 INSERT INTO `node` VALUES ('53', '彻底删除', '', '1', '51', '', '99', 'RecycleDelete');
 INSERT INTO `node` VALUES ('54', '字段管理', '', '2', '6', '', '99', 'FieldIndex');
-INSERT INTO `node` VALUES ('55', '字段添加', '', '1', '0', '', '99', 'FieldCreate');
-INSERT INTO `node` VALUES ('56', '字段编辑', '', '1', '0', '', '99', 'FieldEdit');
-INSERT INTO `node` VALUES ('57', '字段删除', '', '1', '0', '', '99', 'FieldDelete');
+INSERT INTO `node` VALUES ('55', '字段添加', '', '1', '54', '', '99', 'FieldCreate');
+INSERT INTO `node` VALUES ('56', '字段编辑', '', '1', '54', '', '99', 'FieldEdit');
+INSERT INTO `node` VALUES ('57', '字段删除', '', '1', '54', '', '99', 'FieldDelete');
 INSERT INTO `node` VALUES ('58', '文章添加', '', '1', '33', '', '99', 'AritcleCreate');
 INSERT INTO `node` VALUES ('59', '文章编辑', '', '1', '33', '', '99', 'AritcleEdit');
 INSERT INTO `node` VALUES ('60', '文章删除', '', '1', '33', '', '99', 'AritcleDelete');
