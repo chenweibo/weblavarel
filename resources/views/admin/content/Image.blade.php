@@ -4,7 +4,7 @@
 
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>产品管理</h5>
+                <h5>图片管理</h5>
 
                 <div class="ibox-tools">
                     <a class="collapse-link">
@@ -25,27 +25,23 @@
                     </div>
                 @endif
 
-                <a href="{{route('ProductCreate',['pid'=>$id])}}" class="btn btn-primary">添加</a>
-                <a href="#" onclick="javascript:Del(arr,'{{route("ProductMoreDelete")}}')"
+                <a href="{{route('ImageCreate',['pid'=>$id])}}" class="btn btn-primary">添加</a>
+                <a href="#" onclick="javascript:Del(arr,'{{route("ImageMoreDelete")}}')"
                    class="btn btn-primary">批量删除</a>
                 <div class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="false">更多操作
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" onclick="movefile(arr,2)">移动</a>
+                        <li><a href="#" onclick="movefile(arr,4)">移动</a>
                         </li>
-                        <li><a href="#" onclick="copyfile(arr,2)">复制</a>
-                        </li>
-                        <li><a href="buttons.html#">导入excel</a>
-                        </li>
-                        <li><a href="buttons.html#">导出excel</a>
+                        <li><a href="#" onclick="copyfile(arr,4)">复制</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="admin_search row" style=" height:35px; float:right">
-                    <form class="navbar-form navbar-left zz" action="{{route('Product')}}" method="get" role="search">
+                    <form class="navbar-form navbar-left zz" action="{{route('Image')}}" method="get" role="search">
                         <div class="form-group">
                             <select class="form-control" name="path" required>
 
@@ -120,9 +116,9 @@
                                                lay-filter="recommend" lay-text="ON|OFF">
                                     </td>
                                     <td>
-                                        <a href="{{route('ProductEdit',['id'=>$v->id])}}"
+                                        <a href="{{route('ImageEdit',['id'=>$v->id])}}"
                                            class="layui-btn  layui-btn-small">编辑</a>
-                                        <a href="javascript:Del({{$v->id}},'{{route("ProductDelete")}}')"
+                                        <a href="javascript:Del({{$v->id}},'{{route("ImageDelete")}}')"
                                            class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
                                     </td>
                                 </tr>

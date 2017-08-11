@@ -12,9 +12,11 @@ class ColumnController extends Controller
     public function Column()
     {
         $column = new Column();
-        $list = $column->orderBy('sort', 'asc')->get()->toArray();
+        $list = $column->where('lang', 'cn')->orderBy('sort', 'asc')->get()->toArray();
         $list = unlimitedForLever($list, '└―');
-        return view('admin/column/Column', ['list'=>$list]);
+        $list1 = $column->where('lang', 'en')->orderBy('sort', 'asc')->get()->toArray();
+        $list1 = unlimitedForLever($list1, '└―');
+        return view('admin/column/Column', ['list'=>$list,'list1'=>$list1]);
     }
     public function ColumnCreate(Request $request)
     {
@@ -36,7 +38,7 @@ class ColumnController extends Controller
             $param = $request->all();
             $param['pid']=explodepath($param['path']);
             $flag=$Column->ComlunEdit($param);
-            
+
             return ['code' => $flag['code'], 'data' => route('Column'), 'msg' => $flag['msg']];
         }
         $list = $Column->orderBy('sort', 'asc')->get()->toArray();

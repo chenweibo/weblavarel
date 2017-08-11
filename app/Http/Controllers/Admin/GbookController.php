@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Gbook;
+use App\Field;
 
 class GbookController extends Controller
 {
@@ -17,7 +18,7 @@ class GbookController extends Controller
     public function GbookEdit(Request $request)
     {
         $gbook = new Gbook();
-
+        $field= new Field();
         if ($request->ajax()) {
             $param=$request->all();
             if ($gbook->where('id', $param['id'])->update($param)) {
@@ -26,8 +27,9 @@ class GbookController extends Controller
                 return ['code'=>0];
             }
         }
-        $data = $gbook->find($request->id);
-        return view('admin/gbook/GbookEdit', ['data'=>$data]);
+        $file= $field->where('type', 6)->orderBy('sort', 'asc')->get();
+        $data = $gbook->find($request->id)->toArray();
+        return view('admin/gbook/GbookEdit', ['data'=>$data,'file'=>$file]);
     }
     public function GbookDelete(Request $request)
     {

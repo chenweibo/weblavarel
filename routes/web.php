@@ -104,4 +104,25 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/field/create', 'ContentController@FieldCreate')->name('FieldCreate');
     Route::any('admin/field/edit', 'ContentController@FieldEdit')->name('FieldEdit');
     Route::any('admin/field/delete', 'ContentController@FieldDelete')->name('FieldDelete');
+
+    //   2017-8-11 by chenweibo article routes
+    Route::any('admin/article/{id?}/{keys?}', 'ContentController@Aritcle')->name('Aritcle');
+    Route::any('admin/articleCreate/', 'ContentController@AritcleCreate')->name('AritcleCreate');
+    Route::any('admin/articleEdit/', 'ContentController@AritcleEdit')->name('AritcleEdit');
+    Route::any('admin/articledelete/', 'ContentController@AritcleDelete')->name('AritcleDelete');
+    Route::any('admin/articleMoredelete/', 'ContentController@AritcleMoreDelete')->name('AritcleMoreDelete');
+
+        //   2017-8-11 by chenweibo image routes
+    Route::any('admin/image/{id?}/{keys?}', 'ContentController@Image')->name('Image');
+    Route::any('admin/imageCreate/', 'ContentController@ImageCreate')->name('ImageCreate');
+    Route::any('admin/imageEdit/', 'ContentController@ImageEdit')->name('ImageEdit');
+    Route::any('admin/imagedelete/', 'ContentController@ImageDelete')->name('ImageDelete');
+    Route::any('admin/imageMoredelete/', 'ContentController@ImageMoreDelete')->name('ImageMoreDelete');
+
+            //   2017-8-11 by chenweibo down routes
+    Route::any('admin/down/{id?}/{keys?}', 'ContentController@Down')->name('Down');
+    Route::any('admin/downCreate/', 'ContentController@DownCreate')->name('DownCreate');
+    Route::any('admin/downEdit/', 'ContentController@DownEdit')->name('DownEdit');
+    Route::any('admin/downdelete/', 'ContentController@DownDelete')->name('DownDelete');
+    Route::any('admin/downMoredelete/', 'ContentController@DownMoreDelete')->name('DownMoreDelete');
 });

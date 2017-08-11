@@ -60,8 +60,11 @@ class ContentController extends Controller
           ->select('content.*', 'columns.name as colums')
           ->paginate(10);
         $menu  = $Column->getTypeComlun(2);
-        $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
-
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
         return view('admin/content/Product', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
     }
     public function ProductCreate(Request $request)
@@ -79,7 +82,11 @@ class ContentController extends Controller
         }
         $file= $field->where('type', 2)->orderBy('sort', 'asc')->get();
         $menu  = $Column->getTypeComlun(2);
-        $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
         return view('admin/content/ProductCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
     }
     public function ProductEdit(Request $request)
@@ -96,7 +103,11 @@ class ContentController extends Controller
         }
         $file= $field->where('type', 2)->orderBy('sort', 'asc')->get();
         $menu  = $Column->getTypeComlun(2);
-        $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
         $data = $content->where('id', $request->id)->get()->first()->toArray();
         return view('admin/content/ProductEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
     }
@@ -208,6 +219,302 @@ class ContentController extends Controller
                 DB::statement('alter table gbooks drop column '.$data->column_name);
                 return ['code' => 1, 'data' => route('FieldIndex'), 'msg' => ''];
             }
+        }
+    }
+
+
+    public function Aritcle(Request $request, $id="", $keys="")
+    {
+        $Column = new Column();
+        $content= new Content();
+        $map[] = ['content.type','=',3];
+        if (!empty($request->path) && empty($request->keys)) {
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        if (empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+        }
+        if (!empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        $list=$content
+          ->where($map)
+          ->join('columns', 'content.lid', '=', 'columns.id')
+          ->select('content.*', 'columns.name as colums')
+          ->paginate(10);
+        $menu  = $Column->getTypeComlun(3);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+
+        return view('admin/content/Aritcle', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
+    }
+    public function AritcleCreate(Request $request)
+    {
+        $Column = new Column();
+        $content= new Content();
+        $pid = $request->pid;
+        $field= new Field();
+        if ($request->ajax()) {
+            $param=$request->all();
+            $param['type']=3;
+            $param['lid']=explodepath($param['path']);
+            $flag=$content->contentInsert($param);
+            return ['code' => $flag['code'], 'data' => route('Aritcle').'?path='.$param['lid'], 'msg' => $flag['msg']];
+        }
+        $file= $field->where('type', 3)->orderBy('sort', 'asc')->get();
+        $menu  = $Column->getTypeComlun(3);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+        return view('admin/content/AritcleCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
+    }
+    public function AritcleEdit(Request $request)
+    {
+        $Column = new Column();
+        $content= new Content();
+        $field= new Field();
+        if ($request->ajax()) {
+            $param=$request->all();
+            $param['type']=3;
+            $param['lid']=explodepath($param['path']);
+            $flag=$content->contentUpdate($param);
+            return ['code' => $flag['code'], 'data' => route('Aritcle'), 'msg' => $flag['msg']];
+        }
+        $file= $field->where('type', 3)->orderBy('sort', 'asc')->get();
+        $menu  = $Column->getTypeComlun(3);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+        $data = $content->where('id', $request->id)->get()->first()->toArray();
+        return view('admin/content/AritcleEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
+    }
+    public function AritcleDelete(Request $request)
+    {
+        $content= new Content();
+        if ($request->ajax()) {
+            $id=$request->id;
+            $list=$content->where('id', $id)->get()->first()->toArray();
+            $content->where('id', $id)->delete();
+            event(new MoveRecycle($list));
+            return ['code' => 1, 'data' => route('Aritcle'), 'msg' => ''];
+        }
+    }
+    public function AritcleMoreDelete(Request $request)
+    {
+        $content= new Content();
+
+        if ($request->ajax()) {
+            $id=$request->id;
+            foreach ($id as $v) {
+                $list=$content->where('id', $v)->get()->first()->toArray();
+                $content->destroy($v);
+                event(new MoveRecycle($list));
+            }
+            return ['code' => 1, 'data' => route('Aritcle'), 'msg' => ''];
+        }
+    }
+
+    public function Image(Request $request, $id="", $keys="")
+    {
+        $Column = new Column();
+        $content= new Content();
+        $map[] = ['content.type','=',4];
+        if (!empty($request->path) && empty($request->keys)) {
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        if (empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+        }
+        if (!empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        $list=$content
+          ->where($map)
+          ->join('columns', 'content.lid', '=', 'columns.id')
+          ->select('content.*', 'columns.name as colums')
+          ->paginate(10);
+        $menu  = $Column->getTypeComlun(4);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+
+        return view('admin/content/Image', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
+    }
+    public function ImageCreate(Request $request)
+    {
+        $Column = new Column();
+        $content= new Content();
+        $pid = $request->pid;
+        $field= new Field();
+        if ($request->ajax()) {
+            $param=$request->all();
+            $param['type']=4;
+            $param['lid']=explodepath($param['path']);
+            $flag=$content->contentInsert($param);
+            return ['code' => $flag['code'], 'data' => route('Image').'?path='.$param['lid'], 'msg' => $flag['msg']];
+        }
+        $file= $field->where('type', 4)->orderBy('sort', 'asc')->get();
+        $menu  = $Column->getTypeComlun(4);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+        return view('admin/content/ImageCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
+    }
+    public function ImageEdit(Request $request)
+    {
+        $Column = new Column();
+        $content= new Content();
+        $field= new Field();
+        if ($request->ajax()) {
+            $param=$request->all();
+            $param['type']=4;
+            $param['lid']=explodepath($param['path']);
+            $flag=$content->contentUpdate($param);
+            return ['code' => $flag['code'], 'data' => route('Image'), 'msg' => $flag['msg']];
+        }
+        $file= $field->where('type', 4)->orderBy('sort', 'asc')->get();
+        $menu  = $Column->getTypeComlun(4);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+        $data = $content->where('id', $request->id)->get()->first()->toArray();
+        return view('admin/content/ImageEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
+    }
+    public function ImageDelete(Request $request)
+    {
+        $content= new Content();
+        if ($request->ajax()) {
+            $id=$request->id;
+            $list=$content->where('id', $id)->get()->first()->toArray();
+            $content->where('id', $id)->delete();
+            event(new MoveRecycle($list));
+            return ['code' => 1, 'data' => route('Image'), 'msg' => ''];
+        }
+    }
+    public function ImageMoreDelete(Request $request)
+    {
+        $content= new Content();
+        if ($request->ajax()) {
+            $id=$request->id;
+            foreach ($id as $v) {
+                $list=$content->where('id', $v)->get()->first()->toArray();
+                $content->destroy($v);
+                event(new MoveRecycle($list));
+            }
+            return ['code' => 1, 'data' => route('Image'), 'msg' => ''];
+        }
+    }
+
+    public function Down(Request $request, $id="", $keys="")
+    {
+        $Column = new Column();
+        $content= new Content();
+        $map[] = ['content.type','=',5];
+        if (!empty($request->path) && empty($request->keys)) {
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        if (empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+        }
+        if (!empty($request->path) && !empty($request->keys)) {
+            $map[]=['content.name','like','%'.$request->keys.'%'];
+            $map[]=['content.path','like','%-'.$request->path.'%'];
+        }
+        $list=$content
+          ->where($map)
+          ->join('columns', 'content.lid', '=', 'columns.id')
+          ->select('content.*', 'columns.name as colums')
+          ->paginate(10);
+        $menu  = $Column->getTypeComlun(5);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+
+        return view('admin/content/Down', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
+    }
+    public function DownCreate(Request $request)
+    {
+        $Column = new Column();
+        $content= new Content();
+        $pid = $request->pid;
+        $field= new Field();
+        if ($request->ajax()) {
+            $param=$request->all();
+            $param['type']=5;
+            $param['lid']=explodepath($param['path']);
+            $flag=$content->contentInsert($param);
+            return ['code' => $flag['code'], 'data' => route('Down').'?path='.$param['lid'], 'msg' => $flag['msg']];
+        }
+        $file= $field->where('type', 5)->orderBy('sort', 'asc')->get();
+        $menu  = $Column->getTypeComlun(5);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+        return view('admin/content/DownCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
+    }
+    public function DownEdit(Request $request)
+    {
+        $Column = new Column();
+        $content= new Content();
+        $field= new Field();
+        if ($request->ajax()) {
+            $param=$request->all();
+            $param['type']=5;
+            $param['lid']=explodepath($param['path']);
+            $flag=$content->contentUpdate($param);
+            return ['code' => $flag['code'], 'data' => route('Down'), 'msg' => $flag['msg']];
+        }
+        $file= $field->where('type', 5)->orderBy('sort', 'asc')->get();
+        $menu  = $Column->getTypeComlun(5);
+        if (empty($menu)) {
+            $menu = [];
+        } else {
+            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+        }
+        $data = $content->where('id', $request->id)->get()->first()->toArray();
+        return view('admin/content/DownEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
+    }
+    public function DownDelete(Request $request)
+    {
+        $content= new Content();
+        if ($request->ajax()) {
+            $id=$request->id;
+            $list=$content->where('id', $id)->get()->first()->toArray();
+            $content->where('id', $id)->delete();
+            event(new MoveRecycle($list));
+            return ['code' => 1, 'data' => route('Down'), 'msg' => ''];
+        }
+    }
+    public function DownMoreDelete(Request $request)
+    {
+        $content= new Content();
+        if ($request->ajax()) {
+            $id=$request->id;
+            foreach ($id as $v) {
+                $list=$content->where('id', $v)->get()->first()->toArray();
+                $content->destroy($v);
+                event(new MoveRecycle($list));
+            }
+            return ['code' => 1, 'data' => route('Down'), 'msg' => ''];
         }
     }
 }

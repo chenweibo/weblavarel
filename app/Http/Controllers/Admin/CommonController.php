@@ -141,7 +141,7 @@ class CommonController extends Controller
             }
         }
         $Column = new Column();
-        $menu  = $Column->getTypeComlun(2);
+        $menu  = $Column->getTypeComlun($request->type);
         $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
         return ['res'=>$menu];
     }

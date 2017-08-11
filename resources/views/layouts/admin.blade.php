@@ -21,10 +21,10 @@
 </head>
 
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight">
+
 
     @yield('content')
 
-</div>
+
 </body>
 </html>

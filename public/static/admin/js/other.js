@@ -330,7 +330,7 @@ function removePro(url){
 }
 
 
-function movefile(arr){
+function movefile(arr,type){
   var html;
  if(arr.length==0){
    layer.msg('没有选择产品哦', {icon: 5});
@@ -339,6 +339,7 @@ function movefile(arr){
   $.ajax({
       url: '/getcate',
       type: "get",
+      data: {'type':type},
       dataType: "json",
       async: false,
       headers: {
@@ -364,7 +365,7 @@ layer.open({
  }
 }
 
-function copyfile(arr){
+function copyfile(arr,type){
   var html;
  if(arr.length==0){
    layer.msg('没有选择产品哦', {icon: 5});
@@ -373,6 +374,7 @@ function copyfile(arr){
   $.ajax({
       url: '/getcate',
       type: "get",
+      data: {'type':type},
       dataType: "json",
       async: false,
       headers: {

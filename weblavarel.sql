@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 100125
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 100125
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-10 21:54:14
+Date: 2017-08-11 14:49:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '95', '127.0.0.1', '1502362354', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '97', '127.0.0.1', '1502431187', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -57,19 +57,23 @@ CREATE TABLE `columns` (
   `state` int(10) DEFAULT NULL,
   `lang` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of columns
 -- ----------------------------
 INSERT INTO `columns` VALUES ('25', '关于我们', null, '1', '0', '0', 'guanyuwomen', '0', null, '0', 'a', '1', 'cn');
-INSERT INTO `columns` VALUES ('26', '公司简介', null, '99', '25', '0-25', 'gongsijianjie', '1', null, '0', 'd', '1', 'cn');
 INSERT INTO `columns` VALUES ('27', '产品中心', null, '99', '0', '0', '12', '0', null, '0', 'dd', '1', 'cn');
 INSERT INTO `columns` VALUES ('28', '新闻中心', null, '99', '0', '0', '123ds', '0', null, '0', 'sdf', '1', 'cn');
 INSERT INTO `columns` VALUES ('29', '公司新闻', null, '99', '28', '0-28', 'w', '3', null, '0', 'd', '1', 'cn');
 INSERT INTO `columns` VALUES ('31', '产品分类1', null, '99', '27', '0-27', 'chanpinfenlei1', '2', null, '0', 'd', '1', 'cn');
 INSERT INTO `columns` VALUES ('32', '产品分类2', null, '99', '27', '0-27', 'chanpinfenlei2', '2', null, '0', 'chanpinfenlei2', '1', 'cn');
 INSERT INTO `columns` VALUES ('33', '子分类1', 'dd', '99', '31', '0-27-31', 'zifenlei1', '2', null, '0', 'zifenlei1', '1', 'cn');
+INSERT INTO `columns` VALUES ('34', '行业新闻', null, '99', '28', '0-28', 'hangyexinwen', '0', null, '0', 'sss', '1', 'cn');
+INSERT INTO `columns` VALUES ('36', '荣誉资质', null, '99', '0', '0', 'rongyuzizhi', '0', null, '0', 'zz', '1', 'cn');
+INSERT INTO `columns` VALUES ('37', '证书', null, '99', '36', '0-36', 'zhengshu', '4', null, '0', 'dd', '1', 'cn');
+INSERT INTO `columns` VALUES ('38', '下载中心', null, '99', '0', '0', 'xiazaizhongxin', '0', null, '0', 'x', '1', 'cn');
+INSERT INTO `columns` VALUES ('39', '下载', null, '99', '38', '0-38', 'xiazai', '5', null, '0', 'd', '1', 'cn');
 
 -- ----------------------------
 -- Table structure for content
@@ -100,12 +104,11 @@ CREATE TABLE `content` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`,`click`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('28', '公司简介', null, null, '26', '0-25', null, null, null, null, null, null, '是多少', '等等', null, null, '1', '0', null, null, '2', null, '2017-08-10 21:13:25');
 INSERT INTO `content` VALUES ('116', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, '<p>阿斯大苏打<br></p>', null, null, null, '阿斯', 'asdf', 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-10 21:02:47');
 INSERT INTO `content` VALUES ('117', 'ccz', null, 'ccz', '31', '0-27-31', null, null, '<p>xzv<br></p>', null, null, null, 'zxcv', 'zxcv', 'cn', '0', '2', '0', '0', null, '99', null, '2017-08-08 15:45:27');
 INSERT INTO `content` VALUES ('118', 'sdfsad', 'sd', 'sdfsad', '31', '0-27-31', null, null, null, null, null, null, null, null, 'cn', '0', '2', '0', '1', null, '88', null, '2017-08-08 15:45:33');
@@ -138,6 +141,7 @@ INSERT INTO `content` VALUES ('144', 's的 死', null, 'sdesi', '33', '0-27-31-3
 INSERT INTO `content` VALUES ('145', '下次vxc', null, 'xiacivxc', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
 INSERT INTO `content` VALUES ('146', '速度', null, 'sudu', '33', '0-27-31-33', null, null, '<p>速度速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
 INSERT INTO `content` VALUES ('147', '速度范德萨', null, 'sudufandesa', '32', '0-27-32', null, null, '<p>&nbsp;斯蒂芬速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
+INSERT INTO `content` VALUES ('150', 'sd sd', 'sd', 'sd', '29', '0-28-29', '2017-08-15', null, null, null, null, null, null, null, 'cn', '0', '3', '99', '1', null, '10', null, '2017-08-11 10:59:35');
 
 -- ----------------------------
 -- Table structure for field
@@ -151,7 +155,7 @@ CREATE TABLE `field` (
   `sort` int(50) DEFAULT '99',
   `column_type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of field
@@ -226,7 +230,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -237,15 +241,15 @@ INSERT INTO `node` VALUES ('3', '栏目管理', '#', '2', '0', 'fa fa-bars', '3'
 INSERT INTO `node` VALUES ('4', '会员管理', '#', '2', '0', 'fa fa-user-circle', '4', null);
 INSERT INTO `node` VALUES ('5', '留言管理', '#', '2', '0', 'fa fa-commenting-o', '5', null);
 INSERT INTO `node` VALUES ('6', '内容管理', '#', '2', '0', 'fa fa-pencil-square-o', '6', null);
-INSERT INTO `node` VALUES ('35', '下载管理', '', '2', '6', '', '5', null);
+INSERT INTO `node` VALUES ('35', '下载管理', '', '2', '6', '', '5', 'Down');
 INSERT INTO `node` VALUES ('11', '微信管理', '#', '2', '0', 'fa fa-weixin', '11', null);
 INSERT INTO `node` VALUES ('12', '插件管理', '#', '2', '0', 'fa fa-plug', '12', null);
 INSERT INTO `node` VALUES ('13', '文件管理', '#', '2', '0', 'fa fa-folder-open', '13', null);
 INSERT INTO `node` VALUES ('14', '系统管理', '#', '2', '0', 'fa fa-desktop', '14', null);
 INSERT INTO `node` VALUES ('31', '单篇管理 ', '', '2', '6', '', '1', 'Page');
 INSERT INTO `node` VALUES ('32', '产品管理', '', '2', '6', '', '2', 'Product');
-INSERT INTO `node` VALUES ('33', '文章管理', '', '2', '6', '', '3', null);
-INSERT INTO `node` VALUES ('34', '图片管理', '', '2', '6', '', '4', null);
+INSERT INTO `node` VALUES ('33', '文章管理', '', '2', '6', '', '3', 'Aritcle');
+INSERT INTO `node` VALUES ('34', '图片管理', '', '2', '6', '', '4', 'Image');
 INSERT INTO `node` VALUES ('15', '内容回收站', '#', '2', '0', 'fa fa-recycle', '15', null);
 INSERT INTO `node` VALUES ('16', '基本设置', '', '2', '1', '', '99', 'site');
 INSERT INTO `node` VALUES ('17', '幻灯片管理', '', '2', '1', '', '99', 'SlideIndex');
@@ -284,6 +288,18 @@ INSERT INTO `node` VALUES ('54', '字段管理', '', '2', '6', '', '99', 'FieldI
 INSERT INTO `node` VALUES ('55', '字段添加', '', '1', '0', '', '99', 'FieldCreate');
 INSERT INTO `node` VALUES ('56', '字段编辑', '', '1', '0', '', '99', 'FieldEdit');
 INSERT INTO `node` VALUES ('57', '字段删除', '', '1', '0', '', '99', 'FieldDelete');
+INSERT INTO `node` VALUES ('58', '文章添加', '', '1', '33', '', '99', 'AritcleCreate');
+INSERT INTO `node` VALUES ('59', '文章编辑', '', '1', '33', '', '99', 'AritcleEdit');
+INSERT INTO `node` VALUES ('60', '文章删除', '', '1', '33', '', '99', 'AritcleDelete');
+INSERT INTO `node` VALUES ('61', '文章批量删除', '', '1', '33', '', '99', 'AritcleMoreDelete');
+INSERT INTO `node` VALUES ('62', '图片添加', '', '1', '34', '', '99', 'ImageCreate');
+INSERT INTO `node` VALUES ('63', '图片编辑', '', '1', '34', '', '99', 'ImageEdit');
+INSERT INTO `node` VALUES ('64', '图片删除', '', '1', '34', '', '99', 'ImageDelete');
+INSERT INTO `node` VALUES ('65', '图片批量删除', '', '1', '34', '', '99', 'ImageMoreDelete');
+INSERT INTO `node` VALUES ('66', '下载添加', '', '1', '35', '', '99', 'DownCreate');
+INSERT INTO `node` VALUES ('67', '下载编辑', '', '1', '35', '', '99', 'DownEdit');
+INSERT INTO `node` VALUES ('68', '下载删除', '', '1', '35', '', '99', 'DownDelete');
+INSERT INTO `node` VALUES ('69', '下载批量删除', '', '1', '35', '', '99', 'DownMoreDelete');
 
 -- ----------------------------
 -- Table structure for page
@@ -354,11 +370,15 @@ CREATE TABLE `recycles` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of recycles
 -- ----------------------------
+INSERT INTO `recycles` VALUES ('148', 'dddsd f', 'sdfasdf', 'ddd', '29', '0-28-29', null, null, null, null, null, null, null, null, 'cn', '0', '3', '50', '1', null, '99', null, '2017-08-11 10:32:18');
+INSERT INTO `recycles` VALUES ('149', 'ewrwees', 'ds ds', 'ewrwees', '29', '0-28-29', null, null, '<p>s ds asd ds asd&nbsp;</p>', null, null, null, 'sad', 'sad', 'cn', '0', '3', '50', '1', 'sad', '99', null, null);
+INSERT INTO `recycles` VALUES ('151', 'ddddsd', null, 'ddddsd', '37', '0-36-37', null, null, null, null, null, null, null, null, 'cn', '0', '4', '50', '1', null, '99', null, '2017-08-11 14:35:19');
+INSERT INTO `recycles` VALUES ('152', 'sdf', null, 'sdf', '39', '0-38-39', null, null, null, null, null, null, null, null, 'cn', '0', '5', '50', '1', null, '99', null, null);
 
 -- ----------------------------
 -- Table structure for role
