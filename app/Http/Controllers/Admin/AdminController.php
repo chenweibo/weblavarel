@@ -18,9 +18,6 @@ class AdminController extends Controller
     public function index()
     {
         $node= new Node();
-        $path=config_path().'/site.php';
-        $route = Route::current();
-        $name = Route::currentRouteName();
         $usertype= new UserType();
         $info=$usertype->getRoleInfo(2);
 

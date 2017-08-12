@@ -25,6 +25,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 | chenweibo  admin router //警告下面路由勿动！！
 |------------------------------------------------------------------------------------------------------------------------------------
 */
+
+
+
 // 2017-8-3 by chenweibo common routes
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');
@@ -39,6 +42,13 @@ Route::any('/getcate', 'Admin\CommonController@getcate')->name('getcate');
 
 // 2017-7-30 by chenweibo rewrite routes
 Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewrite');
+
+
+//   2017-8-11 by wechat down routes
+Route::any('/wechat', 'Admin\WechatController@serve');
+
+
+
 
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
     Route::get('/admin_index', 'AdminController@index')->name('AdminIndex');
@@ -112,17 +122,20 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/articledelete/', 'ContentController@AritcleDelete')->name('AritcleDelete');
     Route::any('admin/articleMoredelete/', 'ContentController@AritcleMoreDelete')->name('AritcleMoreDelete');
 
-        //   2017-8-11 by chenweibo image routes
+    //   2017-8-11 by chenweibo image routes
     Route::any('admin/image/{id?}/{keys?}', 'ContentController@Image')->name('Image');
     Route::any('admin/imageCreate/', 'ContentController@ImageCreate')->name('ImageCreate');
     Route::any('admin/imageEdit/', 'ContentController@ImageEdit')->name('ImageEdit');
     Route::any('admin/imagedelete/', 'ContentController@ImageDelete')->name('ImageDelete');
     Route::any('admin/imageMoredelete/', 'ContentController@ImageMoreDelete')->name('ImageMoreDelete');
 
-            //   2017-8-11 by chenweibo down routes
+    //   2017-8-11 by chenweibo down routes
     Route::any('admin/down/{id?}/{keys?}', 'ContentController@Down')->name('Down');
     Route::any('admin/downCreate/', 'ContentController@DownCreate')->name('DownCreate');
     Route::any('admin/downEdit/', 'ContentController@DownEdit')->name('DownEdit');
     Route::any('admin/downdelete/', 'ContentController@DownDelete')->name('DownDelete');
     Route::any('admin/downMoredelete/', 'ContentController@DownMoreDelete')->name('DownMoreDelete');
+
+    Route::any('admin/wehchat/wechatconfig', 'WechatController@WechatConfig')->name('WechatConfig');
+    Route::any('admin/wechat', 'WechatController@WechatIndex')->name('WechatIndex');
 });

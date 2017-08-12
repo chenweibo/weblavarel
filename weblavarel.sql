@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-11 15:16:22
+Date: 2017-08-12 17:02:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '97', '127.0.0.1', '1502431187', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '103', '127.0.0.1', '1502524589', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -104,7 +104,7 @@ CREATE TABLE `content` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`,`click`)
-) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
@@ -155,7 +155,7 @@ CREATE TABLE `field` (
   `sort` int(50) DEFAULT '99',
   `column_type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of field
@@ -230,7 +230,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -300,6 +300,11 @@ INSERT INTO `node` VALUES ('66', '下载添加', '', '1', '35', '', '99', 'DownC
 INSERT INTO `node` VALUES ('67', '下载编辑', '', '1', '35', '', '99', 'DownEdit');
 INSERT INTO `node` VALUES ('68', '下载删除', '', '1', '35', '', '99', 'DownDelete');
 INSERT INTO `node` VALUES ('69', '下载批量删除', '', '1', '35', '', '99', 'DownMoreDelete');
+INSERT INTO `node` VALUES ('70', '公众号配置', '', '2', '11', '', '99', 'WechatConfig');
+INSERT INTO `node` VALUES ('71', '菜单管理', '', '2', '11', '', '99', 'WechatIndex');
+INSERT INTO `node` VALUES ('72', '粉丝管理', '', '2', '11', '', '99', null);
+INSERT INTO `node` VALUES ('73', '回复设置', '', '2', '11', '', '99', null);
+INSERT INTO `node` VALUES ('74', '消息管理', '', '2', '11', '', '99', null);
 
 -- ----------------------------
 -- Table structure for page
