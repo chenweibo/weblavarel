@@ -138,4 +138,5 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 
     Route::any('admin/wehchat/wechatconfig', 'WechatController@WechatConfig')->name('WechatConfig');
     Route::any('admin/wechat', 'WechatController@WechatIndex')->name('WechatIndex');
+    Route::any('admin/MenuCreate', 'WechatController@MenuCreate')->name('MenuCreate');
 });

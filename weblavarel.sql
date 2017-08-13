@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : fuck.io
-Source Server Version : 50505
+Source Server         : my
+Source Server Version : 100125
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 100125
 File Encoding         : 65001
 
-Date: 2017-08-12 17:02:00
+Date: 2017-08-13 23:14:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '103', '127.0.0.1', '1502524589', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '104', '127.0.0.1', '1502628175', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -441,3 +441,22 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('1', 'boge', '563960993@qq.com', '$2y$10$J21hdKoQTeu1BWbpB.oZ7e90v8de1lcmbPyRw3oS3ozFlyZbH.9SO', 'pt87dxRjglI2obNeTNqAzezgku5w7dr43nYn9bBMiMGYrFJnpLJYS3BwECYb', '2017-06-20 01:55:31', '2017-06-20 01:55:31', '1');
+
+-- ----------------------------
+-- Table structure for wechatmenu
+-- ----------------------------
+DROP TABLE IF EXISTS `wechatmenu`;
+CREATE TABLE `wechatmenu` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `pid` int(20) DEFAULT '0',
+  `sort` int(255) DEFAULT '80',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wechatmenu
+-- ----------------------------
+INSERT INTO `wechatmenu` VALUES ('1', '菜单1', 'https://www.baidu.com', '0', '80');
+INSERT INTO `wechatmenu` VALUES ('3', '子类1', 'fdd', '1', '80');

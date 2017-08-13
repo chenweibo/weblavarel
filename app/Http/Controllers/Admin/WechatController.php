@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use EasyWeChat\Foundation\Application;
 use Log;
+use App\WechatMenu;
 
 class WechatController extends Controller
 {
@@ -13,7 +14,39 @@ class WechatController extends Controller
     {
         $wechat = app('wechat');
         $wechat->server->setMessageHandler(function ($message) {
-            return "欢迎关注本公众号！";
+            if ($message->Event=='subscribe') {
+                return '欢迎关注我哦';
+            }
+            if ($message->Event=='unsubscribe') {
+                return '已取消关注';
+            }
+            switch ($message->MsgType) {
+                case 'event':
+                    return '收到事件消息';
+                    break;
+                case 'text':
+                    return '你发了'.$message->Content;
+                    break;
+                case 'image':
+                    return '收到图片消息';
+                    break;
+                case 'voice':
+                    return '收到语音消息';
+                    break;
+                case 'video':
+                    return '收到视频消息';
+                    break;
+                case 'location':
+                    return '收到坐标消息';
+                    break;
+                case 'link':
+                    return '收到链接消息';
+                    break;
+                // ... 其它消息
+                default:
+                    return '收到其它消息';
+                    break;
+}
         });
         return $wechat->server->serve();
     }
@@ -37,18 +70,26 @@ class WechatController extends Controller
 
     public function WechatIndex(Application $wechat, Request $request)
     {
-        if ($request->ip() == '127.0.0.1') {
-            echo '因为公众号的特殊规则，此功能需上线后才能使用,如果公众号配置填写正确后会自动启用';
-            die;
-        } else {
-            $menu = $wechat->menu;
-            $menus = $menu->all();
+        $menu = new WechatMenu();
+        $list =$menu->get()->toArray();
+        $str = unlimitedForLever($list, '|-');
+        return view('admin/wechat/WechatMenu', ['str'=>$str]);
+    }
 
-
-            dd($menus);
+    public function MenuCreate(Request $request)
+    {
+        $menu = new WechatMenu();
+        if ($request->ajax()) {
+            if ($menu->insert($request->all())) {
+                return ['code'=>1,'msg'=>'','data'=>route('WechatIndex')];
+            } else {
+                return ['code'=>0,'msg'=>'添加失败'];
+            }
         }
 
-        return view('admin/wechat/WechatIndex');
+        $list =$menu->get()->toArray();
+        $str = unlimitedForLever($list, '--');
+        return view('admin/wechat/MenuCreate', ['str'=>$str]);
     }
 
     public function user(Application $wechat)
