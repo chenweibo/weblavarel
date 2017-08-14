@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 100125
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : weblavarel
 
 Target Server Type    : MYSQL
-Target Server Version : 100125
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-13 23:14:19
+Date: 2017-08-14 15:28:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '104', '127.0.0.1', '1502628175', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '106', '127.0.0.1', '1502689719', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -453,10 +453,12 @@ CREATE TABLE `wechatmenu` (
   `pid` int(20) DEFAULT '0',
   `sort` int(255) DEFAULT '80',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wechatmenu
 -- ----------------------------
-INSERT INTO `wechatmenu` VALUES ('1', '菜单1', 'https://www.baidu.com', '0', '80');
-INSERT INTO `wechatmenu` VALUES ('3', '子类1', 'fdd', '1', '80');
+INSERT INTO `wechatmenu` VALUES ('1', '菜单', 'https://www.baidu.com', '0', '80');
+INSERT INTO `wechatmenu` VALUES ('4', '子菜单1', 'www.a', '1', '88');
+INSERT INTO `wechatmenu` VALUES ('5', '菜单2', '#', '0', '88');
+INSERT INTO `wechatmenu` VALUES ('6', 'zicai2', 'xx', '5', '88');

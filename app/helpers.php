@@ -77,6 +77,10 @@ function columnMenu($result, $parentid=0, $format="|--")
      }
      return $arr;
  }
+ function makeMenu($list)
+ {
+ }
+
 
  function explodepath($param)
  {
@@ -103,21 +107,25 @@ function columnMenu($result, $parentid=0, $format="|--")
      }
      return $tree;
  }
-
- function subTree($param, $pid)
+ function make_tree1($list, $pk='id', $pid='pid', $child='sub_button', $root=0)
  {
-     static $res = [];
-
-     foreach ($param as $key=>$vo) {
-         if ($pid == $vo['pid']) {
-             $res[] = $vo;
-
-             subTree($param, $vo['id']);
+     $tree=array();
+     $packData=array();
+     foreach ($list as  $data) {
+         $packData[$data[$pk]] = $data;
+     }
+     foreach ($packData as $key =>$val) {
+         if ($val[$pid]==$root) {//代表跟节点
+             $tree[]=& $packData[$key];
+         } else {
+             //找到其父类
+             $packData[$val[$pid]][$child][]=& $packData[$key];
          }
      }
-
-     return $res;
+     return $tree;
  }
+
+
 
  function level($str)
  {

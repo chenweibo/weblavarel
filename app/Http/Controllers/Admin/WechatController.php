@@ -92,6 +92,60 @@ class WechatController extends Controller
         return view('admin/wechat/MenuCreate', ['str'=>$str]);
     }
 
+    public function MenuEdit(Request $request)
+    {
+        $menu = new WechatMenu();
+        if ($request->ajax()) {
+            if ($menu->where('id', $request->id)->update($request->all())) {
+                return ['code'=>1,'msg'=>'','data'=>route('WechatIndex')];
+            } else {
+                return ['code'=>0,'msg'=>'编辑失败'];
+            }
+        }
+        $list =$menu->get()->toArray();
+        $str = unlimitedForLever($list, '--');
+        $data = $menu->where('id', $request->id)->get()->first();
+        return view('admin/wechat/MenuEdit', ['str'=>$str,'data'=>$data]);
+    }
+    public function MenuDelete(Request $request)
+    {
+        $menu = new WechatMenu();
+        if ($request->ajax()) {
+            if ($menu->where('id', $request->id)->delete()) {
+                return ['code'=>1,'msg'=>'','data'=>route('WechatIndex')];
+            } else {
+                return ['code'=>0,'msg'=>'删除失败'];
+            }
+        }
+    }
+    public function MenuChange(Application $wechat, Request $request)
+    {
+        if ($request->ip()=='127.0.0.1') {
+            echo '本地同步不了，需上线部署后才能同步';
+            die;
+        } else {
+            $menu = new WechatMenu();
+            $list =$menu->get()->toArray();
+            $d=make_tree1($list);
+            foreach ($d as $key => $value) {
+                foreach ($value['sub_button'] as $v) {
+                    $q[]=['type'=>'view','name'=>$v['name'],'url'=>$v['url']];
+                    $z[]=['name'=>$value['name'], "sub_button" =>$q];
+                    unset($q);
+                }
+            }
+
+            $menu = $wechat->menu;
+            $menus = $menu->current();
+            if ($menu->add($z)) {
+                return redirect()->route('WechatIndex')->with('tongbu', '同步成功');
+            } else {
+                return redirect()->route('WechatIndex')->with('tongbu', '同步失败');
+            }
+        }
+    }
+
+
     public function user(Application $wechat)
     {
         //发送模版信息

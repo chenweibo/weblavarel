@@ -24,11 +24,16 @@
                         {{session('error')}}
                     </div>
                 @endif
+                @if(!empty(session('tongbu')))
+                    <div class="alert alert-success">
+                        {{session('tongbu')}}
+                    </div>
+                @endif
                 <div class="alert alert alert-info">
                  以下是公众号菜单配置，最多3个自定义菜单，每个大菜单下最多可以延伸五个子菜单。如超出同步时可能会出错。
                 </div>
                 <a class="layui-btn w" href="{{route('MenuCreate')}}">添加菜单</a>
-                <a class="layui-btn w" href="">同步到公众号</a>
+                <a class="layui-btn w" href="{{route('MenuChange')}}">同步到公众号</a>
                 <div class="layui-form">
                     <div class="table-min">
                         <table class="layui-table">
@@ -47,13 +52,12 @@
 
                               @foreach ($str as $key)
                                   <tr data-id="">
-
                                       <td>{{$key['html']}}{{$key['name']}}</td>
                                       <td>{{$key['sort']}}</td>
                                       <td>
-                                          <a href="{{route('ColumnEdit',['id'=>$key['id']])}}"
+                                          <a href="{{route('MenuEdit',['id'=>$key['id']])}}"
                                              class="layui-btn  layui-btn-small">编辑</a>
-                                          <a href="javascript:Del({{$key['id']}},'{{ route('ColumnDelete') }}')"
+                                          <a href="javascript:Del({{$key['id']}},'{{ route('MenuDelete') }}')"
                                              class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
                                       </td>
                                   </tr>
