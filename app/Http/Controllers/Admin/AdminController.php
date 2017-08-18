@@ -34,7 +34,8 @@ class AdminController extends Controller
         $image = $content->where('type', 4)->count();
         $down = $content->where('type', 5)->count();
         $book = $gbook->count();
-        return view('admin/index', ['page'=>$page,'product'=>$product,'article'=>$article,'image'=>$image,'down'=>$down,'gbook'=>$book]);
+        $data = unserialize(file_get_contents(public_path('tongji.db')));
+        return view('admin/index', ['data'=>$data,'page'=>$page,'product'=>$product,'article'=>$article,'image'=>$image,'down'=>$down,'gbook'=>$book]);
     }
 
     public function site(Request $request)
@@ -104,5 +105,52 @@ class AdminController extends Controller
     public function error()
     {
         return view('error');
+    }
+
+    public function Statistics(Request $request)
+    {
+        $param= $request->all();
+        if (!empty($param)) {
+            return ['data'=>'傻逼别访问了。'];
+        }
+        $file = public_path('tongji.db');
+//$data = unserialize(file_get_contents($file));
+ $fp=fopen($file, 'r+');
+        $content='';
+
+        if (flock($fp, LOCK_EX)) {
+            while (($buffer=fgets($fp, 1024))!=false) {
+                $content=$content.$buffer;
+            }
+            $data=unserialize($content);
+
+//设置记录键值
+     $total = 'total';
+            $month = date('Ym');
+            $today = date('Ymd');
+            $yesterday = date('Ymd', strtotime("-1 day"));
+            $tongji = array();
+// 总访问增加
+     $tongji[$total] = $data[$total] + 1;
+// 本月访问量增加
+     $tongji[$month] = $data[$month] + 1;
+// 今日访问增加
+     $tongji[$today] = $data[$today] + 1;
+//保持昨天访问
+     $tongji[$yesterday] = $data[$yesterday];
+
+//保存统计数据
+     ftruncate($fp, 0); // 将文件截断到给定的长度
+     rewind($fp); // 倒回文件指针的位置
+     fwrite($fp, serialize($tongji));
+            flock($fp, LOCK_UN);
+            fclose($fp);
+
+//输出数据
+     $total = $tongji[$total];
+            $month = $tongji[$month];
+            $today = $tongji[$today];
+            $yesterday = $tongji[$yesterday]?$tongji[$yesterday]:0;
+        }
     }
 }

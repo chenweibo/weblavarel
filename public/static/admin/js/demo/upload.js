@@ -33,7 +33,7 @@ $(function(){
  uploader.on( 'fileQueued', function( file ) {  // webuploader事件.当选择文件后，文件被加载到文件队列中，触发该事件。等效于 uploader.onFileueued = function(file){...} ，类似js的事件定义。
      var $li = $(
              '<div id="' + file.id + '" class="file-item thumbnail upfa">' +
-                 '<img>' +
+                 '<img onclick="moveicon(event)">' +
 
              '<a id="fancybox-close" onclick="removeimg(event)" style="display: inline;"></a></div>'
              ),

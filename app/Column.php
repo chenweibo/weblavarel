@@ -75,4 +75,8 @@ class Column extends Model
     {
         return $this->where('type', $type)->orderBy('sort', 'asc')->get()->toArray();
     }
+    public function getWhereComlun($where)
+    {
+        return $this->where($where)->orderBy('sort', 'asc')->get()->toArray();
+    }
 }

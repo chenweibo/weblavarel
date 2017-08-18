@@ -60,10 +60,10 @@
                                 <div class="input-group col-sm-4">
                                     <select class="form-control" name="path" id="path" required="">
                                         @foreach ($str as $v)
-                                            @if ($v['id'] != $data['id'])
-                                                <option @if ($v['id'] == $data['id'])  selected="select"
+
+                                                <option @if ($v['id'] == $data['lid'])  selected="select"
                                                         @endif    value="{{$v['path']}}-{{$v['id']}}">{{$v['html']}}{{$v['name']}}</option>
-                                            @endif
+
                                         @endforeach
                                     </select>
 

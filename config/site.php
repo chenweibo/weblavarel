@@ -2,7 +2,7 @@
 
 return [
 
-'title'=>'123',
+'title'=>'浙江金安电气有限公司',
 'en_title'=>'22',
 'keywords'=>'3',
 'description'=>'123',

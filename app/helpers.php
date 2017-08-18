@@ -77,10 +77,6 @@ function columnMenu($result, $parentid=0, $format="|--")
      }
      return $arr;
  }
- function makeMenu($list)
- {
- }
-
 
  function explodepath($param)
  {
@@ -134,6 +130,8 @@ function columnMenu($result, $parentid=0, $format="|--")
          if ($count == 2) {
              $res=explodepath($v['path']);
              break;
+         } else {
+             $res=$v['pid'];
          }
      }
      return $res;
@@ -173,3 +171,35 @@ function columnMenu($result, $parentid=0, $format="|--")
 
      \File::put($envPath, $content);
  }
+  function getChilds($m, $f_id)
+  {
+      $arr = array();
+      foreach ($m as $v) {
+          if ($v['pid'] == $f_id) {
+              $arr[] = $v;
+              $arr = array_merge($arr, getChilds($m, $v['id']));
+          }
+      }
+      return $arr;
+  }
+
+  function DeleteHtml($str)
+  {
+      $str =  strip_tags($str);
+      $str = trim($str); //清除字符串两边的空格
+    $str = preg_replace("/\t/", "", $str); //使用正则表达式替换内容，如：空格，换行，并将替换为空。
+    $str = preg_replace("/\r\n/", "", $str);
+      $str = preg_replace("/\r/", "", $str);
+      $str = preg_replace("/\n/", "", $str);
+      $str = preg_replace("/ /", "", $str);
+    //匹配html中的空格
+    return trim($str); //返回字符串
+  }
+
+function getstring($data, $first, $last)
+{
+    $data=DeleteHtml($data);
+    $data=mb_substr($data, $first, $last, 'utf-8');
+
+    return $data;
+}

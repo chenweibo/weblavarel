@@ -343,6 +343,7 @@ class ContentController extends Controller
           ->select('content.*', 'columns.name as colums')
           ->paginate(10);
         $menu  = $Column->getTypeComlun(4);
+
         if (empty($menu)) {
             $menu = [];
         } else {
@@ -392,6 +393,7 @@ class ContentController extends Controller
         } else {
             $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
         }
+        
         $data = $content->where('id', $request->id)->get()->first()->toArray();
         return view('admin/content/ImageEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
     }

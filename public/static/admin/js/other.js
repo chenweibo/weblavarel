@@ -399,3 +399,7 @@ layer.open({
   });
  }
 }
+
+function moveicon(event){
+  $('input[name=img]').val($(event.target).parent().data('img'));
+}

@@ -6,14 +6,14 @@
     <div class="row">
 
         <div class="col-sm-3">
-            <div class="widget lazur-bg">
+            <div class="widget lazur-bg style1">
                 <div class="row">
                     <div class="col-xs-4 text-center">
                         <i class="fa fa-compass fa-5x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 总访问量 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$data['total']}}</h2>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 今日访问量 </span>
-                        <h2 class="font-bold">-</h2>
+                        <h2 class="font-bold">{{$data[date('Ymd')]}}</h2>
                     </div>
                 </div>
             </div>
@@ -252,6 +252,10 @@
                             <td>程序版本（2.0）</td>
                             <td><a class="btn btn-primary btn-xs" href="#" role="button">检查更新</a></td>
 
+                        </tr>
+                        <tr>
+                            <td>站点地图</td>
+                            <td><a class="btn btn-primary btn-xs" href="#" role="button">生成</a></td>
                         </tr>
                         <tr>
                             <td>图片水印功能</td>
