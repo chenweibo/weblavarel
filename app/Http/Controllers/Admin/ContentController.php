@@ -63,7 +63,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         return view('admin/content/Product', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
     }
@@ -85,7 +85,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         return view('admin/content/ProductCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
     }
@@ -106,7 +106,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         $data = $content->where('id', $request->id)->get()->first()->toArray();
         return view('admin/content/ProductEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
@@ -247,7 +247,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
 
         return view('admin/content/Aritcle', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
@@ -270,7 +270,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         return view('admin/content/AritcleCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
     }
@@ -291,7 +291,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         $data = $content->where('id', $request->id)->get()->first()->toArray();
         return view('admin/content/AritcleEdit', ['str'=>$menu,'data'=>$data,'file'=>$file]);
@@ -347,7 +347,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
 
         return view('admin/content/Image', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
@@ -370,7 +370,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         return view('admin/content/ImageCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
     }
@@ -391,7 +391,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         
         $data = $content->where('id', $request->id)->get()->first()->toArray();
@@ -446,7 +446,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
 
         return view('admin/content/Down', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
@@ -469,7 +469,7 @@ class ContentController extends Controller
         if (empty($menu)) {
             $menu = [];
         } else {
-            $menu = unlimitedForLever($menu, $html = '|-', level($menu), $level = 0);
+            $menu = unlimitedForLever($menu, $html = '|-');
         }
         return view('admin/content/DownCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
     }

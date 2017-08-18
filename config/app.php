@@ -180,7 +180,8 @@ return [
         //add by chenweibo
         Mews\Captcha\CaptchaServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Roumen\Sitemap\SitemapServiceProvider::class,
 
     ],
 

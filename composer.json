@@ -11,7 +11,8 @@
         "laravel/tinker": "~1.0",
         "mews/captcha": "^2.1",
         "overtrue/laravel-wechat": "~3.0",
-        "overtrue/pinyin": "~3.0"
+        "overtrue/pinyin": "~3.0",
+        "roumen/sitemap": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -1,6 +1,17 @@
 <?php
 
 
+Route::get('mysitemap', function () {
+
+    // create new sitemap object
+    $sitemap = App::make("sitemap");
+
+    $sitemap->add(route('home'), date('Y-m-d'), '0.9', 'daily');
+    // generate your sitemap (format, filename)
+    $sitemap->store('xml', 'sitemap');
+    // this will generate file mysitemap.xml to your public folder
+});
+
 // 2017-8-3 by chenweibo common routes
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');

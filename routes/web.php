@@ -29,5 +29,5 @@ include 'adminRoute.php';
 Route::group(['middleware' => ['web'],'namespace' => 'Home'], function () {
     Route::get('/', function () {
         return 'hello word';
-    });
+    })->name('home');
 });
