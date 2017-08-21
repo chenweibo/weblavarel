@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-14 15:28:37
+Date: 2017-08-21 17:14:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '106', '127.0.0.1', '1502689719', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '111', '127.0.0.1', '1503295963', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -63,7 +63,7 @@ CREATE TABLE `columns` (
 -- Records of columns
 -- ----------------------------
 INSERT INTO `columns` VALUES ('25', '关于我们', null, '1', '0', '0', 'guanyuwomen', '0', null, '0', 'a', '1', 'cn');
-INSERT INTO `columns` VALUES ('27', '产品中心', null, '99', '0', '0', '12', '0', null, '0', 'dd', '1', 'cn');
+INSERT INTO `columns` VALUES ('27', '产品中心', null, '99', '0', '0', '12', '2', null, '0', 'dd', '1', 'cn');
 INSERT INTO `columns` VALUES ('28', '新闻中心', null, '99', '0', '0', '123ds', '0', null, '0', 'sdf', '1', 'cn');
 INSERT INTO `columns` VALUES ('29', '公司新闻', null, '99', '28', '0-28', 'w', '3', null, '0', 'd', '1', 'cn');
 INSERT INTO `columns` VALUES ('31', '产品分类1', null, '99', '27', '0-27', 'chanpinfenlei1', '2', null, '0', 'd', '1', 'cn');
@@ -90,7 +90,7 @@ CREATE TABLE `content` (
   `author` varchar(255) DEFAULT NULL,
   `info` mediumtext,
   `img` varchar(255) DEFAULT NULL,
-  `moreimg` varchar(255) DEFAULT NULL,
+  `moreimg` varchar(600) DEFAULT NULL,
   `down` varchar(255) DEFAULT NULL,
   `keywords` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -230,7 +230,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -302,9 +302,12 @@ INSERT INTO `node` VALUES ('68', '下载删除', '', '1', '35', '', '99', 'DownD
 INSERT INTO `node` VALUES ('69', '下载批量删除', '', '1', '35', '', '99', 'DownMoreDelete');
 INSERT INTO `node` VALUES ('70', '公众号配置', '', '2', '11', '', '99', 'WechatConfig');
 INSERT INTO `node` VALUES ('71', '菜单管理', '', '2', '11', '', '99', 'WechatIndex');
-INSERT INTO `node` VALUES ('72', '粉丝管理', '', '2', '11', '', '99', null);
-INSERT INTO `node` VALUES ('73', '回复设置', '', '2', '11', '', '99', null);
-INSERT INTO `node` VALUES ('74', '消息管理', '', '2', '11', '', '99', null);
+INSERT INTO `node` VALUES ('75', '菜单添加', '', '1', '71', '', '99', 'MenuCreate');
+INSERT INTO `node` VALUES ('73', '回复设置', '', '2', '11', '', '99', 'Reply');
+INSERT INTO `node` VALUES ('74', '消息管理', '', '2', '11', '', '99', 'Message');
+INSERT INTO `node` VALUES ('76', '菜单编辑', '', '1', '71', '', '99', 'MenuEdit');
+INSERT INTO `node` VALUES ('77', '菜单删除', '', '1', '71', '', '99', 'MenuDelete');
+INSERT INTO `node` VALUES ('78', '菜单同步', '', '1', '71', '', '99', 'MenuChange');
 
 -- ----------------------------
 -- Table structure for page
@@ -375,15 +378,11 @@ CREATE TABLE `recycles` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of recycles
 -- ----------------------------
-INSERT INTO `recycles` VALUES ('148', 'dddsd f', 'sdfasdf', 'ddd', '29', '0-28-29', null, null, null, null, null, null, null, null, 'cn', '0', '3', '50', '1', null, '99', null, '2017-08-11 10:32:18');
-INSERT INTO `recycles` VALUES ('149', 'ewrwees', 'ds ds', 'ewrwees', '29', '0-28-29', null, null, '<p>s ds asd ds asd&nbsp;</p>', null, null, null, 'sad', 'sad', 'cn', '0', '3', '50', '1', 'sad', '99', null, null);
-INSERT INTO `recycles` VALUES ('151', 'ddddsd', null, 'ddddsd', '37', '0-36-37', null, null, null, null, null, null, null, null, 'cn', '0', '4', '50', '1', null, '99', null, '2017-08-11 14:35:19');
-INSERT INTO `recycles` VALUES ('152', 'sdf', null, 'sdf', '39', '0-38-39', null, null, null, null, null, null, null, null, 'cn', '0', '5', '50', '1', null, '99', null, null);
 
 -- ----------------------------
 -- Table structure for role
@@ -462,3 +461,22 @@ INSERT INTO `wechatmenu` VALUES ('1', '菜单', 'https://www.baidu.com', '0', '8
 INSERT INTO `wechatmenu` VALUES ('4', '子菜单1', 'www.a', '1', '88');
 INSERT INTO `wechatmenu` VALUES ('5', '菜单2', '#', '0', '88');
 INSERT INTO `wechatmenu` VALUES ('6', 'zicai2', 'xx', '5', '88');
+
+-- ----------------------------
+-- Table structure for wechatmessage
+-- ----------------------------
+DROP TABLE IF EXISTS `wechatmessage`;
+CREATE TABLE `wechatmessage` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `OpenID` varchar(255) NOT NULL,
+  `content` mediumtext,
+  `time` int(50) DEFAULT NULL,
+  `MsgId` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wechatmessage
+-- ----------------------------
+INSERT INTO `wechatmessage` VALUES ('1', '1', '2', '3', '1', null);

@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-xs-8 text-right">
                         <span> 今日访问量 </span>
-                        <h2 class="font-bold">{{$data[date('Ymd')]}}</h2>
+                        <h2 class="font-bold">{{ $data[date('Ymd')] or '0' }}</h2>
                     </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@
                         </tr>
                         <tr>
                             <td>站点地图</td>
-                            <td><a class="btn btn-primary btn-xs" href="#" role="button">生成</a></td>
+                            <td><a class="btn btn-primary btn-xs" onclick="sitemap()" role="button">生成</a></td>
                         </tr>
                         <tr>
                             <td>图片水印功能</td>
@@ -278,4 +278,6 @@
         </div>
     </div>
 </div>
+            <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
+            <script src="{{asset('static/admin/js/other.js')}}"></script>
 @endsection

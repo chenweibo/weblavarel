@@ -39,7 +39,7 @@
                         </li>
                         <li><a href="buttons.html#">导入excel</a>
                         </li>
-                        <li><a href="buttons.html#">导出excel</a>
+                        <li><a onclick="exportXls()">导出excel</a>
                         </li>
                     </ul>
                 </div>

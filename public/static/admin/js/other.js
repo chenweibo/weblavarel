@@ -403,3 +403,38 @@ layer.open({
 function moveicon(event){
   $('input[name=img]').val($(event.target).parent().data('img'));
 }
+
+function sitemap(){
+
+  $.ajax({
+      type: 'GET',
+      url: '/mysitemap',
+      dataType: 'json',
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      beforeSend: function () {
+          jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+      },
+      success: function (data) {
+          layer.close(jz);
+          layer.msg('生成成功');
+      },
+      error: function () {
+          alert("出错,联系管理员")
+      }
+  });
+
+}
+
+function exportXls(){
+
+  layer.open({
+        type: 1,
+        skin: 'layui-layer-filemove', //样式类名
+        offset: '200px',
+        title: '导出xls',
+        anim: 1,
+        content: 'aaa'
+    });
+}

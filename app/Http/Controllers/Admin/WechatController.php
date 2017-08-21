@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use EasyWeChat\Foundation\Application;
+use Illuminate\Support\Facades\DB;
 use Log;
 use App\WechatMenu;
 
 class WechatController extends Controller
 {
-    public function serve()
+    public function serve(Application $wechat)
     {
-        $wechat = app('wechat');
         $wechat->server->setMessageHandler(function ($message) {
             if ($message->Event=='subscribe') {
                 return '欢迎关注我哦';
@@ -25,7 +25,17 @@ class WechatController extends Controller
                     return '收到事件消息';
                     break;
                 case 'text':
-                    return '你发了'.$message->Content;
+
+                    $data['OpenID'] = $message->FromUserName;
+                    $data['content'] =  $message->Content;
+                    $data['time'] = $message->CreateTime;
+                    $data['MsgId'] = $message->MsgId;
+                    if ($message->Content =='天气') {
+                        return '今天天气不错';
+                    }
+                    DB::table('wechatmessage')->insert([  'OpenID'=>$message->FromUserName,'content'=>$message->Content,'time'=>$message->CreateTime,'MsgId'=>$message->MsgId]);
+
+                    return '已经收到你发的信息';
                     break;
                 case 'image':
                     return '收到图片消息';
@@ -102,6 +112,8 @@ class WechatController extends Controller
                 return ['code'=>0,'msg'=>'编辑失败'];
             }
         }
+
+
         $list =$menu->get()->toArray();
         $str = unlimitedForLever($list, '--');
         $data = $menu->where('id', $request->id)->get()->first();
@@ -145,13 +157,12 @@ class WechatController extends Controller
         }
     }
 
-
-    public function user(Application $wechat)
+    public function Message()
     {
-        //发送模版信息
-
-
-        //发送模版信息
-        //$messageId = $wechat->notice->to('oE9NywJw0oSfxN03wPyjqd8rWVfA')->uses('BBXeR0vcb_Vhh2ClKKZQcFI33zE7juK44xq2Uj2ZmM8')->send();
+        return view('admin/wechat/Message');
+    }
+    public function Reply()
+    {
+        return view('admin/wechat/Reply');
     }
 }

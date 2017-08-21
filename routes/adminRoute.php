@@ -9,6 +9,7 @@ Route::get('mysitemap', function () {
     $sitemap->add(route('home'), date('Y-m-d'), '0.9', 'daily');
     // generate your sitemap (format, filename)
     $sitemap->store('xml', 'sitemap');
+    return ['code'=>1];
     // this will generate file mysitemap.xml to your public folder
 });
 
@@ -124,4 +125,6 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/MenuEdit', 'WechatController@MenuEdit')->name('MenuEdit');
     Route::any('admin/MenuDelete', 'WechatController@MenuDelete')->name('MenuDelete');
     Route::any('admin/MenuChange', 'WechatController@MenuChange')->name('MenuChange');
+    Route::any('admin/Reply', 'WechatController@Reply')->name('Reply');
+    Route::any('admin/Message', 'WechatController@Message')->name('Message');
 });
