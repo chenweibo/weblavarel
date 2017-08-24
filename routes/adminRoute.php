@@ -127,4 +127,10 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/MenuChange', 'WechatController@MenuChange')->name('MenuChange');
     Route::any('admin/Reply', 'WechatController@Reply')->name('Reply');
     Route::any('admin/Message', 'WechatController@Message')->name('Message');
+    Route::any('admin/MessageRead/{id}', 'WechatController@MessageRead')->name('MessageRead');
+    Route::any('admin/MessageDelete', 'WechatController@MessageDelete')->name('MessageDelete');
+    Route::any('admin/userReply', 'WechatController@userReply')->name('userReply');
+    Route::any('admin/ReplyCreate', 'WechatController@ReplyCreate')->name('ReplyCreate');
+    Route::any('admin/ReplyEdit', 'WechatController@ReplyEdit')->name('ReplyEdit');
+    Route::any('admin/ReplyDelete', 'WechatController@ReplyDelete')->name('ReplyDelete');
 });

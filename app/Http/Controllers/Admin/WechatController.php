@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use EasyWeChat\Message\Text;
 use App\Http\Controllers\Controller;
 use EasyWeChat\Foundation\Application;
 use Illuminate\Support\Facades\DB;
+use \GuzzleHttp\Client;
 use Log;
 use App\WechatMenu;
 
@@ -13,11 +15,15 @@ class WechatController extends Controller
 {
     public function serve(Application $wechat)
     {
-        $wechat->server->setMessageHandler(function ($message) {
+        $app = app('wechat');
+        $app->server->setMessageHandler(function ($message) {
+            $user_openid = $message->FromUserName;
             if ($message->Event=='subscribe') {
-                return '欢迎关注我哦';
+                return '欢迎关注我哦'.$user_openid;
             }
             if ($message->Event=='unsubscribe') {
+                $z=$userService->get($message->FromUserName);
+                return '欢迎关注我哦'.$z->nickname;
                 return '已取消关注';
             }
             switch ($message->MsgType) {
@@ -25,17 +31,15 @@ class WechatController extends Controller
                     return '收到事件消息';
                     break;
                 case 'text':
-
                     $data['OpenID'] = $message->FromUserName;
                     $data['content'] =  $message->Content;
                     $data['time'] = $message->CreateTime;
                     $data['MsgId'] = $message->MsgId;
-                    if ($message->Content =='天气') {
-                        return '今天天气不错';
-                    }
-                    DB::table('wechatmessage')->insert([  'OpenID'=>$message->FromUserName,'content'=>$message->Content,'time'=>$message->CreateTime,'MsgId'=>$message->MsgId]);
-
-                    return '已经收到你发的信息';
+                    $app = app('wechat');
+                    $userService = $app->user;
+                    $z=$userService->get($message->FromUserName);
+                  DB::table('wechatmessage')->insert([ 'name'=>$z->nickname, 'OpenID'=>$message->FromUserName,'content'=>$message->Content,'time'=>$message->CreateTime,'MsgId'=>$message->MsgId]);
+                    return '你的留言我们已经收到';
                     break;
                 case 'image':
                     return '收到图片消息';
@@ -157,12 +161,54 @@ class WechatController extends Controller
         }
     }
 
-    public function Message()
+    public function Message(Application $wechat)
     {
-        return view('admin/wechat/Message');
+        $list = DB::table('wechatmessage')->get();
+        return view('admin/wechat/Message', ['list'=>$list]);
     }
+    public function MessageRead(Application $wechat, $id)
+    {
+        $list = DB::table('wechatmessage')->where('id', $id)->get()->first();
+        return view('admin/wechat/MessageRead', ['data'=>$list]);
+    }
+    public function MessageDelete(Request $request)
+    {
+        if ($request->ajax()) {
+            $id=$request->id;
+            DB::table('wechatmessage')->where('id', $id)->delete();
+            return ['code' => 1, 'data' => route('Message'), 'msg' => ''];
+        }
+    }
+    public function userReply(Request $request, Application $wechat)
+    {
+        $id=$request->id;
+        $data = DB::table('wechatmessage')->where('id', $id)->get()->first();
+        $openid=$data->OpenID;
+        $content = $request->content;
+        $message = new Text(['content' => $content]);
+        $result = $wechat->staff->message($message)->to($openid)->send();
+
+        if (!$result) {
+            return ['code'=>0];
+        }
+        DB::table('wechatmessage')->where('id', $id)->update(['recontent'=>$content]);
+        return ['code'=>1];
+    }
+
+
     public function Reply()
     {
         return view('admin/wechat/Reply');
+    }
+    public function ReplyCreate()
+    {
+        return view('admin/wechat/ReplyCreate');
+    }
+    public function ReplyEdit()
+    {
+        return view('admin/wechat/ReplyEdit');
+    }
+    public function ReplyDelete()
+    {
     }
 }
