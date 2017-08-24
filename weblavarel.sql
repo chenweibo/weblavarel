@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-21 17:14:28
+Date: 2017-08-24 17:24:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '111', '127.0.0.1', '1503295963', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '113', '127.0.0.1', '1503557132', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -457,7 +457,6 @@ CREATE TABLE `wechatmenu` (
 -- ----------------------------
 -- Records of wechatmenu
 -- ----------------------------
-INSERT INTO `wechatmenu` VALUES ('1', '菜单', 'https://www.baidu.com', '0', '80');
 INSERT INTO `wechatmenu` VALUES ('4', '子菜单1', 'www.a', '1', '88');
 INSERT INTO `wechatmenu` VALUES ('5', '菜单2', '#', '0', '88');
 INSERT INTO `wechatmenu` VALUES ('6', 'zicai2', 'xx', '5', '88');
@@ -473,10 +472,11 @@ CREATE TABLE `wechatmessage` (
   `time` int(50) DEFAULT NULL,
   `MsgId` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `recontent` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wechatmessage
 -- ----------------------------
-INSERT INTO `wechatmessage` VALUES ('1', '1', '2', '3', '1', null);
+INSERT INTO `wechatmessage` VALUES ('2', 'oE9NywJw0oSfxN03wPyjqd8rWVfA', '/::)', '1503384008', '6456985148104134758', 'A0灵璧小伙子', null);
