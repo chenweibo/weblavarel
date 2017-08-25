@@ -25,14 +25,14 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">关键词：</label>
                                 <div class="input-group col-sm-4">
-                                    <input id="rolename" type="text" class="form-control" name="rolename" required
+                                    <input id="name" type="text" class="form-control" name="name" required
                                            aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">回复内容</label>
                                 <div class="input-group col-sm-4">
-                                  <textarea class="layui-textarea" name="content" rows="8" cols="80" disabled ></textarea>
+                                  <textarea class="layui-textarea" name="content" rows="8" cols="80" ></textarea>
 
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
         $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green",});
         function toVaild() {
             var jz;
-            var url = "{{ route('RoleCreate')}}";
+            var url = "{{ route('ReplyCreate')}}";
             $.ajax({
                 type: "POST",
                 url: url,

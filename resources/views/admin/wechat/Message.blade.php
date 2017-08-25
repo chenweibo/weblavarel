@@ -29,7 +29,9 @@
                         {{session('tongbu')}}
                     </div>
                 @endif
-
+                <div class="alert alert alert-info">
+             发送消息，且有48小时时间限制。即用户主动发消息给公众号后48小时内，可以随时给用户发客服消息。超过时间后无法发送
+                </div>
 
                 <div class="layui-form">
                     <div class="table-min">
@@ -50,7 +52,7 @@
                               @foreach ($list as $v)
                                   <tr data-id="">
                                       <td>{{$v->name}}</td>
-                                      <td>{{ date('Y-m-d H:i:s'), $v->time}}</td>
+                                      <td>{{ date('Y-m-d H:i:s',$v->time)}}</td>
                                       <td>
                                           <a href="{{route('MessageRead',$v->id)}}"
                                              class="layui-btn  layui-btn-small">查看</a>

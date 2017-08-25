@@ -24,11 +24,6 @@
                         {{session('error')}}
                     </div>
                 @endif
-                @if(!empty(session('tongbu')))
-                    <div class="alert alert-success">
-                        {{session('tongbu')}}
-                    </div>
-                @endif
 
                 <a class="layui-btn w" href="{{route('ReplyCreate')}}">添加</a>
 
@@ -42,12 +37,22 @@
                             <thead>
                             <tr>
                                 <th>名称</th>
-
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
+                              @foreach ($list as $v)
+                                  <tr data-id="">
+                                      <td>{{$v->name}}</td>
 
+                                      <td>
+                                          <a href="{{route('ReplyEdit',['id'=>$v->id])}}"
+                                             class="layui-btn  layui-btn-small">编辑</a>
+                                          <a href="javascript:Del('{{$v->id}}','{{ route('ReplyDelete') }}')"
+                                             class="layui-btn layui-btn-danger layui-btn-small dc">删除</a>
+                                      </td>
+                                  </tr>
+                              @endforeach
 
                             </tbody>
                         </table>

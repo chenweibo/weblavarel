@@ -133,7 +133,7 @@
               },
               error: function (request) {
                   layer.close(jz);
-                  swal("网络错误!", "", "error");
+                  swal("回复失败，2天内不回复无法发送客服消息", "", "error");
               },
               success: function (data) {
                   //关闭加载层

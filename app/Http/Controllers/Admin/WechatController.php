@@ -38,8 +38,13 @@ class WechatController extends Controller
                     $app = app('wechat');
                     $userService = $app->user;
                     $z=$userService->get($message->FromUserName);
-                  DB::table('wechatmessage')->insert([ 'name'=>$z->nickname, 'OpenID'=>$message->FromUserName,'content'=>$message->Content,'time'=>$message->CreateTime,'MsgId'=>$message->MsgId]);
-                    return '你的留言我们已经收到';
+                    DB::table('wechatmessage')->insert([ 'name'=>$z->nickname, 'OpenID'=>$message->FromUserName,'content'=>$message->Content,'time'=>$message->CreateTime,'MsgId'=>$message->MsgId]);
+                      $list = DB::table('reply')->where('name', $message->Content)->get()->first();
+                    if (empty($list)) {
+                        return '你的留言我们已经收到';
+                    } else {
+                        return $list->content;
+                    }
                     break;
                 case 'image':
                     return '收到图片消息';
@@ -143,14 +148,13 @@ class WechatController extends Controller
             $menu = new WechatMenu();
             $list =$menu->get()->toArray();
             $d=make_tree1($list);
-            foreach ($d as $key => $value) {
-                foreach ($value['sub_button'] as $v) {
-                    $q[]=['type'=>'view','name'=>$v['name'],'url'=>$v['url']];
-                    $z[]=['name'=>$value['name'], "sub_button" =>$q];
-                    unset($q);
+            foreach ($d as $v) {
+                foreach ($v['sub_button'] as $vo) {
+                    $q[]=['type'=>'view','name'=>$vo['name'],'url'=>$vo['url']];
                 }
+                $z[]=['name'=>$v['name'], "sub_button" =>$q];
+                unset($q);
             }
-
             $menu = $wechat->menu;
             $menus = $menu->current();
             if ($menu->add($z)) {
@@ -198,17 +202,40 @@ class WechatController extends Controller
 
     public function Reply()
     {
-        return view('admin/wechat/Reply');
+        $list = DB::table('reply')->get();
+        return view('admin/wechat/Reply', ['list'=>$list]);
     }
-    public function ReplyCreate()
+    public function ReplyCreate(Request $request)
     {
+        if ($request->ajax()) {
+            $info = DB::table('reply')->insert($request->all());
+            if ($info) {
+                return ['code'=>1,'data'=>route('Reply'),'msg'=>''];
+            } else {
+                return ['code'=>0,'msg'=>'添加失败'];
+            }
+        }
         return view('admin/wechat/ReplyCreate');
     }
-    public function ReplyEdit()
+    public function ReplyEdit(Request $request)
     {
-        return view('admin/wechat/ReplyEdit');
+        $data = DB::table('reply')->where('id', $request->id)->get()->first();
+        if ($request->ajax()) {
+            # code...
+          if (DB::table('reply')->where('id', $request->id)->update($request->all())) {
+              return ['code'=>1,'data'=>route('Reply'),'msg'=>''];
+          } else {
+              return ['code'=>0,'msg'=>'编辑失败'];
+          }
+        }
+        return view('admin/wechat/ReplyEdit', ['data'=>$data]);
     }
-    public function ReplyDelete()
+    public function ReplyDelete(Request $request)
     {
+        if ($request->ajax()) {
+            $id=$request->id;
+            DB::table('reply')->where('id', $id)->delete();
+            return ['code' => 1, 'data' => route('Reply'), 'msg' => ''];
+        }
     }
 }
