@@ -30,7 +30,7 @@
                                            value="{{ $data['title'] }}" aria-required="true">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" @if(config('admin.lang') == 1) style="display:block"  @else style="display:none" @endif>
                                 <label class="col-sm-3 control-label">英文站点名称：</label>
                                 <div class="input-group col-sm-4">
                                     <input id="site_title" type="text" class="form-control" name="en_title"
@@ -43,6 +43,22 @@
                                 <div class="input-group col-sm-4">
                                     <input id="site_keywords" type="text" class="form-control"
                                            value="{{ $data['keywords'] }}" name="keywords" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group" @if(config('admin.lang') == 1) style="display:block"  @else style="display:none" @endif>
+                                <label class="col-sm-3 control-label">英文站点描述：</label>
+                                <div class="input-group col-sm-4">
+                                    <input id="en_description" type="text" class="form-control"
+                                           value="{{ $data['en_description'] }}" name="en_description" aria-required="true">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group" @if(config('admin.lang') == 1) style="display:block"  @else style="display:none" @endif>
+                                <label class="col-sm-3 control-label">英文站点关键字：</label>
+                                <div class="input-group col-sm-4">
+                                    <input id="en_keywords" type="text" class="form-control"
+                                           value="{{ $data['en_keywords'] }}" name="en_keywords" aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group">

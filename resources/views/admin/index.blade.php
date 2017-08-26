@@ -193,17 +193,12 @@
                                 @endphp</td>
                         </tr>
                         <tr>
-                            <td>服务器时间</td>
-                            <td>@php
+                            <td>当前时间</td>
+                            <td id="systemtime">@php
                                     echo date("Y年n月j日 H:i:s");
                                 @endphp</td>
                         </tr>
-                        <tr>
-                            <td>北京时间</td>
-                            <td>@php
-                                    echo gmdate("Y年n月j日 H:i:s",time()+8*3600);
-                                @endphp</td>
-                        </tr>
+
                         <tr>
                             <td>剩余空间</td>
                             <td>@php
@@ -280,4 +275,36 @@
 </div>
             <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
             <script src="{{asset('static/admin/js/other.js')}}"></script>
+            <script type="text/javascript">
+
+            function systemTime(){
+              var date = new Date();
+     var seperator1 = "年";
+     var seperator2 = "月";
+     var seperator3 = "日";
+     var seperator4 = ":";
+     var month = date.getMonth() + 1;
+     var strDate = date.getDate();
+     if (month >= 1 && month <= 9) {
+         month;
+     }
+     if (strDate >= 0 && strDate <= 9) {
+         strDate = "0" + strDate;
+     }
+     var currentdate = date.getFullYear() + seperator1 + month + seperator2 + strDate
+             + seperator3 +' '+ date.getHours() + seperator4 + date.getMinutes()
+             + seperator4 + date.getSeconds();
+
+                  $('#systemtime').html(currentdate);
+
+            }
+
+
+
+                 setInterval(function(){
+                 systemTime();
+                 },1000);
+
+
+            </script>
 @endsection

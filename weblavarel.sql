@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-25 17:11:34
+Date: 2017-08-26 17:20:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '114', '127.0.0.1', '1503640848', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '116', '127.0.0.1', '1503731163', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -230,7 +230,7 @@ CREATE TABLE `node` (
   `sort` int(50) DEFAULT '99',
   `route` varchar(155) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -308,6 +308,12 @@ INSERT INTO `node` VALUES ('74', '消息管理', '', '2', '11', '', '99', 'Messa
 INSERT INTO `node` VALUES ('76', '菜单编辑', '', '1', '71', '', '99', 'MenuEdit');
 INSERT INTO `node` VALUES ('77', '菜单删除', '', '1', '71', '', '99', 'MenuDelete');
 INSERT INTO `node` VALUES ('78', '菜单同步', '', '1', '71', '', '99', 'MenuChange');
+INSERT INTO `node` VALUES ('79', '消息查看', '', '1', '74', '', '99', 'MessageRead');
+INSERT INTO `node` VALUES ('80', '消息删除', '', '1', '74', '', '99', 'MessageDelete');
+INSERT INTO `node` VALUES ('81', '消息回复', '', '1', '74', '', '99', 'userReply');
+INSERT INTO `node` VALUES ('82', '回复添加', '', '1', '73', '', '99', 'ReplyCreate');
+INSERT INTO `node` VALUES ('83', '回复编辑', '', '1', '73', '', '99', 'ReplyEdit');
+INSERT INTO `node` VALUES ('84', '回复删除', '', '1', '73', '', '99', 'ReplyDelete');
 
 -- ----------------------------
 -- Table structure for page
@@ -393,7 +399,7 @@ CREATE TABLE `reply` (
   `name` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reply
