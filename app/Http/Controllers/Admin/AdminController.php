@@ -101,13 +101,10 @@ class AdminController extends Controller
         }
         return ['code'=>1];
     }
-
-
     public function error()
     {
         return view('error');
     }
-
     public function Statistics(Request $request)
     {
         $param= $request->all();

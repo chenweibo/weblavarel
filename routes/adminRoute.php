@@ -33,6 +33,9 @@ Route::any('admin/common/rewrite', 'Admin\CommonController@rewrite')->name('rewr
 Route::any('/wechat', 'Admin\WechatController@serve');
 Route::get('/Statistics', 'Admin\AdminController@Statistics')->name('Statistics');
 
+Route::get('/Exporting', 'Admin\CommonController@Exporting')->name('Exporting');
+Route::get('/Importing', 'Admin\CommonController@Importing')->name('Importing');
+
 Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], function () {
     Route::get('/admin_index', 'AdminController@index')->name('AdminIndex');
     Route::get('/adminmain', 'AdminController@indexPage')->name('adminmain');
@@ -133,4 +136,7 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/ReplyCreate', 'WechatController@ReplyCreate')->name('ReplyCreate');
     Route::any('admin/ReplyEdit', 'WechatController@ReplyEdit')->name('ReplyEdit');
     Route::any('admin/ReplyDelete', 'WechatController@ReplyDelete')->name('ReplyDelete');
+
+    Route::any('/Exporting', 'CommonController@Exporting')->name('Exporting');
+    Route::any('/Importing', 'CommonController@Importing')->name('Importing');
 });

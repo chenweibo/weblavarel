@@ -37,12 +37,13 @@
                         </li>
                         <li><a href="#" onclick="copyfile(arr,2)">复制</a>
                         </li>
-                        <li><a href="buttons.html#">导入excel</a>
+                        <li><a onclick="importXls()">导入excel</a>
                         </li>
                         <li><a onclick="exportXls()">导出excel</a>
                         </li>
                     </ul>
                 </div>
+
 
                 <div class="admin_search row" style=" height:35px; float:right">
                     <form class="navbar-form navbar-left zz" action="{{route('Product')}}" method="get" role="search">

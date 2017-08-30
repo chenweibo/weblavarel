@@ -9,6 +9,7 @@ use Overtrue\Pinyin\Pinyin;
 use App\Column;
 use App\Content;
 use App\User;
+use Excel;
 
 class CommonController extends Controller
 {
@@ -141,8 +142,27 @@ class CommonController extends Controller
             }
         }
         $Column = new Column();
-         $menu  = $Column->getTypeComlun($request->type);
+        $menu  = $Column->getTypeComlun($request->type);
         $menu = unlimitedForLever($menu, $html = '|-');
         return ['res'=>$menu];
+    }
+
+    public function Exporting(Request $request)
+    {
+        $content= new Content();
+        $cellData = [
+         ['name'],
+
+        ];
+        $data = $content->where('type', 2)->select('name')->get()->toArray();
+        Excel::create($request->name, function ($excel) use ($cellData) {
+            $excel->sheet('score', function ($sheet) use ($cellData) {
+                $sheet->rows($cellData);
+            });
+        })->export($request->type);
+    }
+
+    public function Importing(Request $request)
+    {
     }
 }

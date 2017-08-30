@@ -426,15 +426,139 @@ function sitemap(){
   });
 
 }
+// function exportajax(){
+//
+//   $.ajax({
+//       url: '/Exporting',
+//       type: "get",
+//       data: $('#exportForm').serialize(),
+//       dataType: "json",
+//       async: false,
+//       headers: {
+//           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//       },
+//       success: function (data) {
+//
+//       },
+//   })
+// }
 
 function exportXls(){
 
   layer.open({
         type: 1,
-        skin: 'layui-layer-filemove', //样式类名
+        skin: 'layui-layer-filemove',
         offset: '200px',
+         area: ['700px', '230px'],
         title: '导出xls',
         anim: 1,
-        content: 'aaa'
-    });
+        content: '<html>\
+        <form class="layui-form" id="exportForm" action="/Exporting" >\
+      <div class="layui-form-item">\
+      <label class="layui-form-label">标题</label>\
+      <div class="layui-input-block">\
+        <input type="text" style="margin-top:15px;width:500px;" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">\
+      </div>\
+    </div>\
+    <div class="layui-form-item">\
+      <label class="layui-form-label">格式</label>\
+      <div class="layui-input-block">\
+        <input type="radio" name="type" value="xls" title="Excel5" checked>\
+        <input type="radio" name="type" value="xlsx" title="Excel2007 (xlsx)" >\
+          <input type="radio" name="type" value="csv" title="CSV" >\
+      </div>\
+      </div>\
+      <div class="layui-form-item">\
+      <div class="layui-input-block">\
+        <button class="layui-btn exportajax"   lay-filter="formDemo">立即提交</button>\
+        <button type="reset" class="czt layui-btn layui-btn-primary">重置</button>\
+      </div>\
+    </div>\
+  </form>\
+</html>',
+ success: function(layero, index){
+   layui.use('form', function(){
+  var form = layui.form();
+  form.render();
+});
+  }
+    }
+  );
+}
+
+function submitxls(){
+   if($('#xlsFile').val()=='')
+   {
+    layer.msg('没有选择任何东西哦');
+   }
+   var formData = new FormData();
+    var file =$('#xlsFile');
+   //formData.append("image", formElement.files[0]);
+   formData.append(file.attr('name'), file[0].files[0]);
+
+
+   $.ajax({
+       url: '/Importing',
+       type: 'POST',
+       data: formData,
+       async: false,
+       cache: false,
+       contentType: false,
+       processData: false,
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       },
+       beforeSend: function () {
+           jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+       },
+       success: function (data) {
+           if (data.code==1) {
+
+           }else {
+               layer.msg(data.error);
+           }
+
+
+       },
+       error: function () {
+           layer.close(jz);
+             layer.msg('失败，可能和需要的格式不符合');
+       }
+   });
+
+}
+
+
+function importXls(){
+
+  layer.open({
+        type: 1,
+        skin: 'layui-layer-filemove',
+        offset: '200px',
+         area: ['700px', '230px'],
+        title: '导入xls',
+        anim: 1,
+        content: '<html>\
+    <form class="layui-form" id="exportForm" >\
+    <div class="layui-form-item">\
+      <label class="layui-form-label">选择</label>\
+      <div class="layui-input-block">\
+        <input style="margin-top:30px" id="xlsFile" type="file" name="xls"  >\
+      </div>\
+      </div>\
+      <div class="layui-form-item">\
+      <div class="layui-input-block">\
+        <button class="layui-btn exportajax" type="button" onclick="submitxls()"   lay-filter="formDemo">立即提交</button>\
+      </div>\
+    </div>\
+  </form>\
+</html>',
+ success: function(layero, index){
+   layui.use('form', function(){
+  var form = layui.form();
+  form.render();
+});
+  }
+    }
+  );
 }
