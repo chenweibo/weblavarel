@@ -19,11 +19,10 @@ class WechatController extends Controller
         $app->server->setMessageHandler(function ($message) {
             $user_openid = $message->FromUserName;
             if ($message->Event=='subscribe') {
-                return '欢迎关注我哦'.$user_openid;
+                return '欢迎关注我哦';
             }
             if ($message->Event=='unsubscribe') {
                 $z=$userService->get($message->FromUserName);
-                return '欢迎关注我哦'.$z->nickname;
                 return '已取消关注';
             }
             switch ($message->MsgType) {
@@ -39,7 +38,7 @@ class WechatController extends Controller
                     $userService = $app->user;
                     $z=$userService->get($message->FromUserName);
                     DB::table('wechatmessage')->insert([ 'name'=>$z->nickname, 'OpenID'=>$message->FromUserName,'content'=>$message->Content,'time'=>$message->CreateTime,'MsgId'=>$message->MsgId]);
-                      $list = DB::table('reply')->where('name', $message->Content)->get()->first();
+                    $list = DB::table('reply')->where('name', $message->Content)->get()->first();
                     if (empty($list)) {
                         return '你的留言我们已经收到';
                     } else {

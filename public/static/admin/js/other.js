@@ -421,7 +421,9 @@ function sitemap(){
           layer.msg('生成成功');
       },
       error: function () {
-          alert("出错,联系管理员")
+          layer.close(jz);
+          layer.msg("失败,指定的路由可能不存在");
+
       }
   });
 
@@ -513,12 +515,12 @@ function submitxls(){
        },
        success: function (data) {
            if (data.code==1) {
-
+              layer.close(jz);
+              layer.msg('导入成功');
            }else {
+               layer.close(jz);
                layer.msg(data.error);
            }
-
-
        },
        error: function () {
            layer.close(jz);

@@ -150,11 +150,14 @@ class CommonController extends Controller
     public function Exporting(Request $request)
     {
         $content= new Content();
-        $cellData = [
-         ['name'],
-
-        ];
+        $title = [ 'name'];
         $data = $content->where('type', 2)->select('name')->get()->toArray();
+
+        foreach ($data as $key => $value) {
+            $data[$key] = array_values($data[$key]);
+        }
+        $array = array_prepend($data, $title);
+        $cellData = $array;
         Excel::create($request->name, function ($excel) use ($cellData) {
             $excel->sheet('score', function ($sheet) use ($cellData) {
                 $sheet->rows($cellData);
@@ -164,5 +167,20 @@ class CommonController extends Controller
 
     public function Importing(Request $request)
     {
+        $file = $request->file('xls');
+        $ext = $file->getClientOriginalExtension();
+        if (!in_array($ext, ['xls','xlsx','csv'])) {
+            return ['code'=>0,'error'=>'文件格式不对'];
+        }
+        $file = $request->file('xls');
+        $bool = Storage::disk('uploads')->putFileAs('xls', $file, time().'.'.$ext);
+        $path='static/uploads/'.$bool;
+        $filePath = public_path($path);
+        Excel::load($filePath, function ($reader) {
+            $data = $reader->get()->toArray();
+            $content= new Content();
+            $content->insert($data);
+        });
+        return ['code'=>1];
     }
 }

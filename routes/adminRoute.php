@@ -7,6 +7,13 @@ Route::get('mysitemap', function () {
     $sitemap = App::make("sitemap");
 
     $sitemap->add(route('home'), date('Y-m-d'), '0.9', 'daily');
+    $posts = DB::table('content')->where('type', 2)->get();
+
+  // add every post to the sitemap
+    foreach ($posts as $post) {
+        $sitemap->add(route('productview', $post->rewrite), date('Y-m-d'), '0.9', 'daily');
+    }
+
     // generate your sitemap (format, filename)
     $sitemap->store('xml', 'sitemap');
     return ['code'=>1];
