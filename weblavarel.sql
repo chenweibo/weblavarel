@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-26 17:20:11
+Date: 2017-08-31 17:13:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '116', '127.0.0.1', '1503731163', 'jksm', '1', '1', null);
+INSERT INTO `admin_user` VALUES ('6', 'jksm', 'eyJpdiI6Im5reW1WYTdNXC83d1FUMVIyeWR4WitnPT0iLCJ2YWx1ZSI6ImxaVEdtS1laVlFOQk5pWlBNRUNrVlE9PSIsIm1hYyI6IjkzNTkyMjQ1ZDM4ZWY5MjIzMTQxN2IzZTYwY2IwODEyMTMyMTQxZTkyNzBmZTcwMmVlYTZiMjZiZmRkZDQ1ZjcifQ==', '127', '127.0.0.1', '1504160889', 'jksm', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for columns
@@ -104,7 +104,7 @@ CREATE TABLE `content` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`,`click`)
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
@@ -140,8 +140,39 @@ INSERT INTO `content` VALUES ('143', '迭代', null, '斯蒂芬', '31', '0-27-31
 INSERT INTO `content` VALUES ('144', 's的 死', null, 'sdesi', '33', '0-27-31-33', null, null, '<p>死的<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', 's的', '99', null, null);
 INSERT INTO `content` VALUES ('145', '下次vxc', null, 'xiacivxc', '33', '0-27-31-33', null, null, null, null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
 INSERT INTO `content` VALUES ('146', '速度', null, 'sudu', '33', '0-27-31-33', null, null, '<p>速度速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
-INSERT INTO `content` VALUES ('147', '速度范德萨', null, 'sudufandesa', '32', '0-27-32', null, null, '<p>&nbsp;斯蒂芬速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
-INSERT INTO `content` VALUES ('150', 'sd sd', 'sd', 'sd', '29', '0-28-29', '2017-08-15', null, null, null, null, null, null, null, 'cn', '0', '3', '99', '1', null, '10', null, '2017-08-11 10:59:35');
+INSERT INTO `content` VALUES ('148', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('149', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('150', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('151', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('152', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('153', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('154', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('155', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('156', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('157', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('158', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('159', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('160', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('161', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('162', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('163', 'sdfsad', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('164', 'ccz', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('165', 'asdf', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('166', 'sdfsdf', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('167', 'asdfsadf', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('168', 'asdf', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('169', 'asdf', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('170', '阿斯蒂芬', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('171', '斯蒂芬速度', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('172', '阿斯蒂芬', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('173', '阿斯蒂芬', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('174', '阿萨德死', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('175', '迭代', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('176', 's的 死', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('177', '下次vxc', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('178', '速度', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('179', '速度范德萨', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
+INSERT INTO `content` VALUES ('180', '你好', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '50', null, null, '88', null, null);
 
 -- ----------------------------
 -- Table structure for field
@@ -384,11 +415,12 @@ CREATE TABLE `recycles` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of recycles
 -- ----------------------------
+INSERT INTO `recycles` VALUES ('147', '速度范德萨', null, 'sudufandesa', '32', '0-27-32', null, null, '<p>&nbsp;斯蒂芬速度<br></p>', null, null, null, null, null, 'cn', '0', '2', '50', '1', null, '99', null, null);
 
 -- ----------------------------
 -- Table structure for reply
@@ -474,14 +506,11 @@ CREATE TABLE `wechatmenu` (
   `pid` int(20) DEFAULT '0',
   `sort` int(255) DEFAULT '80',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wechatmenu
 -- ----------------------------
-INSERT INTO `wechatmenu` VALUES ('4', '子菜单1', 'www.a', '1', '88');
-INSERT INTO `wechatmenu` VALUES ('5', '菜单2', '#', '0', '88');
-INSERT INTO `wechatmenu` VALUES ('6', 'zicai2', 'xx', '5', '88');
 
 -- ----------------------------
 -- Table structure for wechatmessage
