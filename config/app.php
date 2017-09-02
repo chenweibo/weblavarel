@@ -183,7 +183,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Spatie\Backup\BackupServiceProvider::class,
     ],
 
     /*

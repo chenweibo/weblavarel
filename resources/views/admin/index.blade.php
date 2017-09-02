@@ -244,8 +244,8 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>程序版本（2.0）</td>
-                            <td><a class="btn btn-primary btn-xs" href="#" role="button">检查更新</a></td>
+                            <td>程序版本（{{env('version')}}）</td>
+                            <td><a class="btn btn-primary btn-xs" onclick="DetectionUpdate()" role="button">检查更新</a></td>
 
                         </tr>
                         <tr>

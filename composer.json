@@ -13,7 +13,8 @@
         "mews/captcha": "^2.1",
         "overtrue/laravel-wechat": "~3.0",
         "overtrue/pinyin": "~3.0",
-        "roumen/sitemap": "^2.6"
+        "roumen/sitemap": "^2.6",
+        "spatie/laravel-backup": "^3.11"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

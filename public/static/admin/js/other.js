@@ -511,6 +511,7 @@ function submitxls(){
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
        },
        beforeSend: function () {
+
            jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
        },
        success: function (data) {
@@ -563,4 +564,24 @@ function importXls(){
   }
     }
   );
+}
+
+function DetectionUpdate()
+{
+  $.ajax({
+      url: '/DetectionUpdate',
+      type: 'POST',
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      beforeSend: function () {
+           jz = layer.load(0, {shade: false});
+      },
+      success: function (data) {
+          layer.close(jz);
+          layer.msg(data);
+      },
+
+  });
+
 }

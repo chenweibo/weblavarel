@@ -144,6 +144,10 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('admin/ReplyEdit', 'WechatController@ReplyEdit')->name('ReplyEdit');
     Route::any('admin/ReplyDelete', 'WechatController@ReplyDelete')->name('ReplyDelete');
 
+    //xls route
     Route::any('/Exporting', 'CommonController@Exporting')->name('Exporting');
     Route::any('/Importing', 'CommonController@Importing')->name('Importing');
+
+    //检查更新 route
+    Route::any('/DetectionUpdate', 'UpdateController@DetectionUpdate')->name('DetectionUpdate');
 });
