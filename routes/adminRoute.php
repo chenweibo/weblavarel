@@ -150,4 +150,5 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
 
     //检查更新 route
     Route::any('/DetectionUpdate', 'UpdateController@DetectionUpdate')->name('DetectionUpdate');
+    Route::any('/BackupSql', 'UpdateController@BackupSql')->name('BackupSql');
 });

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use App\UserType;
 use App\Content;
 use App\Gbook;
@@ -37,7 +39,7 @@ class AdminController extends Controller
         $book = $gbook->count();
         //$output = shell_exec('ls -lart');
         $base = base_path();
-        exec("cd ".$base .'&& php artisan backup:run --only-db', $output);
+        //exec("cd ".$base .'&& php artisan backup:run --only-db', $output);
         $data = unserialize(file_get_contents(public_path('tongji.db')));
         return view('admin/index', ['data'=>$data,'page'=>$page,'product'=>$product,'article'=>$article,'image'=>$image,'down'=>$down,'gbook'=>$book]);
     }

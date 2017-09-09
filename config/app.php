@@ -184,6 +184,7 @@ return [
         Roumen\Sitemap\SitemapServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
+        Chumper\Zipper\ZipperServiceProvider::class,
     ],
 
     /*
@@ -236,6 +237,7 @@ return [
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Zipper' => Chumper\Zipper\Zipper::class,
 
     ],
 

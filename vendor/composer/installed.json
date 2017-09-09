@@ -4761,5 +4761,57 @@
             "laravel-backup",
             "spatie"
         ]
+    },
+    {
+        "name": "chumper/zipper",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Chumper/Zipper.git",
+            "reference": "210c17a1596a5ec462b5f9fd9866853f3240b25a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/Chumper/Zipper/210c17a1596a5ec462b5f9fd9866853f3240b25a.zip",
+            "reference": "210c17a1596a5ec462b5f9fd9866853f3240b25a",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/filesystem": "^5.0",
+            "illuminate/support": "^5.0",
+            "php": ">=5.6.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^5.7"
+        },
+        "time": "2017-02-01T05:26:05+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Chumper\\Zipper": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache2"
+        ],
+        "authors": [
+            {
+                "name": "Nils Plaschke",
+                "email": "github@nilsplaschke.de",
+                "homepage": "http://nilsplaschke.de",
+                "role": "Developer"
+            }
+        ],
+        "description": "This is a little neat helper for the ZipArchive methods with handy functions",
+        "homepage": "http://github.com/Chumper/zipper",
+        "keywords": [
+            "archive",
+            "laravel",
+            "zip"
+        ]
     }
 ]

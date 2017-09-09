@@ -14,7 +14,8 @@
         "overtrue/laravel-wechat": "~3.0",
         "overtrue/pinyin": "~3.0",
         "roumen/sitemap": "^2.6",
-        "spatie/laravel-backup": "^3.11"
+        "spatie/laravel-backup": "^3.11",
+        "chumper/zipper": "1.0.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
