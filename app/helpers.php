@@ -73,7 +73,7 @@ function columnMenu($result, $parentid=0, $format="|--")
              $arr[] = $v ;
              $arr = array_merge($arr, unlimitedForLever($cate, $html, $v['id'], $level+1));
          }
-                  # code...
+         # code...
      }
      return $arr;
  }
@@ -192,7 +192,7 @@ function columnMenu($result, $parentid=0, $format="|--")
       $str = preg_replace("/\r/", "", $str);
       $str = preg_replace("/\n/", "", $str);
       $str = preg_replace("/ /", "", $str);
-    //匹配html中的空格
+      //匹配html中的空格
     return trim($str); //返回字符串
   }
 
@@ -202,4 +202,8 @@ function getstring($data, $first, $last)
     $data=mb_substr($data, $first, $last, 'utf-8');
 
     return $data;
+}
+function getChmod($filepath)
+{
+    return substr(base_convert(@fileperms($filepath), 10, 8), -4);
 }
