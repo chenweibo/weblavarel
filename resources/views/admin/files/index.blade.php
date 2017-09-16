@@ -28,7 +28,7 @@
                 <a href="" class="btn btn-primary">上传</a>
                 <a href="#"
                    class="btn btn-primary">批量删除</a>
-                <div class="btn-group">
+                <div class="btn-group gbb">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="false">更多操作
                         <span class="caret"></span>
                     </button>
@@ -39,8 +39,7 @@
                         </li>
                     </ul>
                 </div>
-
-
+                 <a   class="fileback filebackhidden btn btn-primary">返回上一步</a>
                 <div class="clearfix" style="clear:both"></div>
                 <div class="layui-form">
                     <div class="table-min">
@@ -61,27 +60,22 @@
                                 <th style="text-align: right;" width="300">操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td><input data-id="" name="ck" lay-skin="primary" lay-filter="son"
-                                           type="checkbox"></td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td class="editmenu"><span><a class="btlink" href="javascript:;"
-                                onclick="CopyFile('/www/wwwroot/xtld.dqzd.com/app/Console')">复制</a> |<a
-                                class="btlink" href="javascript:;"
-                                onclick="CutFile('/www/wwwroot/xtld.dqzd.com/app/Console')">剪切</a> | 						<a
-                                class="btlink" href="javascript:ReName(0,'Console');">重命名</a> | 						<a
-                                class="btlink"
-                                href="javascript:SetChmod(0,'/www/wwwroot/xtld.dqzd.com/app/Console');">权限</a> | 						<a
-                                class="btlink"
-                                href="javascript:Zip('/www/wwwroot/xtld.dqzd.com/app/Console');">压缩</a> | 						<a
-                                class="btlink" href="javascript:;"
-                                onclick="DeleteDir('/www/wwwroot/xtld.dqzd.com/app/Console')">删除</a></span>
+                            <tbody class="neir">
+
+                            {{-- <tr>
+                                <td><input data-id="" name="ck" lay-skin="primary" lay-filter="son" type="checkbox"></td>
+                                <td>app.php</td>
+                                <td>200k</td>
+                                <td>2017-8-9</td>
+                                <td class="editmenu"><span>
+                                <a  class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/xtld.dqzd.com/app/Console')">编辑</a> |
+                                <a  class="btlink" href="javascript:ReName(0,'Console');">重命名</a> |
+                                <a  class="btlink" href="javascript:Zip('');">压缩</a> |
+                                <a  class="btlink" href="javascript:;" onclick="DeleteDir('/www/wwwroot/xtld.dqzd.com/app/Console')">删除</a>
+                                </span>
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr> --}}
+
                             </tbody>
                         </table>
                     </div>
@@ -93,12 +87,11 @@
 
 
             <script src="{{asset('static/admin/js/content.min.js?v=1.0.0')}}"></script>
-            <script src="{{asset('static/admin/js/plugins/validate/jquery.validate.min.js')}}"></script>
-            <script src="{{asset('static/admin/js/plugins/validate/messages_zh.min.js')}}"></script>
             <script src="{{asset('static/admin/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
             <script src="{{asset('static/admin/css/layui/layui.js')}}"></script>
             <script src="{{asset('static/admin/js/plugins/layer/layer.min.js')}}"></script>
             <script src="{{asset('static/admin/js/other.js')}}"></script>
+            <script data-main="{{asset('static/admin/js/require/lib/config.js')}}" src="{{asset('static/admin/js/require/lib/require.min.js')}}"></script>
 
             <script>
                 var arr = [];
