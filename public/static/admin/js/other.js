@@ -173,6 +173,7 @@ function editor(str) {
 
     var E = window.wangEditor
     var editor = new E('#editor')
+    editor.customConfig.pasteFilterStyle = false
     editor.customConfig.uploadImgServer = '/EditUploads'
     editor.customConfig.uploadFileName = 'images[]'
     editor.customConfig.uploadImgHeaders = {
@@ -181,8 +182,11 @@ function editor(str) {
     editor.customConfig.onchange = function (html) {
         $('#info').attr('value', html)
     }
+
     editor.create()
     editor.txt.html(str)
+
+
 
 }
 
@@ -609,4 +613,40 @@ Date.prototype.Format = function (fmt) { //author: meizz
     for (var k in o)
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+function insertEdit(){
+
+   //alert($('#newEditHtml').val());
+   layer.close();
+}
+
+function setHtml(){
+
+
+  layer.open({
+        type: 1,
+        skin: 'layui-layer-filemove',
+        btn: ['保存'],
+         area: ['700px', '600px'],
+        title: '设置源代码',
+        anim: 1,
+        content: '<html>\
+    <form class="layui-form" id="setHtmlForm" >\
+           <textarea name="desc" id="newEditHtml" placeholder="请输入内容" style="height:500px" class="layui-textarea"></textarea>\
+  </form>\
+</html>',
+ success: function(layero, index){
+   layui.use('form', function(){
+  var form = layui.form();
+  form.render();
+});
+  },yes: function(index, layero){
+    var newt = $('#newEditHtml').val();
+      $('#info').val(newt);
+       editor.txt.html('<p>用 JS 设置的内容</p>')
+    //layer.close(index)
+ }
+
+    }
+  );
 }

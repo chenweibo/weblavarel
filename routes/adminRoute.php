@@ -155,3 +155,5 @@ Route::group(['middleware' => ['adminbase','web'],'namespace' => 'Admin'], funct
     Route::any('/Files', 'FilesController@Files')->name('Files');
 });
   Route::any('/GetFiles', 'Admin\FilesController@GetFiles')->name('GetFiles');
+  Route::any('/RenameFile', 'Admin\FilesController@RenameFile')->name('RenameFile');
+  Route::any('/DelFile', 'Admin\FilesController@DelFile')->name('DelFile');

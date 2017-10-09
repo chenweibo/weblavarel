@@ -207,3 +207,43 @@ function getChmod($filepath)
 {
     return substr(base_convert(@fileperms($filepath), 10, 8), -4);
 }
+
+function gettime($time, $type)
+{
+    $data=strtotime($time);
+    return date($type, $data);
+}
+function English($str)
+{
+    $par = "/[\x80-\xff]/";
+    $result =preg_replace($par, "", $str);
+    return $result;
+}
+function Chinese($str)
+{
+    preg_match_all("/[\x{4e00}-\x{9fa5}]+/u", $str, $chinese);
+
+    return implode("", $chinese[0]);
+}
+function compress_html($string){
+    $string=str_replace("\r\n",'',$string);//清除换行符
+    $string=str_replace("\n",'',$string);//清除换行符
+    $string=str_replace("\t",'',$string);//清除制表符
+    $pattern=array(
+        "/> *([^ ]*) *</",//去掉注释标记
+        "/[\s]+/",
+        "/<!--[^!]*-->/",
+        "/\" /",
+        "/ \"/",
+        "'/\*[^*]*\*/'"
+    );
+    $replace=array (
+        ">\\1<",
+        " ",
+        "",
+        "\"",
+        "\"",
+        ""
+    );
+    return preg_replace($pattern, $replace, $string);
+}

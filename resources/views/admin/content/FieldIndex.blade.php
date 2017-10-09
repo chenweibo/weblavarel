@@ -4,7 +4,7 @@
 
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>回收站</h5>
+                <h5>字段管理</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>

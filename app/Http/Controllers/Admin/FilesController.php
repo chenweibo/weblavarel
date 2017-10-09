@@ -46,14 +46,34 @@ class FilesController extends Controller
 
         return ['dir'=>empty($dir) ? $dir : $dirResult,'file'=>empty($file) ? $file : $fileResult,'path'=>$path,'root'=>base_path() ];
     }
-    public function RenameFile()
+    public function RenameFile(Request $request)
     {
+        $oldname = $request->path.'/'.$request->oldname;
+        $name = $request->path.'/'.$request->name;
+        $result = rename($oldname, $name);
+        if ($result) {
+            return ['code'=>1];
+        } else {
+            return ['code'=>0];
+        }
     }
-    public function DelFile()
+    public function DelFile(Request $request)
     {
+        if ($request->ajax()) {
+            if ($request->type =='dir') {
+                File::deleteDirectory($request->path.'/'.$request->name, $preserve = false);
+
+                return ['code'=>1];
+            }
+            if ($request->type =='file') {
+                unlink($request->path.'/'.$request->name);
+                return ['code'=>1];
+            }
+        }
     }
-    public function DeleteDir()
+    public function DeleteDir(Request $request)
     {
+        //File::cleanDirectory('directory');
     }
     public function EditFile()
     {

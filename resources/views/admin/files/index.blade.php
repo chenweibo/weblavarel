@@ -24,7 +24,9 @@
                         {{session('error')}}
                     </div>
                 @endif
-
+                <div class="alert alert alert-info">
+               警告：不清楚目录作用切勿删除，否则系统直接崩溃可能无法恢复。
+                </div>
                 <a href="" class="btn btn-primary">上传</a>
                 <a href="#"
                    class="btn btn-primary">批量删除</a>
@@ -62,19 +64,7 @@
                             </thead>
                             <tbody class="neir">
 
-                            {{-- <tr>
-                                <td><input data-id="" name="ck" lay-skin="primary" lay-filter="son" type="checkbox"></td>
-                                <td>app.php</td>
-                                <td>200k</td>
-                                <td>2017-8-9</td>
-                                <td class="editmenu"><span>
-                                <a  class="btlink" href="javascript:;" onclick="CutFile('/www/wwwroot/xtld.dqzd.com/app/Console')">编辑</a> |
-                                <a  class="btlink" href="javascript:ReName(0,'Console');">重命名</a> |
-                                <a  class="btlink" href="javascript:Zip('');">压缩</a> |
-                                <a  class="btlink" href="javascript:;" onclick="DeleteDir('/www/wwwroot/xtld.dqzd.com/app/Console')">删除</a>
-                                </span>
-                                </td>
-                            </tr> --}}
+
 
                             </tbody>
                         </table>
@@ -129,7 +119,7 @@
                 });
 
 
-
+             require(["index"]);
             </script>
 
 

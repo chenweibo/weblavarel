@@ -13,10 +13,3 @@ requirejs.config({
 　　　　}
 　　}
 });
-require(['jquery','layer','file'],function ($,layer,file) {
-      file.fileAjax('/');
-      $(".neir").on("click",".column-name .cursor",function(){
-
-          file.fileAjax($(this).data('name'));
-      });
-    });

@@ -1,5 +1,5 @@
 define(['jquery','layer'],function ($,layer) {
-  Date.prototype.Format = function (fmt) { //author: meizz
+  Date.prototype.Format = function (fmt) {
   var o = {
     "M+": this.getMonth() + 1, //月份
     "d+": this.getDate(), //日
@@ -35,25 +35,25 @@ define(['jquery','layer'],function ($,layer) {
   <td>"+str[1] +"kb</td>\
   <td>"+new Date(parseInt(str[2])*1000).Format("yyyy/MM/dd hh:mm:ss")+"</td>\
   <td class='editmenu'><span>\
-  <a  class='btlink' >重命名</a> |\
+  <a id='renameFile'  class='btlink' >重命名</a> |\
   <a  class='btlink' >压缩</a> |\
-  <a  class='btlink' >删除</a> \
+  <a   id='FileDelete' data-type='dir' class='btlink type-dir' >删除</a> \
   </span>\
   </td>\
   </tr>");
   }) ;
   $.each(data.file, function(i,item){
   str=item.split(';');
-  $('.neir').append("<tr>\
+  $('.neir').append("<tr path='"+data.path+"'>\
   <td><input data-id='' name='ck' lay-skin='primary' lay-filter='son' type='checkbox'></td>\
   <td class='column-name'><span ><span class='ico ico-file'></span><span class='text' >"+str[0] +"</span></span></td>\
   <td>"+str[1] +"kb</td>\
   <td>"+new Date(parseInt(str[2])*1000).Format("yyyy/MM/dd hh:mm:ss")+"</td>\
   <td class='editmenu'><span>\
   <a  class='btlink' >编辑</a> |\
-  <a  class='btlink' >重命名</a> |\
+  <a id='renameFile'  class='btlink' >重命名</a> |\
   <a  class='btlink' >压缩</a> |\
-  <a  class='btlink' >删除</a> \
+  <a   id='FileDelete' data-type='file'   class='btlink' >删除</a> \
   </span>\
   </td>\
   </tr>");
@@ -64,7 +64,6 @@ define(['jquery','layer'],function ($,layer) {
   form.render();
   });
   };
-
   function fileAjax(path){
     $.ajax({
         url: '/GetFiles',
@@ -87,6 +86,7 @@ define(['jquery','layer'],function ($,layer) {
         }
     });
   }
+
 
 
   return {

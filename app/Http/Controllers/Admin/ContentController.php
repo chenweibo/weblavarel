@@ -108,11 +108,11 @@ class ContentController extends Controller
         $content= new Content();
         $field= new Field();
         if ($request->ajax()) {
-            $param=$request->all();
+            $param=$request->except('lastUrl');
             $param['type']=2;
             $param['lid']=explodepath($param['path']);
             $flag=$content->contentUpdate($param);
-            return ['code' => $flag['code'], 'data' => route('Product'), 'msg' => $flag['msg']];
+            return ['code' => $flag['code'], 'data' => $request->lastUrl, 'msg' => $flag['msg']];
         }
         $file= $field->where('type', 2)->orderBy('sort', 'asc')->get();
         $menu  = $Column->getTypeComlun(2);
@@ -386,7 +386,6 @@ class ContentController extends Controller
             foreach ($menu as $v) {
                 if ($v['pid']==0) {
                     $menued = unlimitedForLever($menu, $html = '|-');
-                    break;
                 } else {
                     $menued = unlimitedForLever($menu, $html = '|-', $pid=level($menu));
                 }
@@ -396,8 +395,11 @@ class ContentController extends Controller
                     $menu[$key]['html']='';
                 }
                 $menu = $menu;
+            } else {
+                $menu = $menued;
             }
         }
+
         return view('admin/content/Image', ['list'=>$list,'cate'=>$menu,'keys'=>$request->keys,'id'=>$request->path]);
     }
     public function ImageCreate(Request $request)
@@ -431,6 +433,8 @@ class ContentController extends Controller
                     $menu[$key]['html']='';
                 }
                 $menu = $menu;
+            } else {
+                $menu = $menued;
             }
         }
         return view('admin/content/ImageCreate', ['str'=>$menu ,'file'=>$file,'pid'=>$pid]);
@@ -465,6 +469,8 @@ class ContentController extends Controller
                     $menu[$key]['html']='';
                 }
                 $menu = $menu;
+            } else {
+                $menu = $menued;
             }
         }
 

@@ -325,7 +325,7 @@
 
                 //监听指定开关
                 form.on('switch(switchTest)', function (data) {
-                    $('.cate_recommend').attr('value', this.checked ? '1' : '0')
+                    $('.recommend').attr('value', this.checked ? '1' : '0')
 
                 });
 

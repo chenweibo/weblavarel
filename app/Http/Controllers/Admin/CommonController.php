@@ -34,7 +34,7 @@ class CommonController extends Controller
         $data=[];
         foreach ($file as $v) {
             $bool = Storage::disk('uploads')->put('', $v);
-            $data[]=asset('static/uploads').'/'.$bool;
+            $data[]='/static/uploads'.'/'.$bool;
         }
         return ['errno'=>0,'data'=>$data ] ;
     }
@@ -48,7 +48,7 @@ class CommonController extends Controller
         }
     }
 
-//common ajax state
+    //common ajax state
     public function ajaxState(Request $request)
     {
         $content= new Content();

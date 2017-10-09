@@ -28,9 +28,6 @@ class AdminBase
                 }
             }
         }
-
-
-
         return $next($request);
     }
 }
