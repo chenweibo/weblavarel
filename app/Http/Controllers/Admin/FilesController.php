@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use File;
+use Zipper;
 
 class FilesController extends Controller
 {
@@ -75,7 +76,14 @@ class FilesController extends Controller
     {
         //File::cleanDirectory('directory');
     }
-    public function EditFile()
+    public function ZipFile(Request $request)
+    {
+        $name=explode('.', $request->name);
+        $files = glob($request->path.'/'.$request->name);
+        Zipper::make($request->path.'/'.$name[0].'.zip')->add($files)->close();
+        return ['code'=>1];
+    }
+    public function EditFile(Request $request)
     {
     }
 }

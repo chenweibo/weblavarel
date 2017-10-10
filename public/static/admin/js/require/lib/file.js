@@ -36,7 +36,7 @@ define(['jquery','layer'],function ($,layer) {
   <td>"+new Date(parseInt(str[2])*1000).Format("yyyy/MM/dd hh:mm:ss")+"</td>\
   <td class='editmenu'><span>\
   <a id='renameFile'  class='btlink' >重命名</a> |\
-  <a  class='btlink' >压缩</a> |\
+  <a  class='btlink' id='Zip' >压缩</a> |\
   <a   id='FileDelete' data-type='dir' class='btlink type-dir' >删除</a> \
   </span>\
   </td>\
@@ -44,15 +44,43 @@ define(['jquery','layer'],function ($,layer) {
   }) ;
   $.each(data.file, function(i,item){
   str=item.split(';');
+  var arrfix= str[0].split('.');
+  var suffix = arrfix[arrfix.length-1];
+  if (suffix=='zip') {
+    var icon='ico-zip';
+  }else if (suffix=='php') {
+    var icon='ico-php';
+  }else if (suffix=='xml') {
+    var icon='ico-xml';
+  }
+  else if (suffix=='sql') {
+    var icon='ico-sql';
+  }
+  else if (suffix=='html') {
+    var icon='ico-html';
+  }
+  else if (suffix=='css') {
+    var icon='ico-css';
+  }
+  else if (suffix=='js') {
+    var icon='ico-js';
+  }
+  else if (suffix=='txt') {
+    var icon='ico-txt';
+  }
+  else {
+    var icon='ico-file';
+
+  }
   $('.neir').append("<tr path='"+data.path+"'>\
   <td><input data-id='' name='ck' lay-skin='primary' lay-filter='son' type='checkbox'></td>\
-  <td class='column-name'><span ><span class='ico ico-file'></span><span class='text' >"+str[0] +"</span></span></td>\
+  <td class='column-name'><span ><span class='ico "+icon+"'></span><span class='text' >"+str[0] +"</span></span></td>\
   <td>"+str[1] +"kb</td>\
   <td>"+new Date(parseInt(str[2])*1000).Format("yyyy/MM/dd hh:mm:ss")+"</td>\
   <td class='editmenu'><span>\
-  <a  class='btlink' >编辑</a> |\
+  <a  class='btlink' id='editFile' >编辑</a> |\
   <a id='renameFile'  class='btlink' >重命名</a> |\
-  <a  class='btlink' >压缩</a> |\
+  <a  class='btlink' id='Zip' >压缩</a> |\
   <a   id='FileDelete' data-type='file'   class='btlink' >删除</a> \
   </span>\
   </td>\
