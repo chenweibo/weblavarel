@@ -185,6 +185,9 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
@@ -238,6 +241,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Zipper' => Chumper\Zipper\Zipper::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 

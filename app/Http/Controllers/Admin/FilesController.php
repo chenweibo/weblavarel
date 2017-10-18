@@ -83,7 +83,19 @@ class FilesController extends Controller
         Zipper::make($request->path.'/'.$name[0].'.zip')->add($files)->close();
         return ['code'=>1];
     }
+    public function GetFileContent(Request $request)
+    {
+        if ($request->ajax()) {
+            $data=file_get_contents($request->file);
+            return ['code'=>1,'data'=>$data];
+        }
+    }
+
     public function EditFile(Request $request)
     {
+        if ($request->ajax()) {
+            $data=File::put($request->file, $request->content);
+            return ['code'=>1];
+        }
     }
 }

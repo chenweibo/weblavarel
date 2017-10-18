@@ -1,7 +1,14 @@
 @extends('layouts.admin') @section('content')
-
+    <link href="{{ asset('static/admin/css/codemirror.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/admin/css/show-hint.css') }}" rel="stylesheet">
     <div class="wrapper wrapper-content animated fadeInRight">
+<style >
+.CodeMirror {
+      border: 1px solid #eee;
+      height: 600px;
+  }
 
+</style>
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>文件管理</h5>
@@ -27,7 +34,7 @@
                 <div class="alert alert alert-info">
                警告：不清楚目录作用切勿删除，否则系统直接崩溃可能无法恢复。
                 </div>
-                <a href="" class="btn btn-primary">上传</a>
+                <a   type="button" class="btn btn-primary" id="uploadfile">上传</a>
                 <a href="#"
                    class="btn btn-primary">批量删除</a>
                 <div class="btn-group gbb">
@@ -120,6 +127,7 @@
 
 
              require(["index"]);
+
             </script>
 
 

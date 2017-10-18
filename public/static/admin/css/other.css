@@ -145,3 +145,10 @@
 .ico-txt {
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAVJJREFUeNpi/P//P8NAAhZkzrVr1zyB1FwglqSiHSZAfBZZQEtLC7sDQJZLSUlJcnNzU8Xm27dvg6jVQByqqqp6FpsaJjS+JCcnJ8O/f/+ogkFATk5uJ8gRQMcYE+MAqgN2dvYMeXn5g0DmGmyOYKJHQmNjY0tQUFA4gc0RLLS0mI+PD5YOQCACSp8BYka6OEBUVJRBXFwcW8IkLQSevnqLU05aTBivXlhiJKocINcSSgATwwADiqOA0pAbjYLRKBiNgtEoGHXA4MoFE+fsooulM/twt4pBzScMDY3VmRhi9a3TweIgGp86mFoY+PXrF4ocI3LHJL1own9sDkC2ANkwZDFsjkFXC3PAzL4CRqqlAWyWj6xcgBwFFDuAi5PtH6FGJK40QYwjQGaD7MCZCKfOWVt/5/7Lum/ff9Ekarg42f+qKIo1Z6cEN2J1wEAAgAADALEDt/dBJDrPAAAAAElFTkSuQmCC");
 }
+.form-editfile{ padding: 20px; position: relative;}
+.bt-form-submit-btn{
+    text-align: right;
+    padding-top: 20px;
+    width: 100%;
+    }
+    .clear{clear: both;}

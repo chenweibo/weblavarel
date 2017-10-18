@@ -4,20 +4,31 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Validator;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Tymon\JWTAuth\Contracts\JWTSubject as AuthenticatableUserContract;
 
 class AdminUser extends Model
 {
     protected $table = 'admin_user';
     public $timestamps = false;
+
+
     public function InsertUser($param)
     {
         try {
-            $validator = Validator::make($param,
+            $validator = Validator::make(
+                $param,
               [
                   'username' => 'unique:admin_user',
-              ], [
+              ],
+                [
                   'username.unique' => '用户名已经存在',
-              ]);
+              ]
+            );
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
 

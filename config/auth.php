@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'AdminUser' => [
+       'driver'   => 'jwt',   // 结合扩展这里定义即生效
+       'provider' => 'AdminUser'
+   ]
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'AdminUser' => [
+       'driver' => 'eloquent',
+       'model' => App\Models\AdminUser::class,
+   ]
 
         // 'users' => [
         //     'driver' => 'database',

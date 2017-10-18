@@ -15,5 +15,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/wechat',
         'admin/wechat',
         'admin/MenuChange',
+        'api/*',
     ];
 }

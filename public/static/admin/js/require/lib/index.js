@@ -1,4 +1,5 @@
-require(['jquery','layer','file'],function ($,layer,file) {
+require(['jquery','layer','file','codemirror/codemirror','mode/htmlmixed/htmlmixed'],function ($,layer,file,CodeMirror) {
+      var npath
       file.fileAjax('/');
       $(".neir").on("click",".column-name .cursor",function(){
           file.fileAjax($(this).data('name'));
@@ -33,27 +34,87 @@ require(['jquery','layer','file'],function ($,layer,file) {
       });
 
       $(".neir").on("click","#editFile",function(){
+        var name = $(this).parent().parent().parent().find('.text').html();
+        var newpath = $(this).parent().parent().parent().attr('path');
+        var  fileinfo;
 
+        $.ajax({
+            url: '/GetFileContent',
+            type: "post",
+            data: {'file': newpath+'/'+name},
+            dataType: "json",
+            async : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function () {
+                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+            },
+            success: function (res) {
+                layer.close(jz);
+               fileinfo = res.data;
+            },
+            error: function (msg) {
+               layer.close(jz);
+            },
+        })
         layer.open({
               type: 1,
               skin: 'layui-layer-filemove',
-              offset: '20px',
-               area: ['95%', '95%'],
-              title: '编辑',
+              offset: '10px',
+               area: ['98%', '98%'],
+              title: '编辑:'+name,
               anim: 1,
               content: '<html>\
+              <form class="form-editfile" style="height:95%" >\
+              <textarea id="textarea" >'+fileinfo+'</textarea>\
+              <div class="layui-input-block">\
+                <div class="clear"></div>\
+                <div class="bt-form-submit-btn" style=""><button type="button" class="btn btn-danger btn-sm btn-editor-close">关闭</button><button   type="button" style="margin-left: 5px;" class="btn btn-success btn-sm zz">保存</button></div>\
+              </div>\
+              </form>\
       </html>',
        success: function(layero, index){
-         layui.use('form', function(){
-        var form = layui.form();
-        form.render();
-      });
+         var qt=CodeMirror.fromTextArea(document.getElementById("textarea"), {
+             lineNumbers: true,
+             mode: 'text/html',
+             autoMatchParens: true
+         });
+
+         $('.zz').click(function(event) {
+           $.ajax({
+               url: '/EditFile',
+               type: "post",
+               data: {'file': newpath+'/'+name,'content':qt.getValue()},
+               dataType: "json",
+               async : false,
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               success: function (res) {
+                 if (res.code==1) {
+                  layer.msg('保存成功');
+                 }
+                 else {
+                  layer.msg('保存失败');
+                 }
+               },
+               error: function (msg) {
+
+               },
+           })
+         });
+         $('.btn-editor-close').click(function(event) {
+             layer.close(index)
+         });
         }
           }
         );
 
       });
-
+       $("#uploadfile").click(function() {
+            layer.msg(11);
+       });
       $(".neir").on("click","#Zip",function(){
 
         var name = $(this).parent().parent().parent().find('.text').html();
@@ -122,6 +183,4 @@ require(['jquery','layer','file'],function ($,layer,file) {
         layer.close(index);
         });
 });
-
-
     });
