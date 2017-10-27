@@ -205,7 +205,7 @@
                                         <div id="thelist" class="uploader-list clearfix">
                                             @foreach (codeimg($data['moreimg']) as $v)
                                                 <div class="file-item thumbnail upfa upload-state-done"
-                                                     data-img="{{$v}}"><img src="{{ asset('static/uploads') }}/{{$v}}">
+                                                     data-img="{{$v}}"><img onclick="moveicon(event)" src="{{ asset('static/uploads') }}/{{$v}}">
                                                     <a id="fancybox-close" onclick="removeimg(event)"
                                                        style="display: inline;"></a></div>
                                             @endforeach
