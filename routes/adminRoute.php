@@ -20,6 +20,7 @@ Route::get('mysitemap', function () {
     // this will generate file mysitemap.xml to your public folder
 });
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // 2017-8-3 by chenweibo common routes
 Route::any('/jksm', 'Admin\LoginController@index')->name('jksm');
 Route::get('/adminloginout', 'Admin\LoginController@loginout')->name('adminout');

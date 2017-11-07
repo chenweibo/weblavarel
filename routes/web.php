@@ -26,7 +26,7 @@ include 'adminRoute.php';
 | chenweibo  home router
 |------------------------------------------------------------------------------------------------------------------------------------
 */
-Route::group(['middleware' => ['web'],'namespace' => 'Home'], function () {
+Route::group(['middleware' => ['web','mobile'],'namespace' => 'Home'], function () {
     Route::get('/', function () {
         return 'hello word';
     })->name('home');

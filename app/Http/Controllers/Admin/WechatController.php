@@ -27,7 +27,10 @@ class WechatController extends Controller
             }
             switch ($message->MsgType) {
                 case 'event':
-                    return '收到事件消息';
+
+                     return '';
+
+
                     break;
                 case 'text':
                     $data['OpenID'] = $message->FromUserName;
@@ -221,11 +224,11 @@ class WechatController extends Controller
         $data = DB::table('reply')->where('id', $request->id)->get()->first();
         if ($request->ajax()) {
             # code...
-          if (DB::table('reply')->where('id', $request->id)->update($request->all())) {
-              return ['code'=>1,'data'=>route('Reply'),'msg'=>''];
-          } else {
-              return ['code'=>0,'msg'=>'编辑失败'];
-          }
+            if (DB::table('reply')->where('id', $request->id)->update($request->all())) {
+                return ['code'=>1,'data'=>route('Reply'),'msg'=>''];
+            } else {
+                return ['code'=>0,'msg'=>'编辑失败'];
+            }
         }
         return view('admin/wechat/ReplyEdit', ['data'=>$data]);
     }
