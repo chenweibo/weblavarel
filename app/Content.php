@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Content extends Model
 {
@@ -40,5 +41,10 @@ class Content extends Model
         } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
+    }
+
+    public function click($id)
+    {
+        DB::table('content')->where('id', $id)->increment('click', 1);
     }
 }
